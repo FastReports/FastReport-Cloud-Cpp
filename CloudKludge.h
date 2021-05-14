@@ -1,6 +1,9 @@
 #pragma once
 #include <cstdint>
 
+#ifndef FASTREPORT_CLOUD_KLUDGE_H_
+#define FASTREPORT_CLOUD_KLUDGE_H_
+
 namespace fastreport {
 	namespace cloud {
 		namespace models {
