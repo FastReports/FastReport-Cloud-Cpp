@@ -155,25 +155,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesCreateDataS
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -309,25 +290,6 @@ pplx::task<void> DataSourcesApi::dataSourcesDeleteDataSource(utility::string_t i
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -445,25 +407,6 @@ pplx::task<void> DataSourcesApi::dataSourcesFetchData(utility::string_t id) cons
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -592,25 +535,6 @@ pplx::task<std::shared_ptr<DataSourcesVM>> DataSourcesApi::dataSourcesGetAvailab
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -746,25 +670,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesGetDataSour
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -900,25 +805,6 @@ pplx::task<std::shared_ptr<DataSourcePermissionsVM>> DataSourcesApi::dataSources
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -1074,25 +960,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesRenameDataS
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -1248,25 +1115,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesUpdateConne
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -1422,25 +1270,6 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdatePermissions(utility::string_t 
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -1578,25 +1407,6 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdateSubscriptionDataSource(utility
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500

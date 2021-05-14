@@ -49,9 +49,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExport(utility:
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -138,25 +135,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExport(utility:
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -190,9 +168,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExportThumbnail
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -279,25 +254,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExportThumbnail
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -331,9 +287,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExports(utility
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -424,25 +377,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExports(utility
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -476,9 +410,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReport(utility:
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -565,25 +496,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReport(utility:
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -617,9 +529,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReportThumbnail
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -706,25 +615,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReportThumbnail
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -758,9 +648,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReports(utility
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -851,25 +738,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReports(utility
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -903,9 +771,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplate(utilit
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -992,25 +857,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplate(utilit
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
@@ -1044,9 +890,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplates(utili
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1137,25 +980,6 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplates(utili
         if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
         {
             utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-
-            if (localVarContentType == utility::conversions::to_string_t("application/octet-stream"))
-            {
-                std::string body;
-                localVarResponse.content_ready().wait();
-
-                concurrency::streams::istream  src = localVarResponse.body();
-                concurrency::streams::streambuf<unsigned char> streambuf = src.streambuf();
-
-                body.resize(streambuf.in_avail());
-                if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0)
-                    std::cout << "Empty buffer\n";
-
-                std::vector<unsigned char> vect(body.begin(), body.end());
-
-                pplx::task<std::vector<unsigned char> > localVarResult = pplx::task_from_result<std::vector<unsigned char>>(vect);
-                return localVarResult;
-            }
-
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
