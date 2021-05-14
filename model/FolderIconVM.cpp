@@ -22,7 +22,6 @@ namespace models {
 
 FolderIconVM::FolderIconVM()
 {
-    m_icon = utility::conversions::to_string_t("");
     m_iconIsSet = false;
 }
 

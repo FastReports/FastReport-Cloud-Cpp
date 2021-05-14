@@ -21,7 +21,6 @@
 #include "CloudKludge.h"
 #include "../ApiClient.h"
 
-#include "GroupsVM.h"
 #include "ProblemDetails.h"
 #include "SubscriptionUsersVM.h"
 #include <cpprest/details/basic_types.h>
@@ -54,18 +53,6 @@ public:
     /// <param name="subscriptionId">Idenitifier of subscription</param>
     /// <param name="userId">Idenitifier of user</param>
     pplx::task<void> subscriptionUsersAddUser(
-        utility::string_t subscriptionId,
-        utility::string_t userId
-    ) const;
-    /// <summary>
-    /// Returns all users of subscription
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <param name="subscriptionId">Idenitifier of subscription</param>
-    /// <param name="userId">user id</param>
-    pplx::task<std::shared_ptr<GroupsVM>> subscriptionUsersGetUserGroups(
         utility::string_t subscriptionId,
         utility::string_t userId
     ) const;

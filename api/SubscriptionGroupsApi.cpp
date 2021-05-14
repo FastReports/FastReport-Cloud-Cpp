@@ -34,13 +34,13 @@ SubscriptionGroupsApi::~SubscriptionGroupsApi()
 {
 }
 
-pplx::task<std::shared_ptr<GroupsVM>> SubscriptionGroupsApi::subscriptionGroupsGetGroupList(utility::string_t id) const
+pplx::task<std::shared_ptr<GroupsVM>> SubscriptionGroupsApi::subscriptionGroupsGetGroupsList(utility::string_t subscriptionId, boost::optional<utility::string_t> userId) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/api/manage/v1/Subscriptions/{id}/groups");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(id));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/api/manage/v1/Subscriptions/{subscriptionId}/groups");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("subscriptionId") + utility::conversions::to_string_t("}"), ApiClient::parameterToString(subscriptionId));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -71,13 +71,17 @@ pplx::task<std::shared_ptr<GroupsVM>> SubscriptionGroupsApi::subscriptionGroupsG
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("SubscriptionGroupsApi->subscriptionGroupsGetGroupList does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("SubscriptionGroupsApi->subscriptionGroupsGetGroupsList does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (userId)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("userId")] = ApiClient::parameterToString(*userId);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -98,7 +102,7 @@ pplx::task<std::shared_ptr<GroupsVM>> SubscriptionGroupsApi::subscriptionGroupsG
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("SubscriptionGroupsApi->subscriptionGroupsGetGroupList does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("SubscriptionGroupsApi->subscriptionGroupsGetGroupsList does not consume any supported media type"));
     }
 
     // authentication (ApiKey) required
@@ -128,7 +132,7 @@ pplx::task<std::shared_ptr<GroupsVM>> SubscriptionGroupsApi::subscriptionGroupsG
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling subscriptionGroupsGetGroupList: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling subscriptionGroupsGetGroupsList: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -139,7 +143,7 @@ pplx::task<std::shared_ptr<GroupsVM>> SubscriptionGroupsApi::subscriptionGroupsG
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling subscriptionGroupsGetGroupList: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling subscriptionGroupsGetGroupsList: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -163,7 +167,7 @@ pplx::task<std::shared_ptr<GroupsVM>> SubscriptionGroupsApi::subscriptionGroupsG
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling subscriptionGroupsGetGroupList: unsupported response type"));
+                , utility::conversions::to_string_t("error calling subscriptionGroupsGetGroupsList: unsupported response type"));
         }
 
         return localVarResult;

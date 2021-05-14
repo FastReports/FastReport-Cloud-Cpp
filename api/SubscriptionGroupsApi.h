@@ -45,14 +45,16 @@ public:
     virtual ~SubscriptionGroupsApi();
 
     /// <summary>
-    /// returns list of groups in the subscription
+    /// returns groups of the subscription or subscription user
     /// </summary>
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="id">subscripiton id</param>
-    pplx::task<std::shared_ptr<GroupsVM>> subscriptionGroupsGetGroupList(
-        utility::string_t id
+    /// <param name="subscriptionId">subscripiton id</param>
+    /// <param name="userId">user Id (optional) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<GroupsVM>> subscriptionGroupsGetGroupsList(
+        utility::string_t subscriptionId,
+        boost::optional<utility::string_t> userId
     ) const;
 
 protected:

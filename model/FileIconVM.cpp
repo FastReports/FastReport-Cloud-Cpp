@@ -22,7 +22,6 @@ namespace models {
 
 FileIconVM::FileIconVM()
 {
-    m_icon = utility::conversions::to_string_t("");
     m_iconIsSet = false;
 }
 

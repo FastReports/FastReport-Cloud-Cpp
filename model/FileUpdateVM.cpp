@@ -27,7 +27,6 @@ FileUpdateVM::FileUpdateVM()
     m_parentId = utility::conversions::to_string_t("");
     m_parentIdIsSet = false;
     m_tagsIsSet = false;
-    m_icon = utility::conversions::to_string_t("");
     m_iconIsSet = false;
 }
 

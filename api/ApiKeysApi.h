@@ -70,7 +70,7 @@ public:
     /// Returns list with all api keys of current user
     /// </summary>
     /// <remarks>
-    /// Always work, it should make only 200 response.
+    /// Always work, it should make only 200 response (except if user is not authorized).
     /// </remarks>
     pplx::task<std::shared_ptr<ApiKeysVM>> apiKeysGetApiKeys(
     ) const;

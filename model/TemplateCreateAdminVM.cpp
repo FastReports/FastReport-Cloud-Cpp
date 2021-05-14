@@ -29,9 +29,7 @@ TemplateCreateAdminVM::TemplateCreateAdminVM()
     m_name = utility::conversions::to_string_t("");
     m_nameIsSet = false;
     m_tagsIsSet = false;
-    m_icon = utility::conversions::to_string_t("");
     m_iconIsSet = false;
-    m_content = utility::conversions::to_string_t("");
     m_contentIsSet = false;
 }
 
