@@ -48,9 +48,9 @@ pplx::task<void> AdminReportsApi::adminReportFoldersDeleteFolder(utility::string
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -169,9 +169,9 @@ pplx::task<std::shared_ptr<FileVM>> AdminReportsApi::adminReportFoldersGetFolder
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -303,9 +303,9 @@ pplx::task<std::shared_ptr<FilesVM>> AdminReportsApi::adminReportFoldersGetFolde
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -450,9 +450,9 @@ pplx::task<std::shared_ptr<FilePermissionsVM>> AdminReportsApi::adminReportFolde
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -584,9 +584,9 @@ pplx::task<std::shared_ptr<FileVM>> AdminReportsApi::adminReportFoldersPostFolde
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -739,9 +739,9 @@ pplx::task<std::shared_ptr<FileVM>> AdminReportsApi::adminReportFoldersUpdateFol
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -894,9 +894,9 @@ pplx::task<void> AdminReportsApi::adminReportFoldersUpdatePermissions(utility::s
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1031,9 +1031,9 @@ pplx::task<void> AdminReportsApi::adminReportsDeleteFile(utility::string_t id) c
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1148,9 +1148,9 @@ pplx::task<std::shared_ptr<ReportVM>> AdminReportsApi::adminReportsGetFile(utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1282,9 +1282,9 @@ pplx::task<std::shared_ptr<ReportsVM>> AdminReportsApi::adminReportsGetFiles(boo
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1429,9 +1429,9 @@ pplx::task<std::shared_ptr<FilePermissionsVM>> AdminReportsApi::adminReportsGetP
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1564,9 +1564,9 @@ pplx::task<std::shared_ptr<ReportVM>> AdminReportsApi::adminReportsUpdateFile(ut
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1719,9 +1719,9 @@ pplx::task<void> AdminReportsApi::adminReportsUpdatePermissions(utility::string_
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1855,9 +1855,9 @@ pplx::task<std::shared_ptr<ReportVM>> AdminReportsApi::adminReportsUploadFile(bo
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
