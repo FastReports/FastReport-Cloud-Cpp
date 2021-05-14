@@ -23,3 +23,5 @@ namespace fastreport {
 		}
 	}
 }
+
+#endif /* FASTREPORT_CLOUD_KLUDGE_H_ */
