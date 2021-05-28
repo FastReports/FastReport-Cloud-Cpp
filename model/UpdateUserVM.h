@@ -57,47 +57,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<utility::string_t>& getSubscriptions();
-    bool subscriptionsIsSet() const;
-    void unsetsubscriptions();
-
-    void setSubscriptions(const std::vector<utility::string_t>& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    std::vector<utility::string_t>& getGroups();
-    bool groupsIsSet() const;
-    void unsetgroups();
-
-    void setGroups(const std::vector<utility::string_t>& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     std::shared_ptr<AdminPermission> getAdminPermission() const;
     bool adminPermissionIsSet() const;
     void unsetadminPermission();
 
     void setAdminPermission(const std::shared_ptr<AdminPermission>& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetname();
-
-    void setName(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getUsername() const;
-    bool usernameIsSet() const;
-    void unsetusername();
-
-    void setUsername(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -111,11 +75,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getPassword() const;
-    bool passwordIsSet() const;
-    void unsetpassword();
+    std::vector<utility::string_t>& getGroups();
+    bool groupsIsSet() const;
+    void unsetgroups();
 
-    void setPassword(const utility::string_t& value);
+    void setGroups(const std::vector<utility::string_t>& value);
 
     /// <summary>
     /// 
@@ -129,32 +93,68 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getName() const;
+    bool nameIsSet() const;
+    void unsetname();
+
+    void setName(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getPassword() const;
+    bool passwordIsSet() const;
+    void unsetpassword();
+
+    void setPassword(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getProvider() const;
     bool providerIsSet() const;
     void unsetprovider();
 
     void setProvider(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    std::vector<utility::string_t>& getSubscriptions();
+    bool subscriptionsIsSet() const;
+    void unsetsubscriptions();
+
+    void setSubscriptions(const std::vector<utility::string_t>& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getUsername() const;
+    bool usernameIsSet() const;
+    void unsetusername();
+
+    void setUsername(const utility::string_t& value);
+
 
 protected:
-    std::vector<utility::string_t> m_subscriptions;
-    bool m_subscriptionsIsSet;
-    std::vector<utility::string_t> m_groups;
-    bool m_groupsIsSet;
     std::shared_ptr<AdminPermission> m_adminPermission;
     bool m_adminPermissionIsSet;
-    utility::string_t m_name;
-    bool m_nameIsSet;
-    utility::string_t m_username;
-    bool m_usernameIsSet;
     utility::string_t m_email;
     bool m_emailIsSet;
-    utility::string_t m_password;
-    bool m_passwordIsSet;
+    std::vector<utility::string_t> m_groups;
+    bool m_groupsIsSet;
     bool m_isAdmin;
     bool m_isAdminIsSet;
+    utility::string_t m_name;
+    bool m_nameIsSet;
+    utility::string_t m_password;
+    bool m_passwordIsSet;
     utility::string_t m_provider;
     bool m_providerIsSet;
+    std::vector<utility::string_t> m_subscriptions;
+    bool m_subscriptionsIsSet;
+    utility::string_t m_username;
+    bool m_usernameIsSet;
 };
 
 

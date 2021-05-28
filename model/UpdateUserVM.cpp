@@ -22,21 +22,21 @@ namespace models {
 
 UpdateUserVM::UpdateUserVM()
 {
-    m_subscriptionsIsSet = false;
-    m_groupsIsSet = false;
     m_adminPermissionIsSet = false;
-    m_name = utility::conversions::to_string_t("");
-    m_nameIsSet = false;
-    m_username = utility::conversions::to_string_t("");
-    m_usernameIsSet = false;
     m_email = utility::conversions::to_string_t("");
     m_emailIsSet = false;
-    m_password = utility::conversions::to_string_t("");
-    m_passwordIsSet = false;
+    m_groupsIsSet = false;
     m_isAdmin = false;
     m_isAdminIsSet = false;
+    m_name = utility::conversions::to_string_t("");
+    m_nameIsSet = false;
+    m_password = utility::conversions::to_string_t("");
+    m_passwordIsSet = false;
     m_provider = utility::conversions::to_string_t("");
     m_providerIsSet = false;
+    m_subscriptionsIsSet = false;
+    m_username = utility::conversions::to_string_t("");
+    m_usernameIsSet = false;
 }
 
 UpdateUserVM::~UpdateUserVM()
@@ -53,41 +53,41 @@ web::json::value UpdateUserVM::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_subscriptionsIsSet)
-    {
-        val[utility::conversions::to_string_t("subscriptions")] = ModelBase::toJson(m_subscriptions);
-    }
-    if(m_groupsIsSet)
-    {
-        val[utility::conversions::to_string_t("groups")] = ModelBase::toJson(m_groups);
-    }
     if(m_adminPermissionIsSet)
     {
         val[utility::conversions::to_string_t("adminPermission")] = ModelBase::toJson(m_adminPermission);
-    }
-    if(m_nameIsSet)
-    {
-        val[utility::conversions::to_string_t("name")] = ModelBase::toJson(m_name);
-    }
-    if(m_usernameIsSet)
-    {
-        val[utility::conversions::to_string_t("username")] = ModelBase::toJson(m_username);
     }
     if(m_emailIsSet)
     {
         val[utility::conversions::to_string_t("email")] = ModelBase::toJson(m_email);
     }
-    if(m_passwordIsSet)
+    if(m_groupsIsSet)
     {
-        val[utility::conversions::to_string_t("password")] = ModelBase::toJson(m_password);
+        val[utility::conversions::to_string_t("groups")] = ModelBase::toJson(m_groups);
     }
     if(m_isAdminIsSet)
     {
         val[utility::conversions::to_string_t("isAdmin")] = ModelBase::toJson(m_isAdmin);
     }
+    if(m_nameIsSet)
+    {
+        val[utility::conversions::to_string_t("name")] = ModelBase::toJson(m_name);
+    }
+    if(m_passwordIsSet)
+    {
+        val[utility::conversions::to_string_t("password")] = ModelBase::toJson(m_password);
+    }
     if(m_providerIsSet)
     {
         val[utility::conversions::to_string_t("provider")] = ModelBase::toJson(m_provider);
+    }
+    if(m_subscriptionsIsSet)
+    {
+        val[utility::conversions::to_string_t("subscriptions")] = ModelBase::toJson(m_subscriptions);
+    }
+    if(m_usernameIsSet)
+    {
+        val[utility::conversions::to_string_t("username")] = ModelBase::toJson(m_username);
     }
 
     return val;
@@ -97,26 +97,6 @@ bool UpdateUserVM::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t("subscriptions")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("subscriptions"));
-        if(!fieldValue.is_null())
-        {
-            std::vector<utility::string_t> refVal_subscriptions;
-            ok &= ModelBase::fromJson(fieldValue, refVal_subscriptions);
-            setSubscriptions(refVal_subscriptions);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("groups")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("groups"));
-        if(!fieldValue.is_null())
-        {
-            std::vector<utility::string_t> refVal_groups;
-            ok &= ModelBase::fromJson(fieldValue, refVal_groups);
-            setGroups(refVal_groups);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t("adminPermission")))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("adminPermission"));
@@ -125,26 +105,6 @@ bool UpdateUserVM::fromJson(const web::json::value& val)
             std::shared_ptr<AdminPermission> refVal_adminPermission;
             ok &= ModelBase::fromJson(fieldValue, refVal_adminPermission);
             setAdminPermission(refVal_adminPermission);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("name")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("name"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_name;
-            ok &= ModelBase::fromJson(fieldValue, refVal_name);
-            setName(refVal_name);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("username")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("username"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_username;
-            ok &= ModelBase::fromJson(fieldValue, refVal_username);
-            setUsername(refVal_username);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("email")))
@@ -157,14 +117,14 @@ bool UpdateUserVM::fromJson(const web::json::value& val)
             setEmail(refVal_email);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("password")))
+    if(val.has_field(utility::conversions::to_string_t("groups")))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("password"));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("groups"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_password;
-            ok &= ModelBase::fromJson(fieldValue, refVal_password);
-            setPassword(refVal_password);
+            std::vector<utility::string_t> refVal_groups;
+            ok &= ModelBase::fromJson(fieldValue, refVal_groups);
+            setGroups(refVal_groups);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("isAdmin")))
@@ -177,6 +137,26 @@ bool UpdateUserVM::fromJson(const web::json::value& val)
             setIsAdmin(refVal_isAdmin);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("name")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("name"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_name;
+            ok &= ModelBase::fromJson(fieldValue, refVal_name);
+            setName(refVal_name);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("password")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("password"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_password;
+            ok &= ModelBase::fromJson(fieldValue, refVal_password);
+            setPassword(refVal_password);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("provider")))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("provider"));
@@ -185,6 +165,26 @@ bool UpdateUserVM::fromJson(const web::json::value& val)
             utility::string_t refVal_provider;
             ok &= ModelBase::fromJson(fieldValue, refVal_provider);
             setProvider(refVal_provider);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("subscriptions")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("subscriptions"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<utility::string_t> refVal_subscriptions;
+            ok &= ModelBase::fromJson(fieldValue, refVal_subscriptions);
+            setSubscriptions(refVal_subscriptions);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("username")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("username"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_username;
+            ok &= ModelBase::fromJson(fieldValue, refVal_username);
+            setUsername(refVal_username);
         }
     }
     return ok;
@@ -197,41 +197,41 @@ void UpdateUserVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         namePrefix += utility::conversions::to_string_t(".");
     }
-    if(m_subscriptionsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("subscriptions"), m_subscriptions));
-    }
-    if(m_groupsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("groups"), m_groups));
-    }
     if(m_adminPermissionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("adminPermission"), m_adminPermission));
-    }
-    if(m_nameIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_name));
-    }
-    if(m_usernameIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("username"), m_username));
     }
     if(m_emailIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("email"), m_email));
     }
-    if(m_passwordIsSet)
+    if(m_groupsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("password"), m_password));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("groups"), m_groups));
     }
     if(m_isAdminIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("isAdmin"), m_isAdmin));
     }
+    if(m_nameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_name));
+    }
+    if(m_passwordIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("password"), m_password));
+    }
     if(m_providerIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("provider"), m_provider));
+    }
+    if(m_subscriptionsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("subscriptions"), m_subscriptions));
+    }
+    if(m_usernameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("username"), m_username));
     }
 }
 
@@ -244,35 +244,11 @@ bool UpdateUserVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         namePrefix += utility::conversions::to_string_t(".");
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t("subscriptions")))
-    {
-        std::vector<utility::string_t> refVal_subscriptions;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("subscriptions")), refVal_subscriptions );
-        setSubscriptions(refVal_subscriptions);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("groups")))
-    {
-        std::vector<utility::string_t> refVal_groups;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("groups")), refVal_groups );
-        setGroups(refVal_groups);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t("adminPermission")))
     {
         std::shared_ptr<AdminPermission> refVal_adminPermission;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("adminPermission")), refVal_adminPermission );
         setAdminPermission(refVal_adminPermission);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("name")))
-    {
-        utility::string_t refVal_name;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("name")), refVal_name );
-        setName(refVal_name);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("username")))
-    {
-        utility::string_t refVal_username;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("username")), refVal_username );
-        setUsername(refVal_username);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("email")))
     {
@@ -280,11 +256,11 @@ bool UpdateUserVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("email")), refVal_email );
         setEmail(refVal_email);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("password")))
+    if(multipart->hasContent(utility::conversions::to_string_t("groups")))
     {
-        utility::string_t refVal_password;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("password")), refVal_password );
-        setPassword(refVal_password);
+        std::vector<utility::string_t> refVal_groups;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("groups")), refVal_groups );
+        setGroups(refVal_groups);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("isAdmin")))
     {
@@ -292,55 +268,39 @@ bool UpdateUserVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("isAdmin")), refVal_isAdmin );
         setIsAdmin(refVal_isAdmin);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t("name")))
+    {
+        utility::string_t refVal_name;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("name")), refVal_name );
+        setName(refVal_name);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("password")))
+    {
+        utility::string_t refVal_password;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("password")), refVal_password );
+        setPassword(refVal_password);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t("provider")))
     {
         utility::string_t refVal_provider;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("provider")), refVal_provider );
         setProvider(refVal_provider);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t("subscriptions")))
+    {
+        std::vector<utility::string_t> refVal_subscriptions;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("subscriptions")), refVal_subscriptions );
+        setSubscriptions(refVal_subscriptions);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("username")))
+    {
+        utility::string_t refVal_username;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("username")), refVal_username );
+        setUsername(refVal_username);
+    }
     return ok;
 }
 
-std::vector<utility::string_t>& UpdateUserVM::getSubscriptions()
-{
-    return m_subscriptions;
-}
-
-void UpdateUserVM::setSubscriptions(const std::vector<utility::string_t>& value)
-{
-    m_subscriptions = value;
-    m_subscriptionsIsSet = true;
-}
-
-bool UpdateUserVM::subscriptionsIsSet() const
-{
-    return m_subscriptionsIsSet;
-}
-
-void UpdateUserVM::unsetsubscriptions()
-{
-    m_subscriptionsIsSet = false;
-}
-std::vector<utility::string_t>& UpdateUserVM::getGroups()
-{
-    return m_groups;
-}
-
-void UpdateUserVM::setGroups(const std::vector<utility::string_t>& value)
-{
-    m_groups = value;
-    m_groupsIsSet = true;
-}
-
-bool UpdateUserVM::groupsIsSet() const
-{
-    return m_groupsIsSet;
-}
-
-void UpdateUserVM::unsetgroups()
-{
-    m_groupsIsSet = false;
-}
 std::shared_ptr<AdminPermission> UpdateUserVM::getAdminPermission() const
 {
     return m_adminPermission;
@@ -360,46 +320,6 @@ bool UpdateUserVM::adminPermissionIsSet() const
 void UpdateUserVM::unsetadminPermission()
 {
     m_adminPermissionIsSet = false;
-}
-utility::string_t UpdateUserVM::getName() const
-{
-    return m_name;
-}
-
-void UpdateUserVM::setName(const utility::string_t& value)
-{
-    m_name = value;
-    m_nameIsSet = true;
-}
-
-bool UpdateUserVM::nameIsSet() const
-{
-    return m_nameIsSet;
-}
-
-void UpdateUserVM::unsetname()
-{
-    m_nameIsSet = false;
-}
-utility::string_t UpdateUserVM::getUsername() const
-{
-    return m_username;
-}
-
-void UpdateUserVM::setUsername(const utility::string_t& value)
-{
-    m_username = value;
-    m_usernameIsSet = true;
-}
-
-bool UpdateUserVM::usernameIsSet() const
-{
-    return m_usernameIsSet;
-}
-
-void UpdateUserVM::unsetusername()
-{
-    m_usernameIsSet = false;
 }
 utility::string_t UpdateUserVM::getEmail() const
 {
@@ -421,25 +341,25 @@ void UpdateUserVM::unsetemail()
 {
     m_emailIsSet = false;
 }
-utility::string_t UpdateUserVM::getPassword() const
+std::vector<utility::string_t>& UpdateUserVM::getGroups()
 {
-    return m_password;
+    return m_groups;
 }
 
-void UpdateUserVM::setPassword(const utility::string_t& value)
+void UpdateUserVM::setGroups(const std::vector<utility::string_t>& value)
 {
-    m_password = value;
-    m_passwordIsSet = true;
+    m_groups = value;
+    m_groupsIsSet = true;
 }
 
-bool UpdateUserVM::passwordIsSet() const
+bool UpdateUserVM::groupsIsSet() const
 {
-    return m_passwordIsSet;
+    return m_groupsIsSet;
 }
 
-void UpdateUserVM::unsetpassword()
+void UpdateUserVM::unsetgroups()
 {
-    m_passwordIsSet = false;
+    m_groupsIsSet = false;
 }
 bool UpdateUserVM::isIsAdmin() const
 {
@@ -461,6 +381,46 @@ void UpdateUserVM::unsetisAdmin()
 {
     m_isAdminIsSet = false;
 }
+utility::string_t UpdateUserVM::getName() const
+{
+    return m_name;
+}
+
+void UpdateUserVM::setName(const utility::string_t& value)
+{
+    m_name = value;
+    m_nameIsSet = true;
+}
+
+bool UpdateUserVM::nameIsSet() const
+{
+    return m_nameIsSet;
+}
+
+void UpdateUserVM::unsetname()
+{
+    m_nameIsSet = false;
+}
+utility::string_t UpdateUserVM::getPassword() const
+{
+    return m_password;
+}
+
+void UpdateUserVM::setPassword(const utility::string_t& value)
+{
+    m_password = value;
+    m_passwordIsSet = true;
+}
+
+bool UpdateUserVM::passwordIsSet() const
+{
+    return m_passwordIsSet;
+}
+
+void UpdateUserVM::unsetpassword()
+{
+    m_passwordIsSet = false;
+}
 utility::string_t UpdateUserVM::getProvider() const
 {
     return m_provider;
@@ -480,6 +440,46 @@ bool UpdateUserVM::providerIsSet() const
 void UpdateUserVM::unsetprovider()
 {
     m_providerIsSet = false;
+}
+std::vector<utility::string_t>& UpdateUserVM::getSubscriptions()
+{
+    return m_subscriptions;
+}
+
+void UpdateUserVM::setSubscriptions(const std::vector<utility::string_t>& value)
+{
+    m_subscriptions = value;
+    m_subscriptionsIsSet = true;
+}
+
+bool UpdateUserVM::subscriptionsIsSet() const
+{
+    return m_subscriptionsIsSet;
+}
+
+void UpdateUserVM::unsetsubscriptions()
+{
+    m_subscriptionsIsSet = false;
+}
+utility::string_t UpdateUserVM::getUsername() const
+{
+    return m_username;
+}
+
+void UpdateUserVM::setUsername(const utility::string_t& value)
+{
+    m_username = value;
+    m_usernameIsSet = true;
+}
+
+bool UpdateUserVM::usernameIsSet() const
+{
+    return m_usernameIsSet;
+}
+
+void UpdateUserVM::unsetusername()
+{
+    m_usernameIsSet = false;
 }
 }
 }

@@ -23,8 +23,8 @@
 
 #include "CreateSubscriptionInviteVM.h"
 #include "ProblemDetails.h"
+#include "SubscriptionInviteVM.h"
 #include "SubscriptionInvitesVM.h"
-#include "SubscriptionVM.h"
 #include <cpprest/details/basic_types.h>
 
 
@@ -66,7 +66,7 @@ public:
     /// </remarks>
     /// <param name="subscriptionId">id</param>
     /// <param name="createInviteVM">create VM (optional)</param>
-    pplx::task<std::shared_ptr<SubscriptionVM>> subscriptionInvitesCreateInvite(
+    pplx::task<std::shared_ptr<SubscriptionInviteVM>> subscriptionInvitesCreateInvite(
         utility::string_t subscriptionId,
         boost::optional<std::shared_ptr<CreateSubscriptionInviteVM>> createInviteVM
     ) const;

@@ -32,6 +32,7 @@ UserProfileUpdateVM::UserProfileUpdateVM()
     m_passwordNewIsSet = false;
     m_passwordNew2 = utility::conversions::to_string_t("");
     m_passwordNew2IsSet = false;
+    m_settingsIsSet = false;
 }
 
 UserProfileUpdateVM::~UserProfileUpdateVM()
@@ -67,6 +68,10 @@ web::json::value UserProfileUpdateVM::toJson() const
     if(m_passwordNew2IsSet)
     {
         val[utility::conversions::to_string_t("passwordNew2")] = ModelBase::toJson(m_passwordNew2);
+    }
+    if(m_settingsIsSet)
+    {
+        val[utility::conversions::to_string_t("settings")] = ModelBase::toJson(m_settings);
     }
 
     return val;
@@ -126,6 +131,16 @@ bool UserProfileUpdateVM::fromJson(const web::json::value& val)
             setPasswordNew2(refVal_passwordNew2);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("settings")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("settings"));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<UserSettings> refVal_settings;
+            ok &= ModelBase::fromJson(fieldValue, refVal_settings);
+            setSettings(refVal_settings);
+        }
+    }
     return ok;
 }
 
@@ -155,6 +170,10 @@ void UserProfileUpdateVM::toMultipart(std::shared_ptr<MultipartFormData> multipa
     if(m_passwordNew2IsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("passwordNew2"), m_passwordNew2));
+    }
+    if(m_settingsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("settings"), m_settings));
     }
 }
 
@@ -196,6 +215,12 @@ bool UserProfileUpdateVM::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         utility::string_t refVal_passwordNew2;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("passwordNew2")), refVal_passwordNew2 );
         setPasswordNew2(refVal_passwordNew2);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("settings")))
+    {
+        std::shared_ptr<UserSettings> refVal_settings;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("settings")), refVal_settings );
+        setSettings(refVal_settings);
     }
     return ok;
 }
@@ -299,6 +324,26 @@ bool UserProfileUpdateVM::passwordNew2IsSet() const
 void UserProfileUpdateVM::unsetpasswordNew2()
 {
     m_passwordNew2IsSet = false;
+}
+std::shared_ptr<UserSettings> UserProfileUpdateVM::getSettings() const
+{
+    return m_settings;
+}
+
+void UserProfileUpdateVM::setSettings(const std::shared_ptr<UserSettings>& value)
+{
+    m_settings = value;
+    m_settingsIsSet = true;
+}
+
+bool UserProfileUpdateVM::settingsIsSet() const
+{
+    return m_settingsIsSet;
+}
+
+void UserProfileUpdateVM::unsetsettings()
+{
+    m_settingsIsSet = false;
 }
 }
 }

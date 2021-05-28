@@ -7,7 +7,6 @@ ApiConfiguration.h
 ApiException.cpp
 ApiException.h
 CMakeLists.txt
-CloudKludge.h
 HttpContent.cpp
 HttpContent.h
 IHttpBody.h
@@ -52,6 +51,8 @@ api/AdminUsersApi.cpp
 api/AdminUsersApi.h
 api/ApiKeysApi.cpp
 api/ApiKeysApi.h
+api/CloudKludge.cpp
+api/CloudKludge.h
 api/DataSourcesApi.cpp
 api/DataSourcesApi.h
 api/DownloadApi.cpp
@@ -283,6 +284,8 @@ model/UserProfileUpdateVM.cpp
 model/UserProfileUpdateVM.h
 model/UserProfileVM.cpp
 model/UserProfileVM.h
+model/UserSettings.cpp
+model/UserSettings.h
 model/UserVM.cpp
 model/UserVM.h
 model/UsersVM.cpp

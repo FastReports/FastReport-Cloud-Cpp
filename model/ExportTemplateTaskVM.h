@@ -22,7 +22,6 @@
 #include "../ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
-#include "Object.h"
 #include <map>
 #include <vector>
 
@@ -103,20 +102,20 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::map<utility::string_t, std::shared_ptr<Object>>& getExportParameters();
+    std::map<utility::string_t, utility::string_t>& getExportParameters();
     bool exportParametersIsSet() const;
     void unsetexportParameters();
 
-    void setExportParameters(const std::map<utility::string_t, std::shared_ptr<Object>>& value);
+    void setExportParameters(const std::map<utility::string_t, utility::string_t>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    std::map<utility::string_t, std::shared_ptr<Object>>& getReportParameters();
+    std::map<utility::string_t, utility::string_t>& getReportParameters();
     bool reportParametersIsSet() const;
     void unsetreportParameters();
 
-    void setReportParameters(const std::map<utility::string_t, std::shared_ptr<Object>>& value);
+    void setReportParameters(const std::map<utility::string_t, utility::string_t>& value);
 
 
 protected:
@@ -130,9 +129,9 @@ protected:
     bool m_pagesCountIsSet;
     utility::string_t m_format;
     bool m_formatIsSet;
-    std::map<utility::string_t, std::shared_ptr<Object>> m_exportParameters;
+    std::map<utility::string_t, utility::string_t> m_exportParameters;
     bool m_exportParametersIsSet;
-    std::map<utility::string_t, std::shared_ptr<Object>> m_reportParameters;
+    std::map<utility::string_t, utility::string_t> m_reportParameters;
     bool m_reportParametersIsSet;
 };
 

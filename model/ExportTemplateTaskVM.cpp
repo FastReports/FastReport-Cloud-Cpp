@@ -141,7 +141,7 @@ bool ExportTemplateTaskVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("exportParameters"));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, std::shared_ptr<Object>> refVal_exportParameters;
+            std::map<utility::string_t, utility::string_t> refVal_exportParameters;
             ok &= ModelBase::fromJson(fieldValue, refVal_exportParameters);
             setExportParameters(refVal_exportParameters);
         }
@@ -151,7 +151,7 @@ bool ExportTemplateTaskVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("reportParameters"));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, std::shared_ptr<Object>> refVal_reportParameters;
+            std::map<utility::string_t, utility::string_t> refVal_reportParameters;
             ok &= ModelBase::fromJson(fieldValue, refVal_reportParameters);
             setReportParameters(refVal_reportParameters);
         }
@@ -237,13 +237,13 @@ bool ExportTemplateTaskVM::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     }
     if(multipart->hasContent(utility::conversions::to_string_t("exportParameters")))
     {
-        std::map<utility::string_t, std::shared_ptr<Object>> refVal_exportParameters;
+        std::map<utility::string_t, utility::string_t> refVal_exportParameters;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("exportParameters")), refVal_exportParameters );
         setExportParameters(refVal_exportParameters);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("reportParameters")))
     {
-        std::map<utility::string_t, std::shared_ptr<Object>> refVal_reportParameters;
+        std::map<utility::string_t, utility::string_t> refVal_reportParameters;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("reportParameters")), refVal_reportParameters );
         setReportParameters(refVal_reportParameters);
     }
@@ -350,12 +350,12 @@ void ExportTemplateTaskVM::unsetformat()
 {
     m_formatIsSet = false;
 }
-std::map<utility::string_t, std::shared_ptr<Object>>& ExportTemplateTaskVM::getExportParameters()
+std::map<utility::string_t, utility::string_t>& ExportTemplateTaskVM::getExportParameters()
 {
     return m_exportParameters;
 }
 
-void ExportTemplateTaskVM::setExportParameters(const std::map<utility::string_t, std::shared_ptr<Object>>& value)
+void ExportTemplateTaskVM::setExportParameters(const std::map<utility::string_t, utility::string_t>& value)
 {
     m_exportParameters = value;
     m_exportParametersIsSet = true;
@@ -370,12 +370,12 @@ void ExportTemplateTaskVM::unsetexportParameters()
 {
     m_exportParametersIsSet = false;
 }
-std::map<utility::string_t, std::shared_ptr<Object>>& ExportTemplateTaskVM::getReportParameters()
+std::map<utility::string_t, utility::string_t>& ExportTemplateTaskVM::getReportParameters()
 {
     return m_reportParameters;
 }
 
-void ExportTemplateTaskVM::setReportParameters(const std::map<utility::string_t, std::shared_ptr<Object>>& value)
+void ExportTemplateTaskVM::setReportParameters(const std::map<utility::string_t, utility::string_t>& value)
 {
     m_reportParameters = value;
     m_reportParametersIsSet = true;

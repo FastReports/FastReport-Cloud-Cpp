@@ -205,6 +205,24 @@ public:
 
     void setPageLimit(int32_t value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getReadonlyTimeLimitType() const;
+    bool readonlyTimeLimitTypeIsSet() const;
+    void unsetreadonlyTimeLimitType();
+
+    void setReadonlyTimeLimitType(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    int32_t getReadonlyTimeLimit() const;
+    bool readonlyTimeLimitIsSet() const;
+    void unsetreadonlyTimeLimit();
+
+    void setReadonlyTimeLimit(int32_t value);
+
 
 protected:
     bool m_isActive;
@@ -241,6 +259,10 @@ protected:
     bool m_unlimitedPageIsSet;
     int32_t m_pageLimit;
     bool m_pageLimitIsSet;
+    utility::string_t m_readonlyTimeLimitType;
+    bool m_readonlyTimeLimitTypeIsSet;
+    int32_t m_readonlyTimeLimit;
+    bool m_readonlyTimeLimitIsSet;
 };
 
 

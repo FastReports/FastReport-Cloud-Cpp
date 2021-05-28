@@ -56,6 +56,10 @@ CreateSubscriptionPlanVM::CreateSubscriptionPlanVM()
     m_unlimitedPageIsSet = false;
     m_pageLimit = 0;
     m_pageLimitIsSet = false;
+    m_readonlyTimeLimitType = utility::conversions::to_string_t("");
+    m_readonlyTimeLimitTypeIsSet = false;
+    m_readonlyTimeLimit = 0;
+    m_readonlyTimeLimitIsSet = false;
 }
 
 CreateSubscriptionPlanVM::~CreateSubscriptionPlanVM()
@@ -139,6 +143,14 @@ web::json::value CreateSubscriptionPlanVM::toJson() const
     if(m_pageLimitIsSet)
     {
         val[utility::conversions::to_string_t("pageLimit")] = ModelBase::toJson(m_pageLimit);
+    }
+    if(m_readonlyTimeLimitTypeIsSet)
+    {
+        val[utility::conversions::to_string_t("readonlyTimeLimitType")] = ModelBase::toJson(m_readonlyTimeLimitType);
+    }
+    if(m_readonlyTimeLimitIsSet)
+    {
+        val[utility::conversions::to_string_t("readonlyTimeLimit")] = ModelBase::toJson(m_readonlyTimeLimit);
     }
 
     return val;
@@ -318,6 +330,26 @@ bool CreateSubscriptionPlanVM::fromJson(const web::json::value& val)
             setPageLimit(refVal_pageLimit);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("readonlyTimeLimitType")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("readonlyTimeLimitType"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_readonlyTimeLimitType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_readonlyTimeLimitType);
+            setReadonlyTimeLimitType(refVal_readonlyTimeLimitType);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("readonlyTimeLimit")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("readonlyTimeLimit"));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_readonlyTimeLimit;
+            ok &= ModelBase::fromJson(fieldValue, refVal_readonlyTimeLimit);
+            setReadonlyTimeLimit(refVal_readonlyTimeLimit);
+        }
+    }
     return ok;
 }
 
@@ -395,6 +427,14 @@ void CreateSubscriptionPlanVM::toMultipart(std::shared_ptr<MultipartFormData> mu
     if(m_pageLimitIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("pageLimit"), m_pageLimit));
+    }
+    if(m_readonlyTimeLimitTypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("readonlyTimeLimitType"), m_readonlyTimeLimitType));
+    }
+    if(m_readonlyTimeLimitIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("readonlyTimeLimit"), m_readonlyTimeLimit));
     }
 }
 
@@ -508,6 +548,18 @@ bool CreateSubscriptionPlanVM::fromMultiPart(std::shared_ptr<MultipartFormData> 
         int32_t refVal_pageLimit;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("pageLimit")), refVal_pageLimit );
         setPageLimit(refVal_pageLimit);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("readonlyTimeLimitType")))
+    {
+        utility::string_t refVal_readonlyTimeLimitType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("readonlyTimeLimitType")), refVal_readonlyTimeLimitType );
+        setReadonlyTimeLimitType(refVal_readonlyTimeLimitType);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("readonlyTimeLimit")))
+    {
+        int32_t refVal_readonlyTimeLimit;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("readonlyTimeLimit")), refVal_readonlyTimeLimit );
+        setReadonlyTimeLimit(refVal_readonlyTimeLimit);
     }
     return ok;
 }
@@ -851,6 +903,46 @@ bool CreateSubscriptionPlanVM::pageLimitIsSet() const
 void CreateSubscriptionPlanVM::unsetpageLimit()
 {
     m_pageLimitIsSet = false;
+}
+utility::string_t CreateSubscriptionPlanVM::getReadonlyTimeLimitType() const
+{
+    return m_readonlyTimeLimitType;
+}
+
+void CreateSubscriptionPlanVM::setReadonlyTimeLimitType(const utility::string_t& value)
+{
+    m_readonlyTimeLimitType = value;
+    m_readonlyTimeLimitTypeIsSet = true;
+}
+
+bool CreateSubscriptionPlanVM::readonlyTimeLimitTypeIsSet() const
+{
+    return m_readonlyTimeLimitTypeIsSet;
+}
+
+void CreateSubscriptionPlanVM::unsetreadonlyTimeLimitType()
+{
+    m_readonlyTimeLimitTypeIsSet = false;
+}
+int32_t CreateSubscriptionPlanVM::getReadonlyTimeLimit() const
+{
+    return m_readonlyTimeLimit;
+}
+
+void CreateSubscriptionPlanVM::setReadonlyTimeLimit(int32_t value)
+{
+    m_readonlyTimeLimit = value;
+    m_readonlyTimeLimitIsSet = true;
+}
+
+bool CreateSubscriptionPlanVM::readonlyTimeLimitIsSet() const
+{
+    return m_readonlyTimeLimitIsSet;
+}
+
+void CreateSubscriptionPlanVM::unsetreadonlyTimeLimit()
+{
+    m_readonlyTimeLimitIsSet = false;
 }
 }
 }

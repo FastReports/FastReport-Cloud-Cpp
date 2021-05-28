@@ -21,6 +21,7 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "UserSettings.h"
 #include <cpprest/details/basic_types.h>
 
 namespace fastreport {
@@ -97,6 +98,15 @@ public:
 
     void setPasswordNew2(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<UserSettings> getSettings() const;
+    bool settingsIsSet() const;
+    void unsetsettings();
+
+    void setSettings(const std::shared_ptr<UserSettings>& value);
+
 
 protected:
     utility::string_t m_name;
@@ -109,6 +119,8 @@ protected:
     bool m_passwordNewIsSet;
     utility::string_t m_passwordNew2;
     bool m_passwordNew2IsSet;
+    std::shared_ptr<UserSettings> m_settings;
+    bool m_settingsIsSet;
 };
 
 

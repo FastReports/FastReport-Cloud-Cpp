@@ -152,7 +152,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
         return void();
     });
 }
-pplx::task<std::shared_ptr<SubscriptionVM>> SubscriptionInvitesApi::subscriptionInvitesCreateInvite(utility::string_t subscriptionId, boost::optional<std::shared_ptr<CreateSubscriptionInviteVM>> createInviteVM) const
+pplx::task<std::shared_ptr<SubscriptionInviteVM>> SubscriptionInvitesApi::subscriptionInvitesCreateInvite(utility::string_t subscriptionId, boost::optional<std::shared_ptr<CreateSubscriptionInviteVM>> createInviteVM) const
 {
 
 
@@ -286,7 +286,7 @@ pplx::task<std::shared_ptr<SubscriptionVM>> SubscriptionInvitesApi::subscription
     })
     .then([=](utility::string_t localVarResponse)
     {
-        std::shared_ptr<SubscriptionVM> localVarResult(new SubscriptionVM());
+        std::shared_ptr<SubscriptionInviteVM> localVarResult(new SubscriptionInviteVM());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
