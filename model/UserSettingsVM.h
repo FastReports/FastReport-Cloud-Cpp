@@ -10,13 +10,13 @@
  */
 
 /*
- * CreateSubscriptionVM.h
+ * UserSettingsVM.h
  *
  * 
  */
 
-#ifndef FASTREPORT_CLOUD_MODELS_CreateSubscriptionVM_H_
-#define FASTREPORT_CLOUD_MODELS_CreateSubscriptionVM_H_
+#ifndef FASTREPORT_CLOUD_MODELS_UserSettingsVM_H_
+#define FASTREPORT_CLOUD_MODELS_UserSettingsVM_H_
 
 #include "CloudKludge.h"
 #include "../ModelBase.h"
@@ -31,12 +31,12 @@ namespace models {
 /// <summary>
 /// 
 /// </summary>
-class  CreateSubscriptionVM
+class  UserSettingsVM
     : public ModelBase
 {
 public:
-    CreateSubscriptionVM();
-    virtual ~CreateSubscriptionVM();
+    UserSettingsVM();
+    virtual ~UserSettingsVM();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -50,43 +50,32 @@ public:
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// CreateSubscriptionVM members
+    /// UserSettingsVM members
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getPlanId() const;
-    bool planIdIsSet() const;
-    void unsetplanId();
+    int32_t getProfileVisibility() const;
+    bool profileVisibilityIsSet() const;
+    void unsetprofileVisibility();
 
-    void setPlanId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetname();
-
-    void setName(const utility::string_t& value);
+    void setProfileVisibility(int32_t value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getUserId() const;
-    bool userIdIsSet() const;
-    void unsetuserId();
+    utility::string_t getDefaultSubscription() const;
+    bool defaultSubscriptionIsSet() const;
+    void unsetdefaultSubscription();
 
-    void setUserId(const utility::string_t& value);
+    void setDefaultSubscription(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_planId;
-    bool m_planIdIsSet;
-    utility::string_t m_name;
-    bool m_nameIsSet;
-    utility::string_t m_userId;
-    bool m_userIdIsSet;
+    int32_t m_profileVisibility;
+    bool m_profileVisibilityIsSet;
+    utility::string_t m_defaultSubscription;
+    bool m_defaultSubscriptionIsSet;
 };
 
 
@@ -94,4 +83,4 @@ protected:
 }
 }
 
-#endif /* FASTREPORT_CLOUD_MODELS_CreateSubscriptionVM_H_ */
+#endif /* FASTREPORT_CLOUD_MODELS_UserSettingsVM_H_ */

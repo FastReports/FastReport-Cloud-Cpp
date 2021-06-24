@@ -21,7 +21,6 @@
 #include "CloudKludge.h"
 #include "../ApiClient.h"
 
-#include <cpprest/details/basic_types.h>
 #include "../ModelBase.h"
 
 #include <boost/optional.hpp>
@@ -49,32 +48,6 @@ public:
     /// 
     /// </remarks>
     pplx::task<void> healthCheckDataGet(
-    ) const;
-    /// <summary>
-    /// healthcheck
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    pplx::task<void> healthCheckManagementGet(
-    ) const;
-    /// <summary>
-    /// healthcheck
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    pplx::task<void> healthCheckReportProcessorGet(
-    ) const;
-    /// <summary>
-    /// Returns Ok
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <param name="version"></param>
-    pplx::task<void> healthCheckResultsProviderGet(
-        utility::string_t version
     ) const;
 
 protected:

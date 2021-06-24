@@ -10,13 +10,13 @@
  */
 
 /*
- * UpdateGroupVM.h
+ * UpdateUserSettingsVM.h
  *
  * 
  */
 
-#ifndef FASTREPORT_CLOUD_MODELS_UpdateGroupVM_H_
-#define FASTREPORT_CLOUD_MODELS_UpdateGroupVM_H_
+#ifndef FASTREPORT_CLOUD_MODELS_UpdateUserSettingsVM_H_
+#define FASTREPORT_CLOUD_MODELS_UpdateUserSettingsVM_H_
 
 #include "CloudKludge.h"
 #include "../ModelBase.h"
@@ -31,12 +31,12 @@ namespace models {
 /// <summary>
 /// 
 /// </summary>
-class  UpdateGroupVM
+class  UpdateUserSettingsVM
     : public ModelBase
 {
 public:
-    UpdateGroupVM();
-    virtual ~UpdateGroupVM();
+    UpdateUserSettingsVM();
+    virtual ~UpdateUserSettingsVM();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -50,32 +50,32 @@ public:
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// UpdateGroupVM members
+    /// UpdateUserSettingsVM members
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetname();
+    int32_t getProfileVisibility() const;
+    bool profileVisibilityIsSet() const;
+    void unsetprofileVisibility();
 
-    void setName(const utility::string_t& value);
+    void setProfileVisibility(int32_t value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getSubscriptionId() const;
-    bool subscriptionIdIsSet() const;
-    void unsetsubscriptionId();
+    utility::string_t getDefaultSubscription() const;
+    bool defaultSubscriptionIsSet() const;
+    void unsetdefaultSubscription();
 
-    void setSubscriptionId(const utility::string_t& value);
+    void setDefaultSubscription(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_name;
-    bool m_nameIsSet;
-    utility::string_t m_subscriptionId;
-    bool m_subscriptionIdIsSet;
+    int32_t m_profileVisibility;
+    bool m_profileVisibilityIsSet;
+    utility::string_t m_defaultSubscription;
+    bool m_defaultSubscriptionIsSet;
 };
 
 
@@ -83,4 +83,4 @@ protected:
 }
 }
 
-#endif /* FASTREPORT_CLOUD_MODELS_UpdateGroupVM_H_ */
+#endif /* FASTREPORT_CLOUD_MODELS_UpdateUserSettingsVM_H_ */

@@ -66,7 +66,7 @@ bool UpdateDefaultPermissionsVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("filePermissions"));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<FilePermissions> refVal_filePermissions;
+            std::shared_ptr<UpdateFilePermissionsVM> refVal_filePermissions;
             ok &= ModelBase::fromJson(fieldValue, refVal_filePermissions);
             setFilePermissions(refVal_filePermissions);
         }
@@ -76,7 +76,7 @@ bool UpdateDefaultPermissionsVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("groupPermissions"));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<GroupPermissions> refVal_groupPermissions;
+            std::shared_ptr<UpdateGroupPermissionsVM> refVal_groupPermissions;
             ok &= ModelBase::fromJson(fieldValue, refVal_groupPermissions);
             setGroupPermissions(refVal_groupPermissions);
         }
@@ -86,7 +86,7 @@ bool UpdateDefaultPermissionsVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("dataSourcePermissions"));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<DataSourcePermissions> refVal_dataSourcePermissions;
+            std::shared_ptr<UpdateDataSourcePermissionsVM> refVal_dataSourcePermissions;
             ok &= ModelBase::fromJson(fieldValue, refVal_dataSourcePermissions);
             setDataSourcePermissions(refVal_dataSourcePermissions);
         }
@@ -126,31 +126,31 @@ bool UpdateDefaultPermissionsVM::fromMultiPart(std::shared_ptr<MultipartFormData
 
     if(multipart->hasContent(utility::conversions::to_string_t("filePermissions")))
     {
-        std::shared_ptr<FilePermissions> refVal_filePermissions;
+        std::shared_ptr<UpdateFilePermissionsVM> refVal_filePermissions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("filePermissions")), refVal_filePermissions );
         setFilePermissions(refVal_filePermissions);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("groupPermissions")))
     {
-        std::shared_ptr<GroupPermissions> refVal_groupPermissions;
+        std::shared_ptr<UpdateGroupPermissionsVM> refVal_groupPermissions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("groupPermissions")), refVal_groupPermissions );
         setGroupPermissions(refVal_groupPermissions);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("dataSourcePermissions")))
     {
-        std::shared_ptr<DataSourcePermissions> refVal_dataSourcePermissions;
+        std::shared_ptr<UpdateDataSourcePermissionsVM> refVal_dataSourcePermissions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("dataSourcePermissions")), refVal_dataSourcePermissions );
         setDataSourcePermissions(refVal_dataSourcePermissions);
     }
     return ok;
 }
 
-std::shared_ptr<FilePermissions> UpdateDefaultPermissionsVM::getFilePermissions() const
+std::shared_ptr<UpdateFilePermissionsVM> UpdateDefaultPermissionsVM::getFilePermissions() const
 {
     return m_filePermissions;
 }
 
-void UpdateDefaultPermissionsVM::setFilePermissions(const std::shared_ptr<FilePermissions>& value)
+void UpdateDefaultPermissionsVM::setFilePermissions(const std::shared_ptr<UpdateFilePermissionsVM>& value)
 {
     m_filePermissions = value;
     m_filePermissionsIsSet = true;
@@ -165,12 +165,12 @@ void UpdateDefaultPermissionsVM::unsetfilePermissions()
 {
     m_filePermissionsIsSet = false;
 }
-std::shared_ptr<GroupPermissions> UpdateDefaultPermissionsVM::getGroupPermissions() const
+std::shared_ptr<UpdateGroupPermissionsVM> UpdateDefaultPermissionsVM::getGroupPermissions() const
 {
     return m_groupPermissions;
 }
 
-void UpdateDefaultPermissionsVM::setGroupPermissions(const std::shared_ptr<GroupPermissions>& value)
+void UpdateDefaultPermissionsVM::setGroupPermissions(const std::shared_ptr<UpdateGroupPermissionsVM>& value)
 {
     m_groupPermissions = value;
     m_groupPermissionsIsSet = true;
@@ -185,12 +185,12 @@ void UpdateDefaultPermissionsVM::unsetgroupPermissions()
 {
     m_groupPermissionsIsSet = false;
 }
-std::shared_ptr<DataSourcePermissions> UpdateDefaultPermissionsVM::getDataSourcePermissions() const
+std::shared_ptr<UpdateDataSourcePermissionsVM> UpdateDefaultPermissionsVM::getDataSourcePermissions() const
 {
     return m_dataSourcePermissions;
 }
 
-void UpdateDefaultPermissionsVM::setDataSourcePermissions(const std::shared_ptr<DataSourcePermissions>& value)
+void UpdateDefaultPermissionsVM::setDataSourcePermissions(const std::shared_ptr<UpdateDataSourcePermissionsVM>& value)
 {
     m_dataSourcePermissions = value;
     m_dataSourcePermissionsIsSet = true;

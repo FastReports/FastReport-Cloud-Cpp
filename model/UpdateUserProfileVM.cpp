@@ -11,7 +11,7 @@
 
 
 
-#include "UserProfileUpdateVM.h"
+#include "UpdateUserProfileVM.h"
 
 namespace fastreport {
 namespace cloud {
@@ -20,7 +20,7 @@ namespace models {
 
 
 
-UserProfileUpdateVM::UserProfileUpdateVM()
+UpdateUserProfileVM::UpdateUserProfileVM()
 {
     m_name = utility::conversions::to_string_t("");
     m_nameIsSet = false;
@@ -32,19 +32,18 @@ UserProfileUpdateVM::UserProfileUpdateVM()
     m_passwordNewIsSet = false;
     m_passwordNew2 = utility::conversions::to_string_t("");
     m_passwordNew2IsSet = false;
-    m_settingsIsSet = false;
 }
 
-UserProfileUpdateVM::~UserProfileUpdateVM()
+UpdateUserProfileVM::~UpdateUserProfileVM()
 {
 }
 
-void UserProfileUpdateVM::validate()
+void UpdateUserProfileVM::validate()
 {
     // TODO: implement validation
 }
 
-web::json::value UserProfileUpdateVM::toJson() const
+web::json::value UpdateUserProfileVM::toJson() const
 {
 
     web::json::value val = web::json::value::object();
@@ -69,15 +68,11 @@ web::json::value UserProfileUpdateVM::toJson() const
     {
         val[utility::conversions::to_string_t("passwordNew2")] = ModelBase::toJson(m_passwordNew2);
     }
-    if(m_settingsIsSet)
-    {
-        val[utility::conversions::to_string_t("settings")] = ModelBase::toJson(m_settings);
-    }
 
     return val;
 }
 
-bool UserProfileUpdateVM::fromJson(const web::json::value& val)
+bool UpdateUserProfileVM::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
@@ -131,20 +126,10 @@ bool UserProfileUpdateVM::fromJson(const web::json::value& val)
             setPasswordNew2(refVal_passwordNew2);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("settings")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("settings"));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<UserSettings> refVal_settings;
-            ok &= ModelBase::fromJson(fieldValue, refVal_settings);
-            setSettings(refVal_settings);
-        }
-    }
     return ok;
 }
 
-void UserProfileUpdateVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void UpdateUserProfileVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t("."))
@@ -171,13 +156,9 @@ void UserProfileUpdateVM::toMultipart(std::shared_ptr<MultipartFormData> multipa
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("passwordNew2"), m_passwordNew2));
     }
-    if(m_settingsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("settings"), m_settings));
-    }
 }
 
-bool UserProfileUpdateVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool UpdateUserProfileVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -216,134 +197,108 @@ bool UserProfileUpdateVM::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("passwordNew2")), refVal_passwordNew2 );
         setPasswordNew2(refVal_passwordNew2);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("settings")))
-    {
-        std::shared_ptr<UserSettings> refVal_settings;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("settings")), refVal_settings );
-        setSettings(refVal_settings);
-    }
     return ok;
 }
 
-utility::string_t UserProfileUpdateVM::getName() const
+utility::string_t UpdateUserProfileVM::getName() const
 {
     return m_name;
 }
 
-void UserProfileUpdateVM::setName(const utility::string_t& value)
+void UpdateUserProfileVM::setName(const utility::string_t& value)
 {
     m_name = value;
     m_nameIsSet = true;
 }
 
-bool UserProfileUpdateVM::nameIsSet() const
+bool UpdateUserProfileVM::nameIsSet() const
 {
     return m_nameIsSet;
 }
 
-void UserProfileUpdateVM::unsetname()
+void UpdateUserProfileVM::unsetname()
 {
     m_nameIsSet = false;
 }
-utility::string_t UserProfileUpdateVM::getUsername() const
+utility::string_t UpdateUserProfileVM::getUsername() const
 {
     return m_username;
 }
 
-void UserProfileUpdateVM::setUsername(const utility::string_t& value)
+void UpdateUserProfileVM::setUsername(const utility::string_t& value)
 {
     m_username = value;
     m_usernameIsSet = true;
 }
 
-bool UserProfileUpdateVM::usernameIsSet() const
+bool UpdateUserProfileVM::usernameIsSet() const
 {
     return m_usernameIsSet;
 }
 
-void UserProfileUpdateVM::unsetusername()
+void UpdateUserProfileVM::unsetusername()
 {
     m_usernameIsSet = false;
 }
-utility::string_t UserProfileUpdateVM::getEmail() const
+utility::string_t UpdateUserProfileVM::getEmail() const
 {
     return m_email;
 }
 
-void UserProfileUpdateVM::setEmail(const utility::string_t& value)
+void UpdateUserProfileVM::setEmail(const utility::string_t& value)
 {
     m_email = value;
     m_emailIsSet = true;
 }
 
-bool UserProfileUpdateVM::emailIsSet() const
+bool UpdateUserProfileVM::emailIsSet() const
 {
     return m_emailIsSet;
 }
 
-void UserProfileUpdateVM::unsetemail()
+void UpdateUserProfileVM::unsetemail()
 {
     m_emailIsSet = false;
 }
-utility::string_t UserProfileUpdateVM::getPasswordNew() const
+utility::string_t UpdateUserProfileVM::getPasswordNew() const
 {
     return m_passwordNew;
 }
 
-void UserProfileUpdateVM::setPasswordNew(const utility::string_t& value)
+void UpdateUserProfileVM::setPasswordNew(const utility::string_t& value)
 {
     m_passwordNew = value;
     m_passwordNewIsSet = true;
 }
 
-bool UserProfileUpdateVM::passwordNewIsSet() const
+bool UpdateUserProfileVM::passwordNewIsSet() const
 {
     return m_passwordNewIsSet;
 }
 
-void UserProfileUpdateVM::unsetpasswordNew()
+void UpdateUserProfileVM::unsetpasswordNew()
 {
     m_passwordNewIsSet = false;
 }
-utility::string_t UserProfileUpdateVM::getPasswordNew2() const
+utility::string_t UpdateUserProfileVM::getPasswordNew2() const
 {
     return m_passwordNew2;
 }
 
-void UserProfileUpdateVM::setPasswordNew2(const utility::string_t& value)
+void UpdateUserProfileVM::setPasswordNew2(const utility::string_t& value)
 {
     m_passwordNew2 = value;
     m_passwordNew2IsSet = true;
 }
 
-bool UserProfileUpdateVM::passwordNew2IsSet() const
+bool UpdateUserProfileVM::passwordNew2IsSet() const
 {
     return m_passwordNew2IsSet;
 }
 
-void UserProfileUpdateVM::unsetpasswordNew2()
+void UpdateUserProfileVM::unsetpasswordNew2()
 {
     m_passwordNew2IsSet = false;
-}
-std::shared_ptr<UserSettings> UserProfileUpdateVM::getSettings() const
-{
-    return m_settings;
-}
-
-void UserProfileUpdateVM::setSettings(const std::shared_ptr<UserSettings>& value)
-{
-    m_settings = value;
-    m_settingsIsSet = true;
-}
-
-bool UserProfileUpdateVM::settingsIsSet() const
-{
-    return m_settingsIsSet;
-}
-
-void UserProfileUpdateVM::unsetsettings()
-{
-    m_settingsIsSet = false;
 }
 }
 }

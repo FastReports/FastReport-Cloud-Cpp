@@ -21,9 +21,9 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
-#include "FilePermissions.h"
-#include "DataSourcePermissions.h"
-#include "GroupPermissions.h"
+#include "UpdateFilePermissionsVM.h"
+#include "UpdateDataSourcePermissionsVM.h"
+#include "UpdateGroupPermissionsVM.h"
 
 namespace fastreport {
 namespace cloud {
@@ -57,37 +57,37 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<FilePermissions> getFilePermissions() const;
+    std::shared_ptr<UpdateFilePermissionsVM> getFilePermissions() const;
     bool filePermissionsIsSet() const;
     void unsetfilePermissions();
 
-    void setFilePermissions(const std::shared_ptr<FilePermissions>& value);
+    void setFilePermissions(const std::shared_ptr<UpdateFilePermissionsVM>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<GroupPermissions> getGroupPermissions() const;
+    std::shared_ptr<UpdateGroupPermissionsVM> getGroupPermissions() const;
     bool groupPermissionsIsSet() const;
     void unsetgroupPermissions();
 
-    void setGroupPermissions(const std::shared_ptr<GroupPermissions>& value);
+    void setGroupPermissions(const std::shared_ptr<UpdateGroupPermissionsVM>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<DataSourcePermissions> getDataSourcePermissions() const;
+    std::shared_ptr<UpdateDataSourcePermissionsVM> getDataSourcePermissions() const;
     bool dataSourcePermissionsIsSet() const;
     void unsetdataSourcePermissions();
 
-    void setDataSourcePermissions(const std::shared_ptr<DataSourcePermissions>& value);
+    void setDataSourcePermissions(const std::shared_ptr<UpdateDataSourcePermissionsVM>& value);
 
 
 protected:
-    std::shared_ptr<FilePermissions> m_filePermissions;
+    std::shared_ptr<UpdateFilePermissionsVM> m_filePermissions;
     bool m_filePermissionsIsSet;
-    std::shared_ptr<GroupPermissions> m_groupPermissions;
+    std::shared_ptr<UpdateGroupPermissionsVM> m_groupPermissions;
     bool m_groupPermissionsIsSet;
-    std::shared_ptr<DataSourcePermissions> m_dataSourcePermissions;
+    std::shared_ptr<UpdateDataSourcePermissionsVM> m_dataSourcePermissions;
     bool m_dataSourcePermissionsIsSet;
 };
 

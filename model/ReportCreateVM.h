@@ -21,6 +21,7 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "ReportInfo.h"
 #include <cpprest/details/basic_types.h>
 #include <vector>
 
@@ -65,6 +66,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    std::shared_ptr<ReportInfo> getReportInfo() const;
+    bool reportInfoIsSet() const;
+    void unsetreportInfo();
+
+    void setReportInfo(const std::shared_ptr<ReportInfo>& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetname();
@@ -102,6 +112,8 @@ public:
 protected:
     utility::string_t m_templateId;
     bool m_templateIdIsSet;
+    std::shared_ptr<ReportInfo> m_reportInfo;
+    bool m_reportInfoIsSet;
     utility::string_t m_name;
     bool m_nameIsSet;
     std::vector<utility::string_t> m_tags;

@@ -22,7 +22,7 @@
 #include "../ApiClient.h"
 
 #include "ProblemDetails.h"
-#include "UserProfileUpdateVM.h"
+#include "UpdateUserProfileVM.h"
 #include "UserProfileVM.h"
 #include <cpprest/details/basic_types.h>
 
@@ -71,7 +71,7 @@ public:
     /// </remarks>
     /// <param name="model"> (optional)</param>
     pplx::task<void> userProfileUpdateMyProfile(
-        boost::optional<std::shared_ptr<UserProfileUpdateVM>> model
+        boost::optional<std::shared_ptr<UpdateUserProfileVM>> model
     ) const;
 
 protected:

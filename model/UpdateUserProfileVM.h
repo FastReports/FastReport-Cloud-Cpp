@@ -10,19 +10,18 @@
  */
 
 /*
- * AdminReportFolderCreateVM.h
+ * UpdateUserProfileVM.h
  *
  * 
  */
 
-#ifndef FASTREPORT_CLOUD_MODELS_AdminReportFolderCreateVM_H_
-#define FASTREPORT_CLOUD_MODELS_AdminReportFolderCreateVM_H_
+#ifndef FASTREPORT_CLOUD_MODELS_UpdateUserProfileVM_H_
+#define FASTREPORT_CLOUD_MODELS_UpdateUserProfileVM_H_
 
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
-#include <vector>
 
 namespace fastreport {
 namespace cloud {
@@ -32,12 +31,12 @@ namespace models {
 /// <summary>
 /// 
 /// </summary>
-class  AdminReportFolderCreateVM
+class  UpdateUserProfileVM
     : public ModelBase
 {
 public:
-    AdminReportFolderCreateVM();
-    virtual ~AdminReportFolderCreateVM();
+    UpdateUserProfileVM();
+    virtual ~UpdateUserProfileVM();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -51,25 +50,7 @@ public:
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// AdminReportFolderCreateVM members
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getParentId() const;
-    bool parentIdIsSet() const;
-    void unsetparentId();
-
-    void setParentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getOwnerId() const;
-    bool ownerIdIsSet() const;
-    void unsetownerId();
-
-    void setOwnerId(const utility::string_t& value);
+    /// UpdateUserProfileVM members
 
     /// <summary>
     /// 
@@ -83,33 +64,51 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::vector<utility::string_t>& getTags();
-    bool tagsIsSet() const;
-    void unsettags();
+    utility::string_t getUsername() const;
+    bool usernameIsSet() const;
+    void unsetusername();
 
-    void setTags(const std::vector<utility::string_t>& value);
+    void setUsername(const utility::string_t& value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getIcon() const;
-    bool iconIsSet() const;
-    void unseticon();
+    utility::string_t getEmail() const;
+    bool emailIsSet() const;
+    void unsetemail();
 
-    void setIcon(const utility::string_t& value);
+    void setEmail(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getPasswordNew() const;
+    bool passwordNewIsSet() const;
+    void unsetpasswordNew();
+
+    void setPasswordNew(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getPasswordNew2() const;
+    bool passwordNew2IsSet() const;
+    void unsetpasswordNew2();
+
+    void setPasswordNew2(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_parentId;
-    bool m_parentIdIsSet;
-    utility::string_t m_ownerId;
-    bool m_ownerIdIsSet;
     utility::string_t m_name;
     bool m_nameIsSet;
-    std::vector<utility::string_t> m_tags;
-    bool m_tagsIsSet;
-    utility::string_t m_icon;
-    bool m_iconIsSet;
+    utility::string_t m_username;
+    bool m_usernameIsSet;
+    utility::string_t m_email;
+    bool m_emailIsSet;
+    utility::string_t m_passwordNew;
+    bool m_passwordNewIsSet;
+    utility::string_t m_passwordNew2;
+    bool m_passwordNew2IsSet;
 };
 
 
@@ -117,4 +116,4 @@ protected:
 }
 }
 
-#endif /* FASTREPORT_CLOUD_MODELS_AdminReportFolderCreateVM_H_ */
+#endif /* FASTREPORT_CLOUD_MODELS_UpdateUserProfileVM_H_ */

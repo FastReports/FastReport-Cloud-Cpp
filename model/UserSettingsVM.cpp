@@ -11,7 +11,7 @@
 
 
 
-#include "UserSettings.h"
+#include "UserSettingsVM.h"
 
 namespace fastreport {
 namespace cloud {
@@ -20,22 +20,24 @@ namespace models {
 
 
 
-UserSettings::UserSettings()
+UserSettingsVM::UserSettingsVM()
 {
     m_profileVisibility = ProfileVisibilityEnum._0;
     m_profileVisibilityIsSet = false;
+    m_defaultSubscription = utility::conversions::to_string_t("");
+    m_defaultSubscriptionIsSet = false;
 }
 
-UserSettings::~UserSettings()
+UserSettingsVM::~UserSettingsVM()
 {
 }
 
-void UserSettings::validate()
+void UserSettingsVM::validate()
 {
     // TODO: implement validation
 }
 
-web::json::value UserSettings::toJson() const
+web::json::value UserSettingsVM::toJson() const
 {
 
     web::json::value val = web::json::value::object();
@@ -44,11 +46,15 @@ web::json::value UserSettings::toJson() const
     {
         val[utility::conversions::to_string_t("profileVisibility")] = ModelBase::toJson(m_profileVisibility);
     }
+    if(m_defaultSubscriptionIsSet)
+    {
+        val[utility::conversions::to_string_t("defaultSubscription")] = ModelBase::toJson(m_defaultSubscription);
+    }
 
     return val;
 }
 
-bool UserSettings::fromJson(const web::json::value& val)
+bool UserSettingsVM::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
@@ -62,10 +68,20 @@ bool UserSettings::fromJson(const web::json::value& val)
             setProfileVisibility(refVal_profileVisibility);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("defaultSubscription")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("defaultSubscription"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_defaultSubscription;
+            ok &= ModelBase::fromJson(fieldValue, refVal_defaultSubscription);
+            setDefaultSubscription(refVal_defaultSubscription);
+        }
+    }
     return ok;
 }
 
-void UserSettings::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void UserSettingsVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t("."))
@@ -76,9 +92,13 @@ void UserSettings::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("profileVisibility"), m_profileVisibility));
     }
+    if(m_defaultSubscriptionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("defaultSubscription"), m_defaultSubscription));
+    }
 }
 
-bool UserSettings::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool UserSettingsVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -93,28 +113,54 @@ bool UserSettings::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("profileVisibility")), refVal_profileVisibility );
         setProfileVisibility(refVal_profileVisibility);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t("defaultSubscription")))
+    {
+        utility::string_t refVal_defaultSubscription;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("defaultSubscription")), refVal_defaultSubscription );
+        setDefaultSubscription(refVal_defaultSubscription);
+    }
     return ok;
 }
 
-int32_t UserSettings::getProfileVisibility() const
+int32_t UserSettingsVM::getProfileVisibility() const
 {
     return m_profileVisibility;
 }
 
-void UserSettings::setProfileVisibility(int32_t value)
+void UserSettingsVM::setProfileVisibility(int32_t value)
 {
     m_profileVisibility = value;
     m_profileVisibilityIsSet = true;
 }
 
-bool UserSettings::profileVisibilityIsSet() const
+bool UserSettingsVM::profileVisibilityIsSet() const
 {
     return m_profileVisibilityIsSet;
 }
 
-void UserSettings::unsetprofileVisibility()
+void UserSettingsVM::unsetprofileVisibility()
 {
     m_profileVisibilityIsSet = false;
+}
+utility::string_t UserSettingsVM::getDefaultSubscription() const
+{
+    return m_defaultSubscription;
+}
+
+void UserSettingsVM::setDefaultSubscription(const utility::string_t& value)
+{
+    m_defaultSubscription = value;
+    m_defaultSubscriptionIsSet = true;
+}
+
+bool UserSettingsVM::defaultSubscriptionIsSet() const
+{
+    return m_defaultSubscriptionIsSet;
+}
+
+void UserSettingsVM::unsetdefaultSubscription()
+{
+    m_defaultSubscriptionIsSet = false;
 }
 }
 }
