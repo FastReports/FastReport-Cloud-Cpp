@@ -23,7 +23,6 @@ namespace models {
 UpdateDataSourcePermissionsVM::UpdateDataSourcePermissionsVM()
 {
     m_newPermissionsIsSet = false;
-    m_administrate = AdministrateEnum._0;
     m_administrateIsSet = false;
 }
 
@@ -72,7 +71,7 @@ bool UpdateDataSourcePermissionsVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("administrate"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_administrate;
+            std::shared_ptr<DataSourceAdministrate> refVal_administrate;
             ok &= ModelBase::fromJson(fieldValue, refVal_administrate);
             setAdministrate(refVal_administrate);
         }
@@ -114,7 +113,7 @@ bool UpdateDataSourcePermissionsVM::fromMultiPart(std::shared_ptr<MultipartFormD
     }
     if(multipart->hasContent(utility::conversions::to_string_t("administrate")))
     {
-        int32_t refVal_administrate;
+        std::shared_ptr<DataSourceAdministrate> refVal_administrate;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("administrate")), refVal_administrate );
         setAdministrate(refVal_administrate);
     }
@@ -141,12 +140,12 @@ void UpdateDataSourcePermissionsVM::unsetnewPermissions()
 {
     m_newPermissionsIsSet = false;
 }
-int32_t UpdateDataSourcePermissionsVM::getAdministrate() const
+std::shared_ptr<DataSourceAdministrate> UpdateDataSourcePermissionsVM::getAdministrate() const
 {
     return m_administrate;
 }
 
-void UpdateDataSourcePermissionsVM::setAdministrate(int32_t value)
+void UpdateDataSourcePermissionsVM::setAdministrate(const std::shared_ptr<DataSourceAdministrate>& value)
 {
     m_administrate = value;
     m_administrateIsSet = true;

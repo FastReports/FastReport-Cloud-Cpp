@@ -34,7 +34,7 @@ GroupsApi::~GroupsApi()
 {
 }
 
-pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsCreateGroup(boost::optional<std::shared_ptr<CreateGroupVM>> viewModel) const
+pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsCreateGroup(boost::optional<std::shared_ptr<CreateGroupVM>> createGroupVM) const
 {
 
 
@@ -48,8 +48,6 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsCreateGroup(boost::optiona
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -76,7 +74,6 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsCreateGroup(boost::optiona
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -91,8 +88,8 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsCreateGroup(boost::optiona
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (viewModel)
-            localVarJson = ModelBase::toJson(*viewModel);
+        if (createGroupVM)
+            localVarJson = ModelBase::toJson(*createGroupVM);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -102,9 +99,9 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsCreateGroup(boost::optiona
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(viewModel && (*viewModel).get())
+        if(createGroupVM && (*createGroupVM).get())
         {
-            (*viewModel)->toMultipart(localVarMultipart, utility::conversions::to_string_t("viewModel"));
+            (*createGroupVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("createGroupVM"));
         }
         
 
@@ -123,13 +120,7 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsCreateGroup(boost::optiona
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -203,8 +194,6 @@ pplx::task<void> GroupsApi::groupsDeleteGroup(utility::string_t id) const
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -258,13 +247,7 @@ pplx::task<void> GroupsApi::groupsDeleteGroup(utility::string_t id) const
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("DELETE"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -320,8 +303,6 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsGetGroup(utility::string_t
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -375,13 +356,7 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsGetGroup(utility::string_t
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -454,8 +429,6 @@ pplx::task<std::shared_ptr<GroupsVM>> GroupsApi::groupsGetGroupList(boost::optio
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -517,13 +490,7 @@ pplx::task<std::shared_ptr<GroupsVM>> GroupsApi::groupsGetGroupList(boost::optio
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -597,8 +564,6 @@ pplx::task<std::shared_ptr<GroupPermissionsVM>> GroupsApi::groupsGetPermissions(
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -652,13 +617,7 @@ pplx::task<std::shared_ptr<GroupPermissionsVM>> GroupsApi::groupsGetPermissions(
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -717,13 +676,13 @@ pplx::task<std::shared_ptr<GroupPermissionsVM>> GroupsApi::groupsGetPermissions(
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsRenameGroup(utility::string_t id, std::shared_ptr<RenameGroupVM> viewModel) const
+pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsRenameGroup(utility::string_t id, std::shared_ptr<RenameGroupVM> renameGroupVM) const
 {
 
-    // verify the required parameter 'viewModel' is set
-    if (viewModel == nullptr)
+    // verify the required parameter 'renameGroupVM' is set
+    if (renameGroupVM == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'viewModel' when calling GroupsApi->groupsRenameGroup"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'renameGroupVM' when calling GroupsApi->groupsRenameGroup"));
     }
 
 
@@ -738,8 +697,6 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsRenameGroup(utility::strin
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -766,7 +723,6 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsRenameGroup(utility::strin
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -781,7 +737,7 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsRenameGroup(utility::strin
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(viewModel);
+        localVarJson = ModelBase::toJson(renameGroupVM);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -792,9 +748,9 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsRenameGroup(utility::strin
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(viewModel.get())
+        if(renameGroupVM.get())
         {
-            viewModel->toMultipart(localVarMultipart, utility::conversions::to_string_t("viewModel"));
+            renameGroupVM->toMultipart(localVarMultipart, utility::conversions::to_string_t("renameGroupVM"));
         }
         
 
@@ -813,13 +769,7 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsRenameGroup(utility::strin
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("PUT"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -878,7 +828,7 @@ pplx::task<std::shared_ptr<GroupVM>> GroupsApi::groupsRenameGroup(utility::strin
         return localVarResult;
     });
 }
-pplx::task<void> GroupsApi::groupsUpdatePermissions(utility::string_t id, boost::optional<std::shared_ptr<UpdateGroupPermissionsVM>> permissionsVM) const
+pplx::task<void> GroupsApi::groupsUpdatePermissions(utility::string_t id, boost::optional<std::shared_ptr<UpdateGroupPermissionsVM>> updateGroupPermissionsVM) const
 {
 
 
@@ -893,8 +843,6 @@ pplx::task<void> GroupsApi::groupsUpdatePermissions(utility::string_t id, boost:
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -921,7 +869,6 @@ pplx::task<void> GroupsApi::groupsUpdatePermissions(utility::string_t id, boost:
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -936,8 +883,8 @@ pplx::task<void> GroupsApi::groupsUpdatePermissions(utility::string_t id, boost:
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (permissionsVM)
-            localVarJson = ModelBase::toJson(*permissionsVM);
+        if (updateGroupPermissionsVM)
+            localVarJson = ModelBase::toJson(*updateGroupPermissionsVM);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -947,9 +894,9 @@ pplx::task<void> GroupsApi::groupsUpdatePermissions(utility::string_t id, boost:
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(permissionsVM && (*permissionsVM).get())
+        if(updateGroupPermissionsVM && (*updateGroupPermissionsVM).get())
         {
-            (*permissionsVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("permissionsVM"));
+            (*updateGroupPermissionsVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("updateGroupPermissionsVM"));
         }
         
 
@@ -968,13 +915,7 @@ pplx::task<void> GroupsApi::groupsUpdatePermissions(utility::string_t id, boost:
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)

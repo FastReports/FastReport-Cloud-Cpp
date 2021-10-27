@@ -37,7 +37,6 @@ ReportInfo::ReportInfo()
     m_pictureIsSet = false;
     m_previewPictureRatio = 0.0f;
     m_previewPictureRatioIsSet = false;
-    m_saveMode = utility::conversions::to_string_t("");
     m_saveModeIsSet = false;
     m_savePreviewPicture = false;
     m_savePreviewPictureIsSet = false;
@@ -202,7 +201,7 @@ bool ReportInfo::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("saveMode"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_saveMode;
+            std::shared_ptr<SaveMode> refVal_saveMode;
             ok &= ModelBase::fromJson(fieldValue, refVal_saveMode);
             setSaveMode(refVal_saveMode);
         }
@@ -356,7 +355,7 @@ bool ReportInfo::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t("saveMode")))
     {
-        utility::string_t refVal_saveMode;
+        std::shared_ptr<SaveMode> refVal_saveMode;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("saveMode")), refVal_saveMode );
         setSaveMode(refVal_saveMode);
     }
@@ -541,12 +540,12 @@ void ReportInfo::unsetpreviewPictureRatio()
 {
     m_previewPictureRatioIsSet = false;
 }
-utility::string_t ReportInfo::getSaveMode() const
+std::shared_ptr<SaveMode> ReportInfo::getSaveMode() const
 {
     return m_saveMode;
 }
 
-void ReportInfo::setSaveMode(const utility::string_t& value)
+void ReportInfo::setSaveMode(const std::shared_ptr<SaveMode>& value)
 {
     m_saveMode = value;
     m_saveModeIsSet = true;

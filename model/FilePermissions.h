@@ -22,6 +22,7 @@
 #include "../ModelBase.h"
 
 #include "FilePermission.h"
+#include "FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.h"
 #include <cpprest/details/basic_types.h>
 #include <map>
 #include <vector>

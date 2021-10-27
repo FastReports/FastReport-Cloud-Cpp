@@ -58,9 +58,9 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="model"> (optional)</param>
+    /// <param name="updateUserSettingsVM"> (optional)</param>
     pplx::task<std::shared_ptr<UserSettingsVM>> userSettingsUpdateMySettings(
-        boost::optional<std::shared_ptr<UpdateUserSettingsVM>> model
+        boost::optional<std::shared_ptr<UpdateUserSettingsVM>> updateUserSettingsVM
     ) const;
 
 protected:

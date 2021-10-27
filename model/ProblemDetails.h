@@ -22,8 +22,8 @@
 #include "../ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
-#include "Object.h"
 #include <map>
+#include "AnyType.h"
 
 namespace fastreport {
 namespace cloud {

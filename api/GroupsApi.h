@@ -55,9 +55,9 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="viewModel">Model for creating (optional)</param>
+    /// <param name="createGroupVM">Model for creating (optional)</param>
     pplx::task<std::shared_ptr<GroupVM>> groupsCreateGroup(
-        boost::optional<std::shared_ptr<CreateGroupVM>> viewModel
+        boost::optional<std::shared_ptr<CreateGroupVM>> createGroupVM
     ) const;
     /// <summary>
     /// Delete group by identifier
@@ -108,10 +108,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="id">Identifier of group</param>
-    /// <param name="viewModel">Model for renaming</param>
+    /// <param name="renameGroupVM">Model for renaming</param>
     pplx::task<std::shared_ptr<GroupVM>> groupsRenameGroup(
         utility::string_t id,
-        std::shared_ptr<RenameGroupVM> viewModel
+        std::shared_ptr<RenameGroupVM> renameGroupVM
     ) const;
     /// <summary>
     /// Update permissions
@@ -120,10 +120,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="permissionsVM"> (optional)</param>
+    /// <param name="updateGroupPermissionsVM"> (optional)</param>
     pplx::task<void> groupsUpdatePermissions(
         utility::string_t id,
-        boost::optional<std::shared_ptr<UpdateGroupPermissionsVM>> permissionsVM
+        boost::optional<std::shared_ptr<UpdateGroupPermissionsVM>> updateGroupPermissionsVM
     ) const;
 
 protected:

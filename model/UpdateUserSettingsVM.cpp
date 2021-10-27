@@ -22,7 +22,6 @@ namespace models {
 
 UpdateUserSettingsVM::UpdateUserSettingsVM()
 {
-    m_profileVisibility = ProfileVisibilityEnum._0;
     m_profileVisibilityIsSet = false;
     m_defaultSubscription = utility::conversions::to_string_t("");
     m_defaultSubscriptionIsSet = false;
@@ -63,7 +62,7 @@ bool UpdateUserSettingsVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("profileVisibility"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_profileVisibility;
+            std::shared_ptr<ProfileVisibility> refVal_profileVisibility;
             ok &= ModelBase::fromJson(fieldValue, refVal_profileVisibility);
             setProfileVisibility(refVal_profileVisibility);
         }
@@ -109,7 +108,7 @@ bool UpdateUserSettingsVM::fromMultiPart(std::shared_ptr<MultipartFormData> mult
 
     if(multipart->hasContent(utility::conversions::to_string_t("profileVisibility")))
     {
-        int32_t refVal_profileVisibility;
+        std::shared_ptr<ProfileVisibility> refVal_profileVisibility;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("profileVisibility")), refVal_profileVisibility );
         setProfileVisibility(refVal_profileVisibility);
     }
@@ -122,12 +121,12 @@ bool UpdateUserSettingsVM::fromMultiPart(std::shared_ptr<MultipartFormData> mult
     return ok;
 }
 
-int32_t UpdateUserSettingsVM::getProfileVisibility() const
+std::shared_ptr<ProfileVisibility> UpdateUserSettingsVM::getProfileVisibility() const
 {
     return m_profileVisibility;
 }
 
-void UpdateUserSettingsVM::setProfileVisibility(int32_t value)
+void UpdateUserSettingsVM::setProfileVisibility(const std::shared_ptr<ProfileVisibility>& value)
 {
     m_profileVisibility = value;
     m_profileVisibilityIsSet = true;

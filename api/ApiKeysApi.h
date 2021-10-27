@@ -52,9 +52,9 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="model"></param>
+    /// <param name="createApiKeyVM"></param>
     pplx::task<std::shared_ptr<ApiKeyVM>> apiKeysCreateApiKey(
-        std::shared_ptr<CreateApiKeyVM> model
+        std::shared_ptr<CreateApiKeyVM> createApiKeyVM
     ) const;
     /// <summary>
     /// Delete an apikey
@@ -62,9 +62,9 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="model"></param>
+    /// <param name="deleteApiKeyVM"></param>
     pplx::task<void> apiKeysDeleteApiKey(
-        std::shared_ptr<DeleteApiKeyVM> model
+        std::shared_ptr<DeleteApiKeyVM> deleteApiKeyVM
     ) const;
     /// <summary>
     /// Returns list with all api keys of current user

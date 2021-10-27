@@ -69,9 +69,9 @@ public:
     /// <remarks>
     /// This method is only allowed for local sign in via intranet
     /// </remarks>
-    /// <param name="model"> (optional)</param>
+    /// <param name="updateUserProfileVM"> (optional)</param>
     pplx::task<void> userProfileUpdateMyProfile(
-        boost::optional<std::shared_ptr<UpdateUserProfileVM>> model
+        boost::optional<std::shared_ptr<UpdateUserProfileVM>> updateUserProfileVM
     ) const;
 
 protected:

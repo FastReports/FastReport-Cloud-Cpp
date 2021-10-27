@@ -24,7 +24,6 @@ ReportCreateVM::ReportCreateVM()
 {
     m_templateId = utility::conversions::to_string_t("");
     m_templateIdIsSet = false;
-    m_reportInfoIsSet = false;
     m_name = utility::conversions::to_string_t("");
     m_nameIsSet = false;
     m_tagsIsSet = false;
@@ -49,10 +48,6 @@ web::json::value ReportCreateVM::toJson() const
     if(m_templateIdIsSet)
     {
         val[utility::conversions::to_string_t("templateId")] = ModelBase::toJson(m_templateId);
-    }
-    if(m_reportInfoIsSet)
-    {
-        val[utility::conversions::to_string_t("reportInfo")] = ModelBase::toJson(m_reportInfo);
     }
     if(m_nameIsSet)
     {
@@ -86,16 +81,6 @@ bool ReportCreateVM::fromJson(const web::json::value& val)
             utility::string_t refVal_templateId;
             ok &= ModelBase::fromJson(fieldValue, refVal_templateId);
             setTemplateId(refVal_templateId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("reportInfo")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("reportInfo"));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<ReportInfo> refVal_reportInfo;
-            ok &= ModelBase::fromJson(fieldValue, refVal_reportInfo);
-            setReportInfo(refVal_reportInfo);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("name")))
@@ -152,10 +137,6 @@ void ReportCreateVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("templateId"), m_templateId));
     }
-    if(m_reportInfoIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("reportInfo"), m_reportInfo));
-    }
     if(m_nameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_name));
@@ -188,12 +169,6 @@ bool ReportCreateVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         utility::string_t refVal_templateId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("templateId")), refVal_templateId );
         setTemplateId(refVal_templateId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("reportInfo")))
-    {
-        std::shared_ptr<ReportInfo> refVal_reportInfo;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("reportInfo")), refVal_reportInfo );
-        setReportInfo(refVal_reportInfo);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("name")))
     {
@@ -241,26 +216,6 @@ bool ReportCreateVM::templateIdIsSet() const
 void ReportCreateVM::unsettemplateId()
 {
     m_templateIdIsSet = false;
-}
-std::shared_ptr<ReportInfo> ReportCreateVM::getReportInfo() const
-{
-    return m_reportInfo;
-}
-
-void ReportCreateVM::setReportInfo(const std::shared_ptr<ReportInfo>& value)
-{
-    m_reportInfo = value;
-    m_reportInfoIsSet = true;
-}
-
-bool ReportCreateVM::reportInfoIsSet() const
-{
-    return m_reportInfoIsSet;
-}
-
-void ReportCreateVM::unsetreportInfo()
-{
-    m_reportInfoIsSet = false;
 }
 utility::string_t ReportCreateVM::getName() const
 {

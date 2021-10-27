@@ -22,26 +22,9 @@ namespace models {
 
 ExportVM::ExportVM()
 {
-    m_format = utility::conversions::to_string_t("");
     m_formatIsSet = false;
     m_reportId = utility::conversions::to_string_t("");
     m_reportIdIsSet = false;
-    m_name = utility::conversions::to_string_t("");
-    m_nameIsSet = false;
-    m_parentId = utility::conversions::to_string_t("");
-    m_parentIdIsSet = false;
-    m_tagsIsSet = false;
-    m_iconIsSet = false;
-    m_type = utility::conversions::to_string_t("");
-    m_typeIsSet = false;
-    m_size = 0L;
-    m_sizeIsSet = false;
-    m_subscriptionId = utility::conversions::to_string_t("");
-    m_subscriptionIdIsSet = false;
-    m_status = utility::conversions::to_string_t("");
-    m_statusIsSet = false;
-    m_statusReason = utility::conversions::to_string_t("");
-    m_statusReasonIsSet = false;
     m_id = utility::conversions::to_string_t("");
     m_idIsSet = false;
     m_createdTime = utility::datetime();
@@ -76,42 +59,6 @@ web::json::value ExportVM::toJson() const
     {
         val[utility::conversions::to_string_t("reportId")] = ModelBase::toJson(m_reportId);
     }
-    if(m_nameIsSet)
-    {
-        val[utility::conversions::to_string_t("name")] = ModelBase::toJson(m_name);
-    }
-    if(m_parentIdIsSet)
-    {
-        val[utility::conversions::to_string_t("parentId")] = ModelBase::toJson(m_parentId);
-    }
-    if(m_tagsIsSet)
-    {
-        val[utility::conversions::to_string_t("tags")] = ModelBase::toJson(m_tags);
-    }
-    if(m_iconIsSet)
-    {
-        val[utility::conversions::to_string_t("icon")] = ModelBase::toJson(m_icon);
-    }
-    if(m_typeIsSet)
-    {
-        val[utility::conversions::to_string_t("type")] = ModelBase::toJson(m_type);
-    }
-    if(m_sizeIsSet)
-    {
-        val[utility::conversions::to_string_t("size")] = ModelBase::toJson(m_size);
-    }
-    if(m_subscriptionIdIsSet)
-    {
-        val[utility::conversions::to_string_t("subscriptionId")] = ModelBase::toJson(m_subscriptionId);
-    }
-    if(m_statusIsSet)
-    {
-        val[utility::conversions::to_string_t("status")] = ModelBase::toJson(m_status);
-    }
-    if(m_statusReasonIsSet)
-    {
-        val[utility::conversions::to_string_t("statusReason")] = ModelBase::toJson(m_statusReason);
-    }
     if(m_idIsSet)
     {
         val[utility::conversions::to_string_t("id")] = ModelBase::toJson(m_id);
@@ -145,7 +92,7 @@ bool ExportVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("format"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_format;
+            std::shared_ptr<ExportFormat> refVal_format;
             ok &= ModelBase::fromJson(fieldValue, refVal_format);
             setFormat(refVal_format);
         }
@@ -158,96 +105,6 @@ bool ExportVM::fromJson(const web::json::value& val)
             utility::string_t refVal_reportId;
             ok &= ModelBase::fromJson(fieldValue, refVal_reportId);
             setReportId(refVal_reportId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("name")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("name"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_name;
-            ok &= ModelBase::fromJson(fieldValue, refVal_name);
-            setName(refVal_name);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("parentId")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("parentId"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_parentId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_parentId);
-            setParentId(refVal_parentId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("tags")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("tags"));
-        if(!fieldValue.is_null())
-        {
-            std::vector<utility::string_t> refVal_tags;
-            ok &= ModelBase::fromJson(fieldValue, refVal_tags);
-            setTags(refVal_tags);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("icon")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("icon"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_icon;
-            ok &= ModelBase::fromJson(fieldValue, refVal_icon);
-            setIcon(refVal_icon);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("type")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("type"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_type;
-            ok &= ModelBase::fromJson(fieldValue, refVal_type);
-            setType(refVal_type);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("size")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("size"));
-        if(!fieldValue.is_null())
-        {
-            int64_t refVal_size;
-            ok &= ModelBase::fromJson(fieldValue, refVal_size);
-            setSize(refVal_size);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("subscriptionId")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("subscriptionId"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_subscriptionId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_subscriptionId);
-            setSubscriptionId(refVal_subscriptionId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("status")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("status"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_status;
-            ok &= ModelBase::fromJson(fieldValue, refVal_status);
-            setStatus(refVal_status);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("statusReason")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("statusReason"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_statusReason;
-            ok &= ModelBase::fromJson(fieldValue, refVal_statusReason);
-            setStatusReason(refVal_statusReason);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("id")))
@@ -318,42 +175,6 @@ void ExportVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("reportId"), m_reportId));
     }
-    if(m_nameIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_name));
-    }
-    if(m_parentIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("parentId"), m_parentId));
-    }
-    if(m_tagsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("tags"), m_tags));
-    }
-    if(m_iconIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("icon"), m_icon));
-    }
-    if(m_typeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("type"), m_type));
-    }
-    if(m_sizeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("size"), m_size));
-    }
-    if(m_subscriptionIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("subscriptionId"), m_subscriptionId));
-    }
-    if(m_statusIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("status"), m_status));
-    }
-    if(m_statusReasonIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("statusReason"), m_statusReason));
-    }
     if(m_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("id"), m_id));
@@ -387,7 +208,7 @@ bool ExportVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
 
     if(multipart->hasContent(utility::conversions::to_string_t("format")))
     {
-        utility::string_t refVal_format;
+        std::shared_ptr<ExportFormat> refVal_format;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("format")), refVal_format );
         setFormat(refVal_format);
     }
@@ -396,60 +217,6 @@ bool ExportVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         utility::string_t refVal_reportId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("reportId")), refVal_reportId );
         setReportId(refVal_reportId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("name")))
-    {
-        utility::string_t refVal_name;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("name")), refVal_name );
-        setName(refVal_name);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("parentId")))
-    {
-        utility::string_t refVal_parentId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("parentId")), refVal_parentId );
-        setParentId(refVal_parentId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("tags")))
-    {
-        std::vector<utility::string_t> refVal_tags;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("tags")), refVal_tags );
-        setTags(refVal_tags);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("icon")))
-    {
-        utility::string_t refVal_icon;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("icon")), refVal_icon );
-        setIcon(refVal_icon);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("type")))
-    {
-        utility::string_t refVal_type;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("type")), refVal_type );
-        setType(refVal_type);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("size")))
-    {
-        int64_t refVal_size;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("size")), refVal_size );
-        setSize(refVal_size);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("subscriptionId")))
-    {
-        utility::string_t refVal_subscriptionId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("subscriptionId")), refVal_subscriptionId );
-        setSubscriptionId(refVal_subscriptionId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("status")))
-    {
-        utility::string_t refVal_status;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("status")), refVal_status );
-        setStatus(refVal_status);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("statusReason")))
-    {
-        utility::string_t refVal_statusReason;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("statusReason")), refVal_statusReason );
-        setStatusReason(refVal_statusReason);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("id")))
     {
@@ -484,12 +251,12 @@ bool ExportVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     return ok;
 }
 
-utility::string_t ExportVM::getFormat() const
+std::shared_ptr<ExportFormat> ExportVM::getFormat() const
 {
     return m_format;
 }
 
-void ExportVM::setFormat(const utility::string_t& value)
+void ExportVM::setFormat(const std::shared_ptr<ExportFormat>& value)
 {
     m_format = value;
     m_formatIsSet = true;
@@ -523,186 +290,6 @@ bool ExportVM::reportIdIsSet() const
 void ExportVM::unsetreportId()
 {
     m_reportIdIsSet = false;
-}
-utility::string_t ExportVM::getName() const
-{
-    return m_name;
-}
-
-void ExportVM::setName(const utility::string_t& value)
-{
-    m_name = value;
-    m_nameIsSet = true;
-}
-
-bool ExportVM::nameIsSet() const
-{
-    return m_nameIsSet;
-}
-
-void ExportVM::unsetname()
-{
-    m_nameIsSet = false;
-}
-utility::string_t ExportVM::getParentId() const
-{
-    return m_parentId;
-}
-
-void ExportVM::setParentId(const utility::string_t& value)
-{
-    m_parentId = value;
-    m_parentIdIsSet = true;
-}
-
-bool ExportVM::parentIdIsSet() const
-{
-    return m_parentIdIsSet;
-}
-
-void ExportVM::unsetparentId()
-{
-    m_parentIdIsSet = false;
-}
-std::vector<utility::string_t>& ExportVM::getTags()
-{
-    return m_tags;
-}
-
-void ExportVM::setTags(const std::vector<utility::string_t>& value)
-{
-    m_tags = value;
-    m_tagsIsSet = true;
-}
-
-bool ExportVM::tagsIsSet() const
-{
-    return m_tagsIsSet;
-}
-
-void ExportVM::unsettags()
-{
-    m_tagsIsSet = false;
-}
-utility::string_t ExportVM::getIcon() const
-{
-    return m_icon;
-}
-
-void ExportVM::setIcon(const utility::string_t& value)
-{
-    m_icon = value;
-    m_iconIsSet = true;
-}
-
-bool ExportVM::iconIsSet() const
-{
-    return m_iconIsSet;
-}
-
-void ExportVM::unseticon()
-{
-    m_iconIsSet = false;
-}
-utility::string_t ExportVM::getType() const
-{
-    return m_type;
-}
-
-void ExportVM::setType(const utility::string_t& value)
-{
-    m_type = value;
-    m_typeIsSet = true;
-}
-
-bool ExportVM::typeIsSet() const
-{
-    return m_typeIsSet;
-}
-
-void ExportVM::unsettype()
-{
-    m_typeIsSet = false;
-}
-int64_t ExportVM::getSize() const
-{
-    return m_size;
-}
-
-void ExportVM::setSize(int64_t value)
-{
-    m_size = value;
-    m_sizeIsSet = true;
-}
-
-bool ExportVM::sizeIsSet() const
-{
-    return m_sizeIsSet;
-}
-
-void ExportVM::unsetsize()
-{
-    m_sizeIsSet = false;
-}
-utility::string_t ExportVM::getSubscriptionId() const
-{
-    return m_subscriptionId;
-}
-
-void ExportVM::setSubscriptionId(const utility::string_t& value)
-{
-    m_subscriptionId = value;
-    m_subscriptionIdIsSet = true;
-}
-
-bool ExportVM::subscriptionIdIsSet() const
-{
-    return m_subscriptionIdIsSet;
-}
-
-void ExportVM::unsetsubscriptionId()
-{
-    m_subscriptionIdIsSet = false;
-}
-utility::string_t ExportVM::getStatus() const
-{
-    return m_status;
-}
-
-void ExportVM::setStatus(const utility::string_t& value)
-{
-    m_status = value;
-    m_statusIsSet = true;
-}
-
-bool ExportVM::statusIsSet() const
-{
-    return m_statusIsSet;
-}
-
-void ExportVM::unsetstatus()
-{
-    m_statusIsSet = false;
-}
-utility::string_t ExportVM::getStatusReason() const
-{
-    return m_statusReason;
-}
-
-void ExportVM::setStatusReason(const utility::string_t& value)
-{
-    m_statusReason = value;
-    m_statusReasonIsSet = true;
-}
-
-bool ExportVM::statusReasonIsSet() const
-{
-    return m_statusReasonIsSet;
-}
-
-void ExportVM::unsetstatusReason()
-{
-    m_statusReasonIsSet = false;
 }
 utility::string_t ExportVM::getId() const
 {

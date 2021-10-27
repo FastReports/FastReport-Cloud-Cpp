@@ -21,6 +21,8 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "TaskSettingsVM.h"
+#include "TimePeriodType.h"
 #include <cpprest/details/basic_types.h>
 
 namespace fastreport {
@@ -82,11 +84,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTimePeriodType() const;
+    std::shared_ptr<TimePeriodType> getTimePeriodType() const;
     bool timePeriodTypeIsSet() const;
     void unsettimePeriodType();
 
-    void setTimePeriodType(const utility::string_t& value);
+    void setTimePeriodType(const std::shared_ptr<TimePeriodType>& value);
 
     /// <summary>
     /// 
@@ -100,11 +102,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getReadonlyTimeLimitType() const;
+    std::shared_ptr<TimePeriodType> getReadonlyTimeLimitType() const;
     bool readonlyTimeLimitTypeIsSet() const;
     void unsetreadonlyTimeLimitType();
 
-    void setReadonlyTimeLimitType(const utility::string_t& value);
+    void setReadonlyTimeLimitType(const std::shared_ptr<TimePeriodType>& value);
 
     /// <summary>
     /// 
@@ -232,6 +234,15 @@ public:
 
     void setPageLimit(int32_t value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<TaskSettingsVM> getTasks() const;
+    bool tasksIsSet() const;
+    void unsettasks();
+
+    void setTasks(const std::shared_ptr<TaskSettingsVM>& value);
+
 
 protected:
     utility::string_t m_id;
@@ -240,11 +251,11 @@ protected:
     bool m_isActiveIsSet;
     utility::string_t m_displayName;
     bool m_displayNameIsSet;
-    utility::string_t m_timePeriodType;
+    std::shared_ptr<TimePeriodType> m_timePeriodType;
     bool m_timePeriodTypeIsSet;
     int32_t m_timePeriod;
     bool m_timePeriodIsSet;
-    utility::string_t m_readonlyTimeLimitType;
+    std::shared_ptr<TimePeriodType> m_readonlyTimeLimitType;
     bool m_readonlyTimeLimitTypeIsSet;
     int32_t m_readonlyTimeLimit;
     bool m_readonlyTimeLimitIsSet;
@@ -274,6 +285,8 @@ protected:
     bool m_unlimitedPageIsSet;
     int32_t m_pageLimit;
     bool m_pageLimitIsSet;
+    std::shared_ptr<TaskSettingsVM> m_tasks;
+    bool m_tasksIsSet;
 };
 
 

@@ -21,6 +21,13 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.h"
+#include "DataSourceExecute.h"
+#include "DataSourceGet.h"
+#include "DataSourceCreate.h"
+#include "DataSourceDelete.h"
+#include "DataSourceUpdate.h"
+#include "DataSourceAdministrate.h"
 
 namespace fastreport {
 namespace cloud {
@@ -54,70 +61,70 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    int32_t getCreate() const;
+    std::shared_ptr<DataSourceCreate> getCreate() const;
     bool createIsSet() const;
     void unsetcreate();
 
-    void setCreate(int32_t value);
+    void setCreate(const std::shared_ptr<DataSourceCreate>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    int32_t getRDelete() const;
+    std::shared_ptr<DataSourceDelete> getRDelete() const;
     bool rDeleteIsSet() const;
     void unsetr_delete();
 
-    void setRDelete(int32_t value);
+    void setRDelete(const std::shared_ptr<DataSourceDelete>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    int32_t getExecute() const;
+    std::shared_ptr<DataSourceExecute> getExecute() const;
     bool executeIsSet() const;
     void unsetexecute();
 
-    void setExecute(int32_t value);
+    void setExecute(const std::shared_ptr<DataSourceExecute>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    int32_t getGet() const;
+    std::shared_ptr<DataSourceGet> getGet() const;
     bool getIsSet() const;
     void unsetget();
 
-    void setGet(int32_t value);
+    void setGet(const std::shared_ptr<DataSourceGet>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    int32_t getUpdate() const;
+    std::shared_ptr<DataSourceUpdate> getUpdate() const;
     bool updateIsSet() const;
     void unsetupdate();
 
-    void setUpdate(int32_t value);
+    void setUpdate(const std::shared_ptr<DataSourceUpdate>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    int32_t getAdministrate() const;
+    std::shared_ptr<DataSourceAdministrate> getAdministrate() const;
     bool administrateIsSet() const;
     void unsetadministrate();
 
-    void setAdministrate(int32_t value);
+    void setAdministrate(const std::shared_ptr<DataSourceAdministrate>& value);
 
 
 protected:
-    int32_t m_create;
+    std::shared_ptr<DataSourceCreate> m_create;
     bool m_createIsSet;
-    int32_t m_r_delete;
+    std::shared_ptr<DataSourceDelete> m_r_delete;
     bool m_r_deleteIsSet;
-    int32_t m_execute;
+    std::shared_ptr<DataSourceExecute> m_execute;
     bool m_executeIsSet;
-    int32_t m_get;
+    std::shared_ptr<DataSourceGet> m_get;
     bool m_getIsSet;
-    int32_t m_update;
+    std::shared_ptr<DataSourceUpdate> m_update;
     bool m_updateIsSet;
-    int32_t m_administrate;
+    std::shared_ptr<DataSourceAdministrate> m_administrate;
     bool m_administrateIsSet;
 };
 

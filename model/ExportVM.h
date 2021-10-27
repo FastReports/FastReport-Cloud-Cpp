@@ -21,8 +21,9 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "FileVM.h"
 #include <cpprest/details/basic_types.h>
-#include <vector>
+#include "ExportFormat.h"
 
 namespace fastreport {
 namespace cloud {
@@ -56,11 +57,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getFormat() const;
+    std::shared_ptr<ExportFormat> getFormat() const;
     bool formatIsSet() const;
     void unsetformat();
 
-    void setFormat(const utility::string_t& value);
+    void setFormat(const std::shared_ptr<ExportFormat>& value);
 
     /// <summary>
     /// 
@@ -70,87 +71,6 @@ public:
     void unsetreportId();
 
     void setReportId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetname();
-
-    void setName(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getParentId() const;
-    bool parentIdIsSet() const;
-    void unsetparentId();
-
-    void setParentId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    std::vector<utility::string_t>& getTags();
-    bool tagsIsSet() const;
-    void unsettags();
-
-    void setTags(const std::vector<utility::string_t>& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getIcon() const;
-    bool iconIsSet() const;
-    void unseticon();
-
-    void setIcon(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getType() const;
-    bool typeIsSet() const;
-    void unsettype();
-
-    void setType(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    int64_t getSize() const;
-    bool sizeIsSet() const;
-    void unsetsize();
-
-    void setSize(int64_t value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getSubscriptionId() const;
-    bool subscriptionIdIsSet() const;
-    void unsetsubscriptionId();
-
-    void setSubscriptionId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getStatus() const;
-    bool statusIsSet() const;
-    void unsetstatus();
-
-    void setStatus(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getStatusReason() const;
-    bool statusReasonIsSet() const;
-    void unsetstatusReason();
-
-    void setStatusReason(const utility::string_t& value);
 
     /// <summary>
     /// 
@@ -199,28 +119,10 @@ public:
 
 
 protected:
-    utility::string_t m_format;
+    std::shared_ptr<ExportFormat> m_format;
     bool m_formatIsSet;
     utility::string_t m_reportId;
     bool m_reportIdIsSet;
-    utility::string_t m_name;
-    bool m_nameIsSet;
-    utility::string_t m_parentId;
-    bool m_parentIdIsSet;
-    std::vector<utility::string_t> m_tags;
-    bool m_tagsIsSet;
-    utility::string_t m_icon;
-    bool m_iconIsSet;
-    utility::string_t m_type;
-    bool m_typeIsSet;
-    int64_t m_size;
-    bool m_sizeIsSet;
-    utility::string_t m_subscriptionId;
-    bool m_subscriptionIdIsSet;
-    utility::string_t m_status;
-    bool m_statusIsSet;
-    utility::string_t m_statusReason;
-    bool m_statusReasonIsSet;
     utility::string_t m_id;
     bool m_idIsSet;
     utility::datetime m_createdTime;

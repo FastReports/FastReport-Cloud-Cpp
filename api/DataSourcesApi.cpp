@@ -34,7 +34,7 @@ DataSourcesApi::~DataSourcesApi()
 {
 }
 
-pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesCreateDataSource(boost::optional<std::shared_ptr<CreateDataSourceVM>> viewModel) const
+pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesCreateDataSource(boost::optional<std::shared_ptr<CreateDataSourceVM>> createDataSourceVM) const
 {
 
 
@@ -48,8 +48,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesCreateDataS
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -76,7 +74,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesCreateDataS
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -91,8 +88,8 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesCreateDataS
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (viewModel)
-            localVarJson = ModelBase::toJson(*viewModel);
+        if (createDataSourceVM)
+            localVarJson = ModelBase::toJson(*createDataSourceVM);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -102,9 +99,9 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesCreateDataS
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(viewModel && (*viewModel).get())
+        if(createDataSourceVM && (*createDataSourceVM).get())
         {
-            (*viewModel)->toMultipart(localVarMultipart, utility::conversions::to_string_t("viewModel"));
+            (*createDataSourceVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("createDataSourceVM"));
         }
         
 
@@ -123,13 +120,7 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesCreateDataS
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -203,8 +194,6 @@ pplx::task<void> DataSourcesApi::dataSourcesDeleteDataSource(utility::string_t i
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -258,13 +247,7 @@ pplx::task<void> DataSourcesApi::dataSourcesDeleteDataSource(utility::string_t i
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("DELETE"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -320,8 +303,6 @@ pplx::task<void> DataSourcesApi::dataSourcesFetchData(utility::string_t id) cons
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -375,13 +356,7 @@ pplx::task<void> DataSourcesApi::dataSourcesFetchData(utility::string_t id) cons
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -422,7 +397,7 @@ pplx::task<void> DataSourcesApi::dataSourcesFetchData(utility::string_t id) cons
         return void();
     });
 }
-pplx::task<std::shared_ptr<DataSourcesVM>> DataSourcesApi::dataSourcesGetAvailableDataSources(boost::optional<utility::string_t> subscriptionId, boost::optional<int32_t> skip, boost::optional<int32_t> take) const
+pplx::task<std::shared_ptr<DataSourcesVM>> DataSourcesApi::dataSourcesGetAvailableDataSources(boost::optional<utility::string_t> subscriptionId, boost::optional<int32_t> skip, boost::optional<int32_t> take, boost::optional<std::shared_ptr<DataSourceSorting>> orderBy, boost::optional<bool> desc) const
 {
 
 
@@ -436,8 +411,6 @@ pplx::task<std::shared_ptr<DataSourcesVM>> DataSourcesApi::dataSourcesGetAvailab
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -477,6 +450,14 @@ pplx::task<std::shared_ptr<DataSourcesVM>> DataSourcesApi::dataSourcesGetAvailab
     {
         localVarQueryParams[utility::conversions::to_string_t("take")] = ApiClient::parameterToString(*take);
     }
+    if (orderBy && *orderBy != nullptr)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("orderBy")] = ApiClient::parameterToString(*orderBy);
+    }
+    if (desc)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("desc")] = ApiClient::parameterToString(*desc);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -503,13 +484,7 @@ pplx::task<std::shared_ptr<DataSourcesVM>> DataSourcesApi::dataSourcesGetAvailab
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -583,8 +558,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesGetDataSour
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -638,13 +611,7 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesGetDataSour
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -718,8 +685,6 @@ pplx::task<std::shared_ptr<DataSourcePermissionsVM>> DataSourcesApi::dataSources
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -773,13 +738,7 @@ pplx::task<std::shared_ptr<DataSourcePermissionsVM>> DataSourcesApi::dataSources
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -838,7 +797,7 @@ pplx::task<std::shared_ptr<DataSourcePermissionsVM>> DataSourcesApi::dataSources
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesRenameDataSource(utility::string_t id, boost::optional<std::shared_ptr<RenameDataSourceVM>> renameModel) const
+pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesRenameDataSource(utility::string_t id, boost::optional<std::shared_ptr<RenameDataSourceVM>> renameDataSourceVM) const
 {
 
 
@@ -853,8 +812,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesRenameDataS
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -881,7 +838,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesRenameDataS
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -896,8 +852,8 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesRenameDataS
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (renameModel)
-            localVarJson = ModelBase::toJson(*renameModel);
+        if (renameDataSourceVM)
+            localVarJson = ModelBase::toJson(*renameDataSourceVM);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -907,9 +863,9 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesRenameDataS
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(renameModel && (*renameModel).get())
+        if(renameDataSourceVM && (*renameDataSourceVM).get())
         {
-            (*renameModel)->toMultipart(localVarMultipart, utility::conversions::to_string_t("renameModel"));
+            (*renameDataSourceVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("renameDataSourceVM"));
         }
         
 
@@ -928,13 +884,7 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesRenameDataS
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("PUT"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -993,7 +943,7 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesRenameDataS
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesUpdateConnectionString(utility::string_t id, boost::optional<std::shared_ptr<UpdateDataSourceConnectionStringVM>> updateModel) const
+pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesUpdateConnectionString(utility::string_t id, boost::optional<std::shared_ptr<UpdateDataSourceConnectionStringVM>> updateDataSourceConnectionStringVM) const
 {
 
 
@@ -1008,8 +958,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesUpdateConne
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1036,7 +984,6 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesUpdateConne
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -1051,8 +998,8 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesUpdateConne
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (updateModel)
-            localVarJson = ModelBase::toJson(*updateModel);
+        if (updateDataSourceConnectionStringVM)
+            localVarJson = ModelBase::toJson(*updateDataSourceConnectionStringVM);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -1062,9 +1009,9 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesUpdateConne
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(updateModel && (*updateModel).get())
+        if(updateDataSourceConnectionStringVM && (*updateDataSourceConnectionStringVM).get())
         {
-            (*updateModel)->toMultipart(localVarMultipart, utility::conversions::to_string_t("updateModel"));
+            (*updateDataSourceConnectionStringVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("updateDataSourceConnectionStringVM"));
         }
         
 
@@ -1083,13 +1030,7 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesUpdateConne
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("PUT"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -1148,7 +1089,7 @@ pplx::task<std::shared_ptr<DataSourceVM>> DataSourcesApi::dataSourcesUpdateConne
         return localVarResult;
     });
 }
-pplx::task<void> DataSourcesApi::dataSourcesUpdatePermissions(utility::string_t id, boost::optional<std::shared_ptr<UpdateDataSourcePermissionsVM>> permissionsVM) const
+pplx::task<void> DataSourcesApi::dataSourcesUpdatePermissions(utility::string_t id, boost::optional<std::shared_ptr<UpdateDataSourcePermissionsVM>> updateDataSourcePermissionsVM) const
 {
 
 
@@ -1163,8 +1104,6 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdatePermissions(utility::string_t 
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1191,7 +1130,6 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdatePermissions(utility::string_t 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -1206,8 +1144,8 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdatePermissions(utility::string_t 
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (permissionsVM)
-            localVarJson = ModelBase::toJson(*permissionsVM);
+        if (updateDataSourcePermissionsVM)
+            localVarJson = ModelBase::toJson(*updateDataSourcePermissionsVM);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -1217,9 +1155,9 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdatePermissions(utility::string_t 
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(permissionsVM && (*permissionsVM).get())
+        if(updateDataSourcePermissionsVM && (*updateDataSourcePermissionsVM).get())
         {
-            (*permissionsVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("permissionsVM"));
+            (*updateDataSourcePermissionsVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("updateDataSourcePermissionsVM"));
         }
         
 
@@ -1238,13 +1176,7 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdatePermissions(utility::string_t 
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -1285,7 +1217,7 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdatePermissions(utility::string_t 
         return void();
     });
 }
-pplx::task<void> DataSourcesApi::dataSourcesUpdateSubscriptionDataSource(utility::string_t id, boost::optional<std::shared_ptr<UpdateDataSourceSubscriptionVM>> updatesubscriptionModel) const
+pplx::task<void> DataSourcesApi::dataSourcesUpdateSubscriptionDataSource(utility::string_t id, boost::optional<std::shared_ptr<UpdateDataSourceSubscriptionVM>> updateDataSourceSubscriptionVM) const
 {
 
 
@@ -1300,8 +1232,6 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdateSubscriptionDataSource(utility
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -1328,7 +1258,6 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdateSubscriptionDataSource(utility
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -1343,8 +1272,8 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdateSubscriptionDataSource(utility
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (updatesubscriptionModel)
-            localVarJson = ModelBase::toJson(*updatesubscriptionModel);
+        if (updateDataSourceSubscriptionVM)
+            localVarJson = ModelBase::toJson(*updateDataSourceSubscriptionVM);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -1354,9 +1283,9 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdateSubscriptionDataSource(utility
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(updatesubscriptionModel && (*updatesubscriptionModel).get())
+        if(updateDataSourceSubscriptionVM && (*updateDataSourceSubscriptionVM).get())
         {
-            (*updatesubscriptionModel)->toMultipart(localVarMultipart, utility::conversions::to_string_t("updatesubscriptionModel"));
+            (*updateDataSourceSubscriptionVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("updateDataSourceSubscriptionVM"));
         }
         
 
@@ -1375,13 +1304,7 @@ pplx::task<void> DataSourcesApi::dataSourcesUpdateSubscriptionDataSource(utility
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("PUT"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)

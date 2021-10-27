@@ -28,11 +28,9 @@ SubscriptionPlanVM::SubscriptionPlanVM()
     m_isActiveIsSet = false;
     m_displayName = utility::conversions::to_string_t("");
     m_displayNameIsSet = false;
-    m_timePeriodType = utility::conversions::to_string_t("");
     m_timePeriodTypeIsSet = false;
     m_timePeriod = 0;
     m_timePeriodIsSet = false;
-    m_readonlyTimeLimitType = utility::conversions::to_string_t("");
     m_readonlyTimeLimitTypeIsSet = false;
     m_readonlyTimeLimit = 0;
     m_readonlyTimeLimitIsSet = false;
@@ -62,6 +60,7 @@ SubscriptionPlanVM::SubscriptionPlanVM()
     m_unlimitedPageIsSet = false;
     m_pageLimit = 0;
     m_pageLimitIsSet = false;
+    m_tasksIsSet = false;
 }
 
 SubscriptionPlanVM::~SubscriptionPlanVM()
@@ -158,6 +157,10 @@ web::json::value SubscriptionPlanVM::toJson() const
     {
         val[utility::conversions::to_string_t("pageLimit")] = ModelBase::toJson(m_pageLimit);
     }
+    if(m_tasksIsSet)
+    {
+        val[utility::conversions::to_string_t("tasks")] = ModelBase::toJson(m_tasks);
+    }
 
     return val;
 }
@@ -201,7 +204,7 @@ bool SubscriptionPlanVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("timePeriodType"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_timePeriodType;
+            std::shared_ptr<TimePeriodType> refVal_timePeriodType;
             ok &= ModelBase::fromJson(fieldValue, refVal_timePeriodType);
             setTimePeriodType(refVal_timePeriodType);
         }
@@ -221,7 +224,7 @@ bool SubscriptionPlanVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("readonlyTimeLimitType"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_readonlyTimeLimitType;
+            std::shared_ptr<TimePeriodType> refVal_readonlyTimeLimitType;
             ok &= ModelBase::fromJson(fieldValue, refVal_readonlyTimeLimitType);
             setReadonlyTimeLimitType(refVal_readonlyTimeLimitType);
         }
@@ -366,6 +369,16 @@ bool SubscriptionPlanVM::fromJson(const web::json::value& val)
             setPageLimit(refVal_pageLimit);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("tasks")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("tasks"));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<TaskSettingsVM> refVal_tasks;
+            ok &= ModelBase::fromJson(fieldValue, refVal_tasks);
+            setTasks(refVal_tasks);
+        }
+    }
     return ok;
 }
 
@@ -456,6 +469,10 @@ void SubscriptionPlanVM::toMultipart(std::shared_ptr<MultipartFormData> multipar
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("pageLimit"), m_pageLimit));
     }
+    if(m_tasksIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("tasks"), m_tasks));
+    }
 }
 
 bool SubscriptionPlanVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
@@ -487,7 +504,7 @@ bool SubscriptionPlanVM::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t("timePeriodType")))
     {
-        utility::string_t refVal_timePeriodType;
+        std::shared_ptr<TimePeriodType> refVal_timePeriodType;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("timePeriodType")), refVal_timePeriodType );
         setTimePeriodType(refVal_timePeriodType);
     }
@@ -499,7 +516,7 @@ bool SubscriptionPlanVM::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t("readonlyTimeLimitType")))
     {
-        utility::string_t refVal_readonlyTimeLimitType;
+        std::shared_ptr<TimePeriodType> refVal_readonlyTimeLimitType;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("readonlyTimeLimitType")), refVal_readonlyTimeLimitType );
         setReadonlyTimeLimitType(refVal_readonlyTimeLimitType);
     }
@@ -587,6 +604,12 @@ bool SubscriptionPlanVM::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("pageLimit")), refVal_pageLimit );
         setPageLimit(refVal_pageLimit);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t("tasks")))
+    {
+        std::shared_ptr<TaskSettingsVM> refVal_tasks;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("tasks")), refVal_tasks );
+        setTasks(refVal_tasks);
+    }
     return ok;
 }
 
@@ -650,12 +673,12 @@ void SubscriptionPlanVM::unsetdisplayName()
 {
     m_displayNameIsSet = false;
 }
-utility::string_t SubscriptionPlanVM::getTimePeriodType() const
+std::shared_ptr<TimePeriodType> SubscriptionPlanVM::getTimePeriodType() const
 {
     return m_timePeriodType;
 }
 
-void SubscriptionPlanVM::setTimePeriodType(const utility::string_t& value)
+void SubscriptionPlanVM::setTimePeriodType(const std::shared_ptr<TimePeriodType>& value)
 {
     m_timePeriodType = value;
     m_timePeriodTypeIsSet = true;
@@ -690,12 +713,12 @@ void SubscriptionPlanVM::unsettimePeriod()
 {
     m_timePeriodIsSet = false;
 }
-utility::string_t SubscriptionPlanVM::getReadonlyTimeLimitType() const
+std::shared_ptr<TimePeriodType> SubscriptionPlanVM::getReadonlyTimeLimitType() const
 {
     return m_readonlyTimeLimitType;
 }
 
-void SubscriptionPlanVM::setReadonlyTimeLimitType(const utility::string_t& value)
+void SubscriptionPlanVM::setReadonlyTimeLimitType(const std::shared_ptr<TimePeriodType>& value)
 {
     m_readonlyTimeLimitType = value;
     m_readonlyTimeLimitTypeIsSet = true;
@@ -989,6 +1012,26 @@ bool SubscriptionPlanVM::pageLimitIsSet() const
 void SubscriptionPlanVM::unsetpageLimit()
 {
     m_pageLimitIsSet = false;
+}
+std::shared_ptr<TaskSettingsVM> SubscriptionPlanVM::getTasks() const
+{
+    return m_tasks;
+}
+
+void SubscriptionPlanVM::setTasks(const std::shared_ptr<TaskSettingsVM>& value)
+{
+    m_tasks = value;
+    m_tasksIsSet = true;
+}
+
+bool SubscriptionPlanVM::tasksIsSet() const
+{
+    return m_tasksIsSet;
+}
+
+void SubscriptionPlanVM::unsettasks()
+{
+    m_tasksIsSet = false;
 }
 }
 }

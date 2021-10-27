@@ -21,7 +21,11 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "FileType.h"
+#include "FileStatusReason.h"
+#include "FileStatus.h"
 #include <cpprest/details/basic_types.h>
+#include "EntityVM.h"
 #include <vector>
 
 namespace fastreport {
@@ -92,11 +96,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getType() const;
+    std::shared_ptr<FileType> getType() const;
     bool typeIsSet() const;
     void unsettype();
 
-    void setType(const utility::string_t& value);
+    void setType(const std::shared_ptr<FileType>& value);
 
     /// <summary>
     /// 
@@ -119,20 +123,20 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getStatus() const;
+    std::shared_ptr<FileStatus> getStatus() const;
     bool statusIsSet() const;
     void unsetstatus();
 
-    void setStatus(const utility::string_t& value);
+    void setStatus(const std::shared_ptr<FileStatus>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getStatusReason() const;
+    std::shared_ptr<FileStatusReason> getStatusReason() const;
     bool statusReasonIsSet() const;
     void unsetstatusReason();
 
-    void setStatusReason(const utility::string_t& value);
+    void setStatusReason(const std::shared_ptr<FileStatusReason>& value);
 
     /// <summary>
     /// 
@@ -189,15 +193,15 @@ protected:
     bool m_tagsIsSet;
     utility::string_t m_icon;
     bool m_iconIsSet;
-    utility::string_t m_type;
+    std::shared_ptr<FileType> m_type;
     bool m_typeIsSet;
     int64_t m_size;
     bool m_sizeIsSet;
     utility::string_t m_subscriptionId;
     bool m_subscriptionIdIsSet;
-    utility::string_t m_status;
+    std::shared_ptr<FileStatus> m_status;
     bool m_statusIsSet;
-    utility::string_t m_statusReason;
+    std::shared_ptr<FileStatusReason> m_statusReason;
     bool m_statusReasonIsSet;
     utility::string_t m_id;
     bool m_idIsSet;

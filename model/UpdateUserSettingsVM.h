@@ -21,6 +21,7 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "ProfileVisibility.h"
 #include <cpprest/details/basic_types.h>
 
 namespace fastreport {
@@ -55,11 +56,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    int32_t getProfileVisibility() const;
+    std::shared_ptr<ProfileVisibility> getProfileVisibility() const;
     bool profileVisibilityIsSet() const;
     void unsetprofileVisibility();
 
-    void setProfileVisibility(int32_t value);
+    void setProfileVisibility(const std::shared_ptr<ProfileVisibility>& value);
 
     /// <summary>
     /// 
@@ -72,7 +73,7 @@ public:
 
 
 protected:
-    int32_t m_profileVisibility;
+    std::shared_ptr<ProfileVisibility> m_profileVisibility;
     bool m_profileVisibilityIsSet;
     utility::string_t m_defaultSubscription;
     bool m_defaultSubscriptionIsSet;

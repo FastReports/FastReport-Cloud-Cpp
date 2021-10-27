@@ -21,6 +21,7 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "FolderCreateVM.h"
 #include <cpprest/details/basic_types.h>
 #include <vector>
 

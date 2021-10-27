@@ -25,6 +25,7 @@
 #include "SubscriptionPermission.h"
 #include <map>
 #include <vector>
+#include "SubscriptionPermissionSubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermissions.h"
 
 namespace fastreport {
 namespace cloud {

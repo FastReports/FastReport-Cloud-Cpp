@@ -65,10 +65,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="subscriptionId">id</param>
-    /// <param name="createInviteVM">create VM (optional)</param>
+    /// <param name="createSubscriptionInviteVM">create VM (optional)</param>
     pplx::task<std::shared_ptr<SubscriptionInviteVM>> subscriptionInvitesCreateInvite(
         utility::string_t subscriptionId,
-        boost::optional<std::shared_ptr<CreateSubscriptionInviteVM>> createInviteVM
+        boost::optional<std::shared_ptr<CreateSubscriptionInviteVM>> createSubscriptionInviteVM
     ) const;
     /// <summary>
     /// Rename subscription

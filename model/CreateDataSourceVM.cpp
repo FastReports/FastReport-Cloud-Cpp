@@ -28,7 +28,6 @@ CreateDataSourceVM::CreateDataSourceVM()
     m_connectionStringIsSet = false;
     m_subscriptionId = utility::conversions::to_string_t("");
     m_subscriptionIdIsSet = false;
-    m_connectionType = utility::conversions::to_string_t("");
     m_connectionTypeIsSet = false;
 }
 
@@ -105,7 +104,7 @@ bool CreateDataSourceVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("connectionType"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_connectionType;
+            std::shared_ptr<DataSourceConnectionType> refVal_connectionType;
             ok &= ModelBase::fromJson(fieldValue, refVal_connectionType);
             setConnectionType(refVal_connectionType);
         }
@@ -167,7 +166,7 @@ bool CreateDataSourceVM::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
     if(multipart->hasContent(utility::conversions::to_string_t("connectionType")))
     {
-        utility::string_t refVal_connectionType;
+        std::shared_ptr<DataSourceConnectionType> refVal_connectionType;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("connectionType")), refVal_connectionType );
         setConnectionType(refVal_connectionType);
     }
@@ -234,12 +233,12 @@ void CreateDataSourceVM::unsetsubscriptionId()
 {
     m_subscriptionIdIsSet = false;
 }
-utility::string_t CreateDataSourceVM::getConnectionType() const
+std::shared_ptr<DataSourceConnectionType> CreateDataSourceVM::getConnectionType() const
 {
     return m_connectionType;
 }
 
-void CreateDataSourceVM::setConnectionType(const utility::string_t& value)
+void CreateDataSourceVM::setConnectionType(const std::shared_ptr<DataSourceConnectionType>& value)
 {
     m_connectionType = value;
     m_connectionTypeIsSet = true;

@@ -23,6 +23,7 @@
 
 #include "ReportVM.h"
 #include <vector>
+#include "ReportVMFilesVMBase.h"
 
 namespace fastreport {
 namespace cloud {

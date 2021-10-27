@@ -48,8 +48,6 @@ pplx::task<std::shared_ptr<UserSettingsVM>> UserSettingsApi::userSettingsGetCurr
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -103,13 +101,7 @@ pplx::task<std::shared_ptr<UserSettingsVM>> UserSettingsApi::userSettingsGetCurr
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -168,7 +160,7 @@ pplx::task<std::shared_ptr<UserSettingsVM>> UserSettingsApi::userSettingsGetCurr
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<UserSettingsVM>> UserSettingsApi::userSettingsUpdateMySettings(boost::optional<std::shared_ptr<UpdateUserSettingsVM>> model) const
+pplx::task<std::shared_ptr<UserSettingsVM>> UserSettingsApi::userSettingsUpdateMySettings(boost::optional<std::shared_ptr<UpdateUserSettingsVM>> updateUserSettingsVM) const
 {
 
 
@@ -182,8 +174,6 @@ pplx::task<std::shared_ptr<UserSettingsVM>> UserSettingsApi::userSettingsUpdateM
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -210,7 +200,6 @@ pplx::task<std::shared_ptr<UserSettingsVM>> UserSettingsApi::userSettingsUpdateM
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -225,8 +214,8 @@ pplx::task<std::shared_ptr<UserSettingsVM>> UserSettingsApi::userSettingsUpdateM
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (model)
-            localVarJson = ModelBase::toJson(*model);
+        if (updateUserSettingsVM)
+            localVarJson = ModelBase::toJson(*updateUserSettingsVM);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -236,9 +225,9 @@ pplx::task<std::shared_ptr<UserSettingsVM>> UserSettingsApi::userSettingsUpdateM
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(model && (*model).get())
+        if(updateUserSettingsVM && (*updateUserSettingsVM).get())
         {
-            (*model)->toMultipart(localVarMultipart, utility::conversions::to_string_t("model"));
+            (*updateUserSettingsVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("updateUserSettingsVM"));
         }
         
 
@@ -257,13 +246,7 @@ pplx::task<std::shared_ptr<UserSettingsVM>> UserSettingsApi::userSettingsUpdateM
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("PUT"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)

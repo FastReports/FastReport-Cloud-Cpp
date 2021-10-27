@@ -28,15 +28,12 @@ FileVM::FileVM()
     m_parentIdIsSet = false;
     m_tagsIsSet = false;
     m_iconIsSet = false;
-    m_type = utility::conversions::to_string_t("");
     m_typeIsSet = false;
     m_size = 0L;
     m_sizeIsSet = false;
     m_subscriptionId = utility::conversions::to_string_t("");
     m_subscriptionIdIsSet = false;
-    m_status = utility::conversions::to_string_t("");
     m_statusIsSet = false;
-    m_statusReason = utility::conversions::to_string_t("");
     m_statusReasonIsSet = false;
     m_id = utility::conversions::to_string_t("");
     m_idIsSet = false;
@@ -173,7 +170,7 @@ bool FileVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("type"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_type;
+            std::shared_ptr<FileType> refVal_type;
             ok &= ModelBase::fromJson(fieldValue, refVal_type);
             setType(refVal_type);
         }
@@ -203,7 +200,7 @@ bool FileVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("status"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_status;
+            std::shared_ptr<FileStatus> refVal_status;
             ok &= ModelBase::fromJson(fieldValue, refVal_status);
             setStatus(refVal_status);
         }
@@ -213,7 +210,7 @@ bool FileVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("statusReason"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_statusReason;
+            std::shared_ptr<FileStatusReason> refVal_statusReason;
             ok &= ModelBase::fromJson(fieldValue, refVal_statusReason);
             setStatusReason(refVal_statusReason);
         }
@@ -371,7 +368,7 @@ bool FileVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t("type")))
     {
-        utility::string_t refVal_type;
+        std::shared_ptr<FileType> refVal_type;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("type")), refVal_type );
         setType(refVal_type);
     }
@@ -389,13 +386,13 @@ bool FileVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t("status")))
     {
-        utility::string_t refVal_status;
+        std::shared_ptr<FileStatus> refVal_status;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("status")), refVal_status );
         setStatus(refVal_status);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("statusReason")))
     {
-        utility::string_t refVal_statusReason;
+        std::shared_ptr<FileStatusReason> refVal_statusReason;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("statusReason")), refVal_statusReason );
         setStatusReason(refVal_statusReason);
     }
@@ -512,12 +509,12 @@ void FileVM::unseticon()
 {
     m_iconIsSet = false;
 }
-utility::string_t FileVM::getType() const
+std::shared_ptr<FileType> FileVM::getType() const
 {
     return m_type;
 }
 
-void FileVM::setType(const utility::string_t& value)
+void FileVM::setType(const std::shared_ptr<FileType>& value)
 {
     m_type = value;
     m_typeIsSet = true;
@@ -572,12 +569,12 @@ void FileVM::unsetsubscriptionId()
 {
     m_subscriptionIdIsSet = false;
 }
-utility::string_t FileVM::getStatus() const
+std::shared_ptr<FileStatus> FileVM::getStatus() const
 {
     return m_status;
 }
 
-void FileVM::setStatus(const utility::string_t& value)
+void FileVM::setStatus(const std::shared_ptr<FileStatus>& value)
 {
     m_status = value;
     m_statusIsSet = true;
@@ -592,12 +589,12 @@ void FileVM::unsetstatus()
 {
     m_statusIsSet = false;
 }
-utility::string_t FileVM::getStatusReason() const
+std::shared_ptr<FileStatusReason> FileVM::getStatusReason() const
 {
     return m_statusReason;
 }
 
-void FileVM::setStatusReason(const utility::string_t& value)
+void FileVM::setStatusReason(const std::shared_ptr<FileStatusReason>& value)
 {
     m_statusReason = value;
     m_statusReasonIsSet = true;

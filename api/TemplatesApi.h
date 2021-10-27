@@ -23,18 +23,19 @@
 
 #include "BreadcrumbsVM.h"
 #include "CountVM.h"
-#include "ExportTemplateTaskVM.h"
+#include "ExportTemplateVM.h"
 #include "ExportVM.h"
 #include "FileIconVM.h"
 #include "FilePermissionsVM.h"
 #include "FileRenameVM.h"
+#include "FileSorting.h"
 #include "FileTagsUpdateVM.h"
 #include "FileVM.h"
 #include "FilesVM.h"
 #include "FolderIconVM.h"
 #include "FolderRenameVM.h"
 #include "FolderTagsUpdateVM.h"
-#include "PrepareTemplateTaskVM.h"
+#include "PrepareTemplateVM.h"
 #include "ProblemDetails.h"
 #include "ReportVM.h"
 #include "TemplateCreateVM.h"
@@ -82,10 +83,16 @@ public:
     /// <param name="id">folder id</param>
     /// <param name="skip">number of folder and files, that have to be skipped (optional, default to 0)</param>
     /// <param name="take">number of folder and files, that have to be returned (optional, default to 0)</param>
+    /// <param name="orderBy">indicates a field to sort by (optional, default to new FileSorting())</param>
+    /// <param name="desc">indicates if sorting is descending (optional, default to false)</param>
+    /// <param name="searchPattern"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<FilesVM>> templateFolderAndFileGetFoldersAndFiles(
         utility::string_t id,
         boost::optional<int32_t> skip,
-        boost::optional<int32_t> take
+        boost::optional<int32_t> take,
+        boost::optional<std::shared_ptr<FileSorting>> orderBy,
+        boost::optional<bool> desc,
+        boost::optional<utility::string_t> searchPattern
     ) const;
     /// <summary>
     /// Move folder to a specified folder
@@ -169,7 +176,7 @@ public:
     /// Get user&#39;s root folder (without parents)
     /// </summary>
     /// <remarks>
-    /// &amp;gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+    /// &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
     /// </remarks>
     /// <param name="subscriptionId"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<FileVM>> templateFoldersGetRootFolder(
@@ -194,10 +201,10 @@ public:
     /// User with a Create Entity permisison can access this method.
     /// </remarks>
     /// <param name="id">Identifier of parent folder id</param>
-    /// <param name="folderVm">create VM (optional)</param>
+    /// <param name="templateFolderCreateVM">create VM (optional)</param>
     pplx::task<std::shared_ptr<FileVM>> templateFoldersPostFolder(
         utility::string_t id,
-        boost::optional<std::shared_ptr<TemplateFolderCreateVM>> folderVm
+        boost::optional<std::shared_ptr<TemplateFolderCreateVM>> templateFolderCreateVM
     ) const;
     /// <summary>
     /// Rename a folder
@@ -206,10 +213,10 @@ public:
     /// User with a Update Name permision can access this method.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="nameModel"> (optional)</param>
+    /// <param name="folderRenameVM"> (optional)</param>
     pplx::task<std::shared_ptr<FileVM>> templateFoldersRenameFolder(
         utility::string_t id,
-        boost::optional<std::shared_ptr<FolderRenameVM>> nameModel
+        boost::optional<std::shared_ptr<FolderRenameVM>> folderRenameVM
     ) const;
     /// <summary>
     /// Update a folder&#39;s icon
@@ -218,10 +225,10 @@ public:
     /// User with a Update Icon permission can access this method.
     /// </remarks>
     /// <param name="id">Identifier of folder</param>
-    /// <param name="iconModel">Update icon model (optional)</param>
+    /// <param name="folderIconVM">Update icon model (optional)</param>
     pplx::task<std::shared_ptr<FileVM>> templateFoldersUpdateIcon(
         utility::string_t id,
-        boost::optional<std::shared_ptr<FolderIconVM>> iconModel
+        boost::optional<std::shared_ptr<FolderIconVM>> folderIconVM
     ) const;
     /// <summary>
     /// Update permissions
@@ -230,10 +237,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="permissionsVM"> (optional)</param>
+    /// <param name="updateFilePermissionsVM"> (optional)</param>
     pplx::task<void> templateFoldersUpdatePermissions(
         utility::string_t id,
-        boost::optional<std::shared_ptr<UpdateFilePermissionsVM>> permissionsVM
+        boost::optional<std::shared_ptr<UpdateFilePermissionsVM>> updateFilePermissionsVM
     ) const;
     /// <summary>
     /// Update tags
@@ -242,10 +249,10 @@ public:
     /// User with a Update Tags permission can access this method.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="tagsModel"> (optional)</param>
+    /// <param name="folderTagsUpdateVM"> (optional)</param>
     pplx::task<std::shared_ptr<FileVM>> templateFoldersUpdateTags(
         utility::string_t id,
-        boost::optional<std::shared_ptr<FolderTagsUpdateVM>> tagsModel
+        boost::optional<std::shared_ptr<FolderTagsUpdateVM>> folderTagsUpdateVM
     ) const;
     /// <summary>
     /// Copy file to a specified folder
@@ -276,10 +283,10 @@ public:
     /// User with Execute Export permission on prepared report and  Create Entity on an export folder can access this method.
     /// </remarks>
     /// <param name="id">report id</param>
-    /// <param name="exportTask">export parameters (string only) (optional)</param>
+    /// <param name="exportTemplateVM">export parameters (string only) (optional)</param>
     pplx::task<std::shared_ptr<ExportVM>> templatesExport(
         utility::string_t id,
-        boost::optional<std::shared_ptr<ExportTemplateTaskVM>> exportTask
+        boost::optional<std::shared_ptr<ExportTemplateVM>> exportTemplateVM
     ) const;
     /// <summary>
     /// Get specified file
@@ -302,10 +309,10 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
-    /// Get all files from specified folder
+    /// Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
     /// </summary>
     /// <remarks>
-    /// User with Get Entity permission can access this method.
+    /// 
     /// </remarks>
     /// <param name="id">folder id</param>
     /// <param name="skip">number of files, that have to be skipped (optional, default to 0)</param>
@@ -341,13 +348,13 @@ public:
     /// Prepare specified template to report
     /// </summary>
     /// <remarks>
-    /// User with Execute Prepare permission on report and   Create Entity on a prepared report folder can access this method.
+    /// User with Execute Prepare permission on report and  Create Entity on a prepared report folder can access this method.
     /// </remarks>
     /// <param name="id">template id</param>
-    /// <param name="prepareTask">Template prepare view model (optional)</param>
+    /// <param name="prepareTemplateVM">Template prepare view model (optional)</param>
     pplx::task<std::shared_ptr<ReportVM>> templatesPrepare(
         utility::string_t id,
-        boost::optional<std::shared_ptr<PrepareTemplateTaskVM>> prepareTask
+        boost::optional<std::shared_ptr<PrepareTemplateVM>> prepareTemplateVM
     ) const;
     /// <summary>
     /// Rename a file
@@ -356,10 +363,10 @@ public:
     /// User with Update Name permission can access this method.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="nameModel"> (optional)</param>
+    /// <param name="fileRenameVM"> (optional)</param>
     pplx::task<std::shared_ptr<TemplateVM>> templatesRenameFile(
         utility::string_t id,
-        boost::optional<std::shared_ptr<FileRenameVM>> nameModel
+        boost::optional<std::shared_ptr<FileRenameVM>> fileRenameVM
     ) const;
     /// <summary>
     /// Update a files&#39;s icon
@@ -368,10 +375,10 @@ public:
     /// User with Update Icon permission can access this method.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="iconModel"> (optional)</param>
+    /// <param name="fileIconVM"> (optional)</param>
     pplx::task<std::shared_ptr<TemplateVM>> templatesUpdateIcon(
         utility::string_t id,
-        boost::optional<std::shared_ptr<FileIconVM>> iconModel
+        boost::optional<std::shared_ptr<FileIconVM>> fileIconVM
     ) const;
     /// <summary>
     /// Update permissions
@@ -380,10 +387,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="permissionsVM"> (optional)</param>
+    /// <param name="updateFilePermissionsVM"> (optional)</param>
     pplx::task<void> templatesUpdatePermissions(
         utility::string_t id,
-        boost::optional<std::shared_ptr<UpdateFilePermissionsVM>> permissionsVM
+        boost::optional<std::shared_ptr<UpdateFilePermissionsVM>> updateFilePermissionsVM
     ) const;
     /// <summary>
     /// Update tags
@@ -392,10 +399,10 @@ public:
     /// User with Update Tags permission can access this method.
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="tagsModel"> (optional)</param>
+    /// <param name="fileTagsUpdateVM"> (optional)</param>
     pplx::task<std::shared_ptr<TemplateVM>> templatesUpdateTags(
         utility::string_t id,
-        boost::optional<std::shared_ptr<FileTagsUpdateVM>> tagsModel
+        boost::optional<std::shared_ptr<FileTagsUpdateVM>> fileTagsUpdateVM
     ) const;
     /// <summary>
     /// Upload a file to the specified folder  !
@@ -404,10 +411,10 @@ public:
     /// User with Create Entity permission can access this method.
     /// </remarks>
     /// <param name="id">Identifier of folder</param>
-    /// <param name="fileVM">file&#39;s view model (optional)</param>
+    /// <param name="templateCreateVM">file&#39;s view model (optional)</param>
     pplx::task<std::shared_ptr<TemplateVM>> templatesUploadFile(
         utility::string_t id,
-        boost::optional<std::shared_ptr<TemplateCreateVM>> fileVM
+        boost::optional<std::shared_ptr<TemplateCreateVM>> templateCreateVM
     ) const;
 
 protected:

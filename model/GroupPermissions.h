@@ -23,6 +23,7 @@
 
 #include "GroupPermission.h"
 #include <cpprest/details/basic_types.h>
+#include "GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.h"
 #include <map>
 #include <vector>
 

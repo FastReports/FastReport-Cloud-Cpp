@@ -21,7 +21,10 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "TaskType.h"
 #include <cpprest/details/basic_types.h>
+#include "ExportReportTaskVM.h"
+#include "TransformTaskBaseVM.h"
 #include <map>
 #include <vector>
 
@@ -57,29 +60,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetname();
+    std::vector<std::shared_ptr<ExportReportTaskVM>>& getExports();
+    bool exportsIsSet() const;
+    void unsetexports();
 
-    void setName(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getLocale() const;
-    bool localeIsSet() const;
-    void unsetlocale();
-
-    void setLocale(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getParentFolderId() const;
-    bool parentFolderIdIsSet() const;
-    void unsetparentFolderId();
-
-    void setParentFolderId(const utility::string_t& value);
+    void setExports(const std::vector<std::shared_ptr<ExportReportTaskVM>>& value);
 
     /// <summary>
     /// 
@@ -99,18 +84,47 @@ public:
 
     void setReportParameters(const std::map<utility::string_t, utility::string_t>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getName() const;
+    bool nameIsSet() const;
+    void unsetname();
+
+    void setName(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getSubscriptionId() const;
+    bool subscriptionIdIsSet() const;
+    void unsetsubscriptionId();
+
+    void setSubscriptionId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<TaskType> getType() const;
+    bool typeIsSet() const;
+    void unsettype();
+
+    void setType(const std::shared_ptr<TaskType>& value);
+
 
 protected:
-    utility::string_t m_name;
-    bool m_nameIsSet;
-    utility::string_t m_locale;
-    bool m_localeIsSet;
-    utility::string_t m_parentFolderId;
-    bool m_parentFolderIdIsSet;
+    std::vector<std::shared_ptr<ExportReportTaskVM>> m_exports;
+    bool m_exportsIsSet;
     int32_t m_pagesCount;
     bool m_pagesCountIsSet;
     std::map<utility::string_t, utility::string_t> m_reportParameters;
     bool m_reportParametersIsSet;
+    utility::string_t m_name;
+    bool m_nameIsSet;
+    utility::string_t m_subscriptionId;
+    bool m_subscriptionIdIsSet;
+    std::shared_ptr<TaskType> m_type;
+    bool m_typeIsSet;
 };
 
 

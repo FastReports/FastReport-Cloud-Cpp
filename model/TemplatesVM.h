@@ -21,6 +21,7 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "TemplateVMFilesVMBase.h"
 #include "TemplateVM.h"
 #include <vector>
 

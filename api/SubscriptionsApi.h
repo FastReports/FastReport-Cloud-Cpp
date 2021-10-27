@@ -23,6 +23,7 @@
 
 #include "DefaultPermissions.h"
 #include "DefaultPermissionsVM.h"
+#include "MyPermissionsVM.h"
 #include "ProblemDetails.h"
 #include "RenameSubscriptionVM.h"
 #include "SubscriptionPermissionsVM.h"
@@ -61,6 +62,16 @@ public:
     /// <param name="subscriptionId">id</param>
     pplx::task<std::shared_ptr<DefaultPermissions>> subscriptionsGetDefaultPermissions(
         utility::string_t subscriptionId
+    ) const;
+    /// <summary>
+    /// Get user&#39;s permissions for a subscription by id
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="subId">subscription id</param>
+    pplx::task<std::shared_ptr<MyPermissionsVM>> subscriptionsGetMyPermissions(
+        utility::string_t subId
     ) const;
     /// <summary>
     /// Get permissions for a subscription by id
@@ -113,10 +124,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="subscriptionId">id</param>
-    /// <param name="permissionsVM">update default permissions VM</param>
+    /// <param name="updateDefaultPermissionsVM">update default permissions VM</param>
     pplx::task<std::shared_ptr<DefaultPermissionsVM>> subscriptionsUpdateDefaultPermissions(
         utility::string_t subscriptionId,
-        std::shared_ptr<UpdateDefaultPermissionsVM> permissionsVM
+        std::shared_ptr<UpdateDefaultPermissionsVM> updateDefaultPermissionsVM
     ) const;
     /// <summary>
     /// Update subscription&#39;s default locale
@@ -125,10 +136,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="subscriptionId">id</param>
-    /// <param name="updateModel">update VM</param>
+    /// <param name="updateSubscriptionLocaleVM">update VM</param>
     pplx::task<std::shared_ptr<SubscriptionVM>> subscriptionsUpdateLocale(
         utility::string_t subscriptionId,
-        std::shared_ptr<UpdateSubscriptionLocaleVM> updateModel
+        std::shared_ptr<UpdateSubscriptionLocaleVM> updateSubscriptionLocaleVM
     ) const;
     /// <summary>
     /// Update permissions
@@ -137,10 +148,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="permissionsVM"> (optional)</param>
+    /// <param name="updateSubscriptionPermissionsVM"> (optional)</param>
     pplx::task<void> subscriptionsUpdatePermissions(
         utility::string_t id,
-        boost::optional<std::shared_ptr<UpdateSubscriptionPermissionsVM>> permissionsVM
+        boost::optional<std::shared_ptr<UpdateSubscriptionPermissionsVM>> updateSubscriptionPermissionsVM
     ) const;
 
 protected:

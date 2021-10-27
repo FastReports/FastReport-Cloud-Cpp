@@ -26,7 +26,6 @@ DataSourceVM::DataSourceVM()
     m_idIsSet = false;
     m_name = utility::conversions::to_string_t("");
     m_nameIsSet = false;
-    m_connectionType = utility::conversions::to_string_t("");
     m_connectionTypeIsSet = false;
     m_connectionString = utility::conversions::to_string_t("");
     m_connectionStringIsSet = false;
@@ -42,8 +41,7 @@ DataSourceVM::DataSourceVM()
     m_createdTimeIsSet = false;
     m_creatorUserId = utility::conversions::to_string_t("");
     m_creatorUserIdIsSet = false;
-    m_isConnected = false;
-    m_isConnectedIsSet = false;
+    m_statusIsSet = false;
 }
 
 DataSourceVM::~DataSourceVM()
@@ -100,9 +98,9 @@ web::json::value DataSourceVM::toJson() const
     {
         val[utility::conversions::to_string_t("creatorUserId")] = ModelBase::toJson(m_creatorUserId);
     }
-    if(m_isConnectedIsSet)
+    if(m_statusIsSet)
     {
-        val[utility::conversions::to_string_t("isConnected")] = ModelBase::toJson(m_isConnected);
+        val[utility::conversions::to_string_t("status")] = ModelBase::toJson(m_status);
     }
 
     return val;
@@ -137,7 +135,7 @@ bool DataSourceVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("connectionType"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_connectionType;
+            std::shared_ptr<DataSourceConnectionType> refVal_connectionType;
             ok &= ModelBase::fromJson(fieldValue, refVal_connectionType);
             setConnectionType(refVal_connectionType);
         }
@@ -212,14 +210,14 @@ bool DataSourceVM::fromJson(const web::json::value& val)
             setCreatorUserId(refVal_creatorUserId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("isConnected")))
+    if(val.has_field(utility::conversions::to_string_t("status")))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("isConnected"));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("status"));
         if(!fieldValue.is_null())
         {
-            bool refVal_isConnected;
-            ok &= ModelBase::fromJson(fieldValue, refVal_isConnected);
-            setIsConnected(refVal_isConnected);
+            std::shared_ptr<DataSourceStatus> refVal_status;
+            ok &= ModelBase::fromJson(fieldValue, refVal_status);
+            setStatus(refVal_status);
         }
     }
     return ok;
@@ -272,9 +270,9 @@ void DataSourceVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("creatorUserId"), m_creatorUserId));
     }
-    if(m_isConnectedIsSet)
+    if(m_statusIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("isConnected"), m_isConnected));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("status"), m_status));
     }
 }
 
@@ -301,7 +299,7 @@ bool DataSourceVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t("connectionType")))
     {
-        utility::string_t refVal_connectionType;
+        std::shared_ptr<DataSourceConnectionType> refVal_connectionType;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("connectionType")), refVal_connectionType );
         setConnectionType(refVal_connectionType);
     }
@@ -347,11 +345,11 @@ bool DataSourceVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("creatorUserId")), refVal_creatorUserId );
         setCreatorUserId(refVal_creatorUserId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("isConnected")))
+    if(multipart->hasContent(utility::conversions::to_string_t("status")))
     {
-        bool refVal_isConnected;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("isConnected")), refVal_isConnected );
-        setIsConnected(refVal_isConnected);
+        std::shared_ptr<DataSourceStatus> refVal_status;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("status")), refVal_status );
+        setStatus(refVal_status);
     }
     return ok;
 }
@@ -396,12 +394,12 @@ void DataSourceVM::unsetname()
 {
     m_nameIsSet = false;
 }
-utility::string_t DataSourceVM::getConnectionType() const
+std::shared_ptr<DataSourceConnectionType> DataSourceVM::getConnectionType() const
 {
     return m_connectionType;
 }
 
-void DataSourceVM::setConnectionType(const utility::string_t& value)
+void DataSourceVM::setConnectionType(const std::shared_ptr<DataSourceConnectionType>& value)
 {
     m_connectionType = value;
     m_connectionTypeIsSet = true;
@@ -556,25 +554,25 @@ void DataSourceVM::unsetcreatorUserId()
 {
     m_creatorUserIdIsSet = false;
 }
-bool DataSourceVM::isIsConnected() const
+std::shared_ptr<DataSourceStatus> DataSourceVM::getStatus() const
 {
-    return m_isConnected;
+    return m_status;
 }
 
-void DataSourceVM::setIsConnected(bool value)
+void DataSourceVM::setStatus(const std::shared_ptr<DataSourceStatus>& value)
 {
-    m_isConnected = value;
-    m_isConnectedIsSet = true;
+    m_status = value;
+    m_statusIsSet = true;
 }
 
-bool DataSourceVM::isConnectedIsSet() const
+bool DataSourceVM::statusIsSet() const
 {
-    return m_isConnectedIsSet;
+    return m_statusIsSet;
 }
 
-void DataSourceVM::unsetisConnected()
+void DataSourceVM::unsetstatus()
 {
-    m_isConnectedIsSet = false;
+    m_statusIsSet = false;
 }
 }
 }

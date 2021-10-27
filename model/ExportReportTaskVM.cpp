@@ -22,17 +22,15 @@ namespace models {
 
 ExportReportTaskVM::ExportReportTaskVM()
 {
-    m_fileName = utility::conversions::to_string_t("");
-    m_fileNameIsSet = false;
-    m_folderId = utility::conversions::to_string_t("");
-    m_folderIdIsSet = false;
-    m_locale = utility::conversions::to_string_t("");
-    m_localeIsSet = false;
+    m_exportParametersIsSet = false;
+    m_formatIsSet = false;
     m_pagesCount = 0;
     m_pagesCountIsSet = false;
-    m_format = utility::conversions::to_string_t("");
-    m_formatIsSet = false;
-    m_exportParametersIsSet = false;
+    m_name = utility::conversions::to_string_t("");
+    m_nameIsSet = false;
+    m_subscriptionId = utility::conversions::to_string_t("");
+    m_subscriptionIdIsSet = false;
+    m_typeIsSet = false;
 }
 
 ExportReportTaskVM::~ExportReportTaskVM()
@@ -49,29 +47,29 @@ web::json::value ExportReportTaskVM::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_fileNameIsSet)
+    if(m_exportParametersIsSet)
     {
-        val[utility::conversions::to_string_t("fileName")] = ModelBase::toJson(m_fileName);
-    }
-    if(m_folderIdIsSet)
-    {
-        val[utility::conversions::to_string_t("folderId")] = ModelBase::toJson(m_folderId);
-    }
-    if(m_localeIsSet)
-    {
-        val[utility::conversions::to_string_t("locale")] = ModelBase::toJson(m_locale);
-    }
-    if(m_pagesCountIsSet)
-    {
-        val[utility::conversions::to_string_t("pagesCount")] = ModelBase::toJson(m_pagesCount);
+        val[utility::conversions::to_string_t("exportParameters")] = ModelBase::toJson(m_exportParameters);
     }
     if(m_formatIsSet)
     {
         val[utility::conversions::to_string_t("format")] = ModelBase::toJson(m_format);
     }
-    if(m_exportParametersIsSet)
+    if(m_pagesCountIsSet)
     {
-        val[utility::conversions::to_string_t("exportParameters")] = ModelBase::toJson(m_exportParameters);
+        val[utility::conversions::to_string_t("pagesCount")] = ModelBase::toJson(m_pagesCount);
+    }
+    if(m_nameIsSet)
+    {
+        val[utility::conversions::to_string_t("name")] = ModelBase::toJson(m_name);
+    }
+    if(m_subscriptionIdIsSet)
+    {
+        val[utility::conversions::to_string_t("subscriptionId")] = ModelBase::toJson(m_subscriptionId);
+    }
+    if(m_typeIsSet)
+    {
+        val[utility::conversions::to_string_t("type")] = ModelBase::toJson(m_type);
     }
 
     return val;
@@ -81,34 +79,24 @@ bool ExportReportTaskVM::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t("fileName")))
+    if(val.has_field(utility::conversions::to_string_t("exportParameters")))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("fileName"));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("exportParameters"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_fileName;
-            ok &= ModelBase::fromJson(fieldValue, refVal_fileName);
-            setFileName(refVal_fileName);
+            std::map<utility::string_t, utility::string_t> refVal_exportParameters;
+            ok &= ModelBase::fromJson(fieldValue, refVal_exportParameters);
+            setExportParameters(refVal_exportParameters);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("folderId")))
+    if(val.has_field(utility::conversions::to_string_t("format")))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("folderId"));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("format"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_folderId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_folderId);
-            setFolderId(refVal_folderId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("locale")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("locale"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_locale;
-            ok &= ModelBase::fromJson(fieldValue, refVal_locale);
-            setLocale(refVal_locale);
+            std::shared_ptr<ExportFormat> refVal_format;
+            ok &= ModelBase::fromJson(fieldValue, refVal_format);
+            setFormat(refVal_format);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("pagesCount")))
@@ -121,24 +109,34 @@ bool ExportReportTaskVM::fromJson(const web::json::value& val)
             setPagesCount(refVal_pagesCount);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("format")))
+    if(val.has_field(utility::conversions::to_string_t("name")))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("format"));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("name"));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_format;
-            ok &= ModelBase::fromJson(fieldValue, refVal_format);
-            setFormat(refVal_format);
+            utility::string_t refVal_name;
+            ok &= ModelBase::fromJson(fieldValue, refVal_name);
+            setName(refVal_name);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("exportParameters")))
+    if(val.has_field(utility::conversions::to_string_t("subscriptionId")))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("exportParameters"));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("subscriptionId"));
         if(!fieldValue.is_null())
         {
-            std::map<utility::string_t, utility::string_t> refVal_exportParameters;
-            ok &= ModelBase::fromJson(fieldValue, refVal_exportParameters);
-            setExportParameters(refVal_exportParameters);
+            utility::string_t refVal_subscriptionId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_subscriptionId);
+            setSubscriptionId(refVal_subscriptionId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("type")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("type"));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<TaskType> refVal_type;
+            ok &= ModelBase::fromJson(fieldValue, refVal_type);
+            setType(refVal_type);
         }
     }
     return ok;
@@ -151,29 +149,29 @@ void ExportReportTaskVM::toMultipart(std::shared_ptr<MultipartFormData> multipar
     {
         namePrefix += utility::conversions::to_string_t(".");
     }
-    if(m_fileNameIsSet)
+    if(m_exportParametersIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("fileName"), m_fileName));
-    }
-    if(m_folderIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("folderId"), m_folderId));
-    }
-    if(m_localeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("locale"), m_locale));
-    }
-    if(m_pagesCountIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("pagesCount"), m_pagesCount));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("exportParameters"), m_exportParameters));
     }
     if(m_formatIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("format"), m_format));
     }
-    if(m_exportParametersIsSet)
+    if(m_pagesCountIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("exportParameters"), m_exportParameters));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("pagesCount"), m_pagesCount));
+    }
+    if(m_nameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_name));
+    }
+    if(m_subscriptionIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("subscriptionId"), m_subscriptionId));
+    }
+    if(m_typeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("type"), m_type));
     }
 }
 
@@ -186,23 +184,17 @@ bool ExportReportTaskVM::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         namePrefix += utility::conversions::to_string_t(".");
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t("fileName")))
+    if(multipart->hasContent(utility::conversions::to_string_t("exportParameters")))
     {
-        utility::string_t refVal_fileName;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("fileName")), refVal_fileName );
-        setFileName(refVal_fileName);
+        std::map<utility::string_t, utility::string_t> refVal_exportParameters;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("exportParameters")), refVal_exportParameters );
+        setExportParameters(refVal_exportParameters);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("folderId")))
+    if(multipart->hasContent(utility::conversions::to_string_t("format")))
     {
-        utility::string_t refVal_folderId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("folderId")), refVal_folderId );
-        setFolderId(refVal_folderId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("locale")))
-    {
-        utility::string_t refVal_locale;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("locale")), refVal_locale );
-        setLocale(refVal_locale);
+        std::shared_ptr<ExportFormat> refVal_format;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("format")), refVal_format );
+        setFormat(refVal_format);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("pagesCount")))
     {
@@ -210,80 +202,66 @@ bool ExportReportTaskVM::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("pagesCount")), refVal_pagesCount );
         setPagesCount(refVal_pagesCount);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("format")))
+    if(multipart->hasContent(utility::conversions::to_string_t("name")))
     {
-        utility::string_t refVal_format;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("format")), refVal_format );
-        setFormat(refVal_format);
+        utility::string_t refVal_name;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("name")), refVal_name );
+        setName(refVal_name);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("exportParameters")))
+    if(multipart->hasContent(utility::conversions::to_string_t("subscriptionId")))
     {
-        std::map<utility::string_t, utility::string_t> refVal_exportParameters;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("exportParameters")), refVal_exportParameters );
-        setExportParameters(refVal_exportParameters);
+        utility::string_t refVal_subscriptionId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("subscriptionId")), refVal_subscriptionId );
+        setSubscriptionId(refVal_subscriptionId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("type")))
+    {
+        std::shared_ptr<TaskType> refVal_type;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("type")), refVal_type );
+        setType(refVal_type);
     }
     return ok;
 }
 
-utility::string_t ExportReportTaskVM::getFileName() const
+std::map<utility::string_t, utility::string_t>& ExportReportTaskVM::getExportParameters()
 {
-    return m_fileName;
+    return m_exportParameters;
 }
 
-void ExportReportTaskVM::setFileName(const utility::string_t& value)
+void ExportReportTaskVM::setExportParameters(const std::map<utility::string_t, utility::string_t>& value)
 {
-    m_fileName = value;
-    m_fileNameIsSet = true;
+    m_exportParameters = value;
+    m_exportParametersIsSet = true;
 }
 
-bool ExportReportTaskVM::fileNameIsSet() const
+bool ExportReportTaskVM::exportParametersIsSet() const
 {
-    return m_fileNameIsSet;
+    return m_exportParametersIsSet;
 }
 
-void ExportReportTaskVM::unsetfileName()
+void ExportReportTaskVM::unsetexportParameters()
 {
-    m_fileNameIsSet = false;
+    m_exportParametersIsSet = false;
 }
-utility::string_t ExportReportTaskVM::getFolderId() const
+std::shared_ptr<ExportFormat> ExportReportTaskVM::getFormat() const
 {
-    return m_folderId;
-}
-
-void ExportReportTaskVM::setFolderId(const utility::string_t& value)
-{
-    m_folderId = value;
-    m_folderIdIsSet = true;
+    return m_format;
 }
 
-bool ExportReportTaskVM::folderIdIsSet() const
+void ExportReportTaskVM::setFormat(const std::shared_ptr<ExportFormat>& value)
 {
-    return m_folderIdIsSet;
+    m_format = value;
+    m_formatIsSet = true;
 }
 
-void ExportReportTaskVM::unsetfolderId()
+bool ExportReportTaskVM::formatIsSet() const
 {
-    m_folderIdIsSet = false;
-}
-utility::string_t ExportReportTaskVM::getLocale() const
-{
-    return m_locale;
+    return m_formatIsSet;
 }
 
-void ExportReportTaskVM::setLocale(const utility::string_t& value)
+void ExportReportTaskVM::unsetformat()
 {
-    m_locale = value;
-    m_localeIsSet = true;
-}
-
-bool ExportReportTaskVM::localeIsSet() const
-{
-    return m_localeIsSet;
-}
-
-void ExportReportTaskVM::unsetlocale()
-{
-    m_localeIsSet = false;
+    m_formatIsSet = false;
 }
 int32_t ExportReportTaskVM::getPagesCount() const
 {
@@ -305,45 +283,65 @@ void ExportReportTaskVM::unsetpagesCount()
 {
     m_pagesCountIsSet = false;
 }
-utility::string_t ExportReportTaskVM::getFormat() const
+utility::string_t ExportReportTaskVM::getName() const
 {
-    return m_format;
+    return m_name;
 }
 
-void ExportReportTaskVM::setFormat(const utility::string_t& value)
+void ExportReportTaskVM::setName(const utility::string_t& value)
 {
-    m_format = value;
-    m_formatIsSet = true;
+    m_name = value;
+    m_nameIsSet = true;
 }
 
-bool ExportReportTaskVM::formatIsSet() const
+bool ExportReportTaskVM::nameIsSet() const
 {
-    return m_formatIsSet;
+    return m_nameIsSet;
 }
 
-void ExportReportTaskVM::unsetformat()
+void ExportReportTaskVM::unsetname()
 {
-    m_formatIsSet = false;
+    m_nameIsSet = false;
 }
-std::map<utility::string_t, utility::string_t>& ExportReportTaskVM::getExportParameters()
+utility::string_t ExportReportTaskVM::getSubscriptionId() const
 {
-    return m_exportParameters;
-}
-
-void ExportReportTaskVM::setExportParameters(const std::map<utility::string_t, utility::string_t>& value)
-{
-    m_exportParameters = value;
-    m_exportParametersIsSet = true;
+    return m_subscriptionId;
 }
 
-bool ExportReportTaskVM::exportParametersIsSet() const
+void ExportReportTaskVM::setSubscriptionId(const utility::string_t& value)
 {
-    return m_exportParametersIsSet;
+    m_subscriptionId = value;
+    m_subscriptionIdIsSet = true;
 }
 
-void ExportReportTaskVM::unsetexportParameters()
+bool ExportReportTaskVM::subscriptionIdIsSet() const
 {
-    m_exportParametersIsSet = false;
+    return m_subscriptionIdIsSet;
+}
+
+void ExportReportTaskVM::unsetsubscriptionId()
+{
+    m_subscriptionIdIsSet = false;
+}
+std::shared_ptr<TaskType> ExportReportTaskVM::getType() const
+{
+    return m_type;
+}
+
+void ExportReportTaskVM::setType(const std::shared_ptr<TaskType>& value)
+{
+    m_type = value;
+    m_typeIsSet = true;
+}
+
+bool ExportReportTaskVM::typeIsSet() const
+{
+    return m_typeIsSet;
+}
+
+void ExportReportTaskVM::unsettype()
+{
+    m_typeIsSet = false;
 }
 }
 }

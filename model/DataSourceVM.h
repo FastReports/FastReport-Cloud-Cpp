@@ -21,7 +21,9 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "DataSourceStatus.h"
 #include <cpprest/details/basic_types.h>
+#include "DataSourceConnectionType.h"
 
 namespace fastreport {
 namespace cloud {
@@ -73,11 +75,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getConnectionType() const;
+    std::shared_ptr<DataSourceConnectionType> getConnectionType() const;
     bool connectionTypeIsSet() const;
     void unsetconnectionType();
 
-    void setConnectionType(const utility::string_t& value);
+    void setConnectionType(const std::shared_ptr<DataSourceConnectionType>& value);
 
     /// <summary>
     /// 
@@ -145,11 +147,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    bool isIsConnected() const;
-    bool isConnectedIsSet() const;
-    void unsetisConnected();
+    std::shared_ptr<DataSourceStatus> getStatus() const;
+    bool statusIsSet() const;
+    void unsetstatus();
 
-    void setIsConnected(bool value);
+    void setStatus(const std::shared_ptr<DataSourceStatus>& value);
 
 
 protected:
@@ -157,7 +159,7 @@ protected:
     bool m_idIsSet;
     utility::string_t m_name;
     bool m_nameIsSet;
-    utility::string_t m_connectionType;
+    std::shared_ptr<DataSourceConnectionType> m_connectionType;
     bool m_connectionTypeIsSet;
     utility::string_t m_connectionString;
     bool m_connectionStringIsSet;
@@ -173,8 +175,8 @@ protected:
     bool m_createdTimeIsSet;
     utility::string_t m_creatorUserId;
     bool m_creatorUserIdIsSet;
-    bool m_isConnected;
-    bool m_isConnectedIsSet;
+    std::shared_ptr<DataSourceStatus> m_status;
+    bool m_statusIsSet;
 };
 
 

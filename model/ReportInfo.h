@@ -21,6 +21,7 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "SaveMode.h"
 #include <cpprest/details/basic_types.h>
 
 namespace fastreport {
@@ -127,11 +128,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getSaveMode() const;
+    std::shared_ptr<SaveMode> getSaveMode() const;
     bool saveModeIsSet() const;
     void unsetsaveMode();
 
-    void setSaveMode(const utility::string_t& value);
+    void setSaveMode(const std::shared_ptr<SaveMode>& value);
 
     /// <summary>
     /// 
@@ -178,7 +179,7 @@ protected:
     bool m_pictureIsSet;
     float m_previewPictureRatio;
     bool m_previewPictureRatioIsSet;
-    utility::string_t m_saveMode;
+    std::shared_ptr<SaveMode> m_saveMode;
     bool m_saveModeIsSet;
     bool m_savePreviewPicture;
     bool m_savePreviewPictureIsSet;

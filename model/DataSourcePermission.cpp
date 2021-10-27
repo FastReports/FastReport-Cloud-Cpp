@@ -22,17 +22,11 @@ namespace models {
 
 DataSourcePermission::DataSourcePermission()
 {
-    m_create = CreateEnum._0;
     m_createIsSet = false;
-    m_r_delete = R_deleteEnum._0;
     m_r_deleteIsSet = false;
-    m_execute = ExecuteEnum._0;
     m_executeIsSet = false;
-    m_get = GetEnum._0;
     m_getIsSet = false;
-    m_update = UpdateEnum._0;
     m_updateIsSet = false;
-    m_administrate = AdministrateEnum._0;
     m_administrateIsSet = false;
 }
 
@@ -87,7 +81,7 @@ bool DataSourcePermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("create"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_create;
+            std::shared_ptr<DataSourceCreate> refVal_create;
             ok &= ModelBase::fromJson(fieldValue, refVal_create);
             setCreate(refVal_create);
         }
@@ -97,7 +91,7 @@ bool DataSourcePermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("delete"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_delete;
+            std::shared_ptr<DataSourceDelete> refVal_delete;
             ok &= ModelBase::fromJson(fieldValue, refVal_delete);
             setRDelete(refVal_delete);
         }
@@ -107,7 +101,7 @@ bool DataSourcePermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("execute"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_execute;
+            std::shared_ptr<DataSourceExecute> refVal_execute;
             ok &= ModelBase::fromJson(fieldValue, refVal_execute);
             setExecute(refVal_execute);
         }
@@ -117,7 +111,7 @@ bool DataSourcePermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("get"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_get;
+            std::shared_ptr<DataSourceGet> refVal_get;
             ok &= ModelBase::fromJson(fieldValue, refVal_get);
             setGet(refVal_get);
         }
@@ -127,7 +121,7 @@ bool DataSourcePermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("update"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_update;
+            std::shared_ptr<DataSourceUpdate> refVal_update;
             ok &= ModelBase::fromJson(fieldValue, refVal_update);
             setUpdate(refVal_update);
         }
@@ -137,7 +131,7 @@ bool DataSourcePermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("administrate"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_administrate;
+            std::shared_ptr<DataSourceAdministrate> refVal_administrate;
             ok &= ModelBase::fromJson(fieldValue, refVal_administrate);
             setAdministrate(refVal_administrate);
         }
@@ -189,49 +183,49 @@ bool DataSourcePermission::fromMultiPart(std::shared_ptr<MultipartFormData> mult
 
     if(multipart->hasContent(utility::conversions::to_string_t("create")))
     {
-        int32_t refVal_create;
+        std::shared_ptr<DataSourceCreate> refVal_create;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("create")), refVal_create );
         setCreate(refVal_create);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("delete")))
     {
-        int32_t refVal_delete;
+        std::shared_ptr<DataSourceDelete> refVal_delete;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("delete")), refVal_delete );
         setRDelete(refVal_delete);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("execute")))
     {
-        int32_t refVal_execute;
+        std::shared_ptr<DataSourceExecute> refVal_execute;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("execute")), refVal_execute );
         setExecute(refVal_execute);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("get")))
     {
-        int32_t refVal_get;
+        std::shared_ptr<DataSourceGet> refVal_get;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("get")), refVal_get );
         setGet(refVal_get);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("update")))
     {
-        int32_t refVal_update;
+        std::shared_ptr<DataSourceUpdate> refVal_update;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("update")), refVal_update );
         setUpdate(refVal_update);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("administrate")))
     {
-        int32_t refVal_administrate;
+        std::shared_ptr<DataSourceAdministrate> refVal_administrate;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("administrate")), refVal_administrate );
         setAdministrate(refVal_administrate);
     }
     return ok;
 }
 
-int32_t DataSourcePermission::getCreate() const
+std::shared_ptr<DataSourceCreate> DataSourcePermission::getCreate() const
 {
     return m_create;
 }
 
-void DataSourcePermission::setCreate(int32_t value)
+void DataSourcePermission::setCreate(const std::shared_ptr<DataSourceCreate>& value)
 {
     m_create = value;
     m_createIsSet = true;
@@ -246,12 +240,12 @@ void DataSourcePermission::unsetcreate()
 {
     m_createIsSet = false;
 }
-int32_t DataSourcePermission::getRDelete() const
+std::shared_ptr<DataSourceDelete> DataSourcePermission::getRDelete() const
 {
     return m_r_delete;
 }
 
-void DataSourcePermission::setRDelete(int32_t value)
+void DataSourcePermission::setRDelete(const std::shared_ptr<DataSourceDelete>& value)
 {
     m_r_delete = value;
     m_r_deleteIsSet = true;
@@ -266,12 +260,12 @@ void DataSourcePermission::unsetr_delete()
 {
     m_r_deleteIsSet = false;
 }
-int32_t DataSourcePermission::getExecute() const
+std::shared_ptr<DataSourceExecute> DataSourcePermission::getExecute() const
 {
     return m_execute;
 }
 
-void DataSourcePermission::setExecute(int32_t value)
+void DataSourcePermission::setExecute(const std::shared_ptr<DataSourceExecute>& value)
 {
     m_execute = value;
     m_executeIsSet = true;
@@ -286,12 +280,12 @@ void DataSourcePermission::unsetexecute()
 {
     m_executeIsSet = false;
 }
-int32_t DataSourcePermission::getGet() const
+std::shared_ptr<DataSourceGet> DataSourcePermission::getGet() const
 {
     return m_get;
 }
 
-void DataSourcePermission::setGet(int32_t value)
+void DataSourcePermission::setGet(const std::shared_ptr<DataSourceGet>& value)
 {
     m_get = value;
     m_getIsSet = true;
@@ -306,12 +300,12 @@ void DataSourcePermission::unsetget()
 {
     m_getIsSet = false;
 }
-int32_t DataSourcePermission::getUpdate() const
+std::shared_ptr<DataSourceUpdate> DataSourcePermission::getUpdate() const
 {
     return m_update;
 }
 
-void DataSourcePermission::setUpdate(int32_t value)
+void DataSourcePermission::setUpdate(const std::shared_ptr<DataSourceUpdate>& value)
 {
     m_update = value;
     m_updateIsSet = true;
@@ -326,12 +320,12 @@ void DataSourcePermission::unsetupdate()
 {
     m_updateIsSet = false;
 }
-int32_t DataSourcePermission::getAdministrate() const
+std::shared_ptr<DataSourceAdministrate> DataSourcePermission::getAdministrate() const
 {
     return m_administrate;
 }
 
-void DataSourcePermission::setAdministrate(int32_t value)
+void DataSourcePermission::setAdministrate(const std::shared_ptr<DataSourceAdministrate>& value)
 {
     m_administrate = value;
     m_administrateIsSet = true;

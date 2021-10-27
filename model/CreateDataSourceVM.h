@@ -22,6 +22,7 @@
 #include "../ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
+#include "DataSourceConnectionType.h"
 
 namespace fastreport {
 namespace cloud {
@@ -82,11 +83,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getConnectionType() const;
+    std::shared_ptr<DataSourceConnectionType> getConnectionType() const;
     bool connectionTypeIsSet() const;
     void unsetconnectionType();
 
-    void setConnectionType(const utility::string_t& value);
+    void setConnectionType(const std::shared_ptr<DataSourceConnectionType>& value);
 
 
 protected:
@@ -96,7 +97,7 @@ protected:
     bool m_connectionStringIsSet;
     utility::string_t m_subscriptionId;
     bool m_subscriptionIdIsSet;
-    utility::string_t m_connectionType;
+    std::shared_ptr<DataSourceConnectionType> m_connectionType;
     bool m_connectionTypeIsSet;
 };
 

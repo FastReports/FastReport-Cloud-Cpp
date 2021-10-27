@@ -22,17 +22,11 @@ namespace models {
 
 SubscriptionPermission::SubscriptionPermission()
 {
-    m_create = CreateEnum._0;
     m_createIsSet = false;
-    m_r_delete = R_deleteEnum._0;
     m_r_deleteIsSet = false;
-    m_execute = ExecuteEnum._0;
     m_executeIsSet = false;
-    m_get = GetEnum._0;
     m_getIsSet = false;
-    m_update = UpdateEnum._0;
     m_updateIsSet = false;
-    m_administrate = AdministrateEnum._0;
     m_administrateIsSet = false;
 }
 
@@ -87,7 +81,7 @@ bool SubscriptionPermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("create"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_create;
+            std::shared_ptr<SubscriptionCreate> refVal_create;
             ok &= ModelBase::fromJson(fieldValue, refVal_create);
             setCreate(refVal_create);
         }
@@ -97,7 +91,7 @@ bool SubscriptionPermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("delete"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_delete;
+            std::shared_ptr<SubscriptionDelete> refVal_delete;
             ok &= ModelBase::fromJson(fieldValue, refVal_delete);
             setRDelete(refVal_delete);
         }
@@ -107,7 +101,7 @@ bool SubscriptionPermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("execute"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_execute;
+            std::shared_ptr<SubscriptionExecute> refVal_execute;
             ok &= ModelBase::fromJson(fieldValue, refVal_execute);
             setExecute(refVal_execute);
         }
@@ -117,7 +111,7 @@ bool SubscriptionPermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("get"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_get;
+            std::shared_ptr<SubscriptionGet> refVal_get;
             ok &= ModelBase::fromJson(fieldValue, refVal_get);
             setGet(refVal_get);
         }
@@ -127,7 +121,7 @@ bool SubscriptionPermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("update"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_update;
+            std::shared_ptr<SubscriptionUpdate> refVal_update;
             ok &= ModelBase::fromJson(fieldValue, refVal_update);
             setUpdate(refVal_update);
         }
@@ -137,7 +131,7 @@ bool SubscriptionPermission::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("administrate"));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_administrate;
+            std::shared_ptr<SubscriptionAdministrate> refVal_administrate;
             ok &= ModelBase::fromJson(fieldValue, refVal_administrate);
             setAdministrate(refVal_administrate);
         }
@@ -189,49 +183,49 @@ bool SubscriptionPermission::fromMultiPart(std::shared_ptr<MultipartFormData> mu
 
     if(multipart->hasContent(utility::conversions::to_string_t("create")))
     {
-        int32_t refVal_create;
+        std::shared_ptr<SubscriptionCreate> refVal_create;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("create")), refVal_create );
         setCreate(refVal_create);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("delete")))
     {
-        int32_t refVal_delete;
+        std::shared_ptr<SubscriptionDelete> refVal_delete;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("delete")), refVal_delete );
         setRDelete(refVal_delete);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("execute")))
     {
-        int32_t refVal_execute;
+        std::shared_ptr<SubscriptionExecute> refVal_execute;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("execute")), refVal_execute );
         setExecute(refVal_execute);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("get")))
     {
-        int32_t refVal_get;
+        std::shared_ptr<SubscriptionGet> refVal_get;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("get")), refVal_get );
         setGet(refVal_get);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("update")))
     {
-        int32_t refVal_update;
+        std::shared_ptr<SubscriptionUpdate> refVal_update;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("update")), refVal_update );
         setUpdate(refVal_update);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("administrate")))
     {
-        int32_t refVal_administrate;
+        std::shared_ptr<SubscriptionAdministrate> refVal_administrate;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("administrate")), refVal_administrate );
         setAdministrate(refVal_administrate);
     }
     return ok;
 }
 
-int32_t SubscriptionPermission::getCreate() const
+std::shared_ptr<SubscriptionCreate> SubscriptionPermission::getCreate() const
 {
     return m_create;
 }
 
-void SubscriptionPermission::setCreate(int32_t value)
+void SubscriptionPermission::setCreate(const std::shared_ptr<SubscriptionCreate>& value)
 {
     m_create = value;
     m_createIsSet = true;
@@ -246,12 +240,12 @@ void SubscriptionPermission::unsetcreate()
 {
     m_createIsSet = false;
 }
-int32_t SubscriptionPermission::getRDelete() const
+std::shared_ptr<SubscriptionDelete> SubscriptionPermission::getRDelete() const
 {
     return m_r_delete;
 }
 
-void SubscriptionPermission::setRDelete(int32_t value)
+void SubscriptionPermission::setRDelete(const std::shared_ptr<SubscriptionDelete>& value)
 {
     m_r_delete = value;
     m_r_deleteIsSet = true;
@@ -266,12 +260,12 @@ void SubscriptionPermission::unsetr_delete()
 {
     m_r_deleteIsSet = false;
 }
-int32_t SubscriptionPermission::getExecute() const
+std::shared_ptr<SubscriptionExecute> SubscriptionPermission::getExecute() const
 {
     return m_execute;
 }
 
-void SubscriptionPermission::setExecute(int32_t value)
+void SubscriptionPermission::setExecute(const std::shared_ptr<SubscriptionExecute>& value)
 {
     m_execute = value;
     m_executeIsSet = true;
@@ -286,12 +280,12 @@ void SubscriptionPermission::unsetexecute()
 {
     m_executeIsSet = false;
 }
-int32_t SubscriptionPermission::getGet() const
+std::shared_ptr<SubscriptionGet> SubscriptionPermission::getGet() const
 {
     return m_get;
 }
 
-void SubscriptionPermission::setGet(int32_t value)
+void SubscriptionPermission::setGet(const std::shared_ptr<SubscriptionGet>& value)
 {
     m_get = value;
     m_getIsSet = true;
@@ -306,12 +300,12 @@ void SubscriptionPermission::unsetget()
 {
     m_getIsSet = false;
 }
-int32_t SubscriptionPermission::getUpdate() const
+std::shared_ptr<SubscriptionUpdate> SubscriptionPermission::getUpdate() const
 {
     return m_update;
 }
 
-void SubscriptionPermission::setUpdate(int32_t value)
+void SubscriptionPermission::setUpdate(const std::shared_ptr<SubscriptionUpdate>& value)
 {
     m_update = value;
     m_updateIsSet = true;
@@ -326,12 +320,12 @@ void SubscriptionPermission::unsetupdate()
 {
     m_updateIsSet = false;
 }
-int32_t SubscriptionPermission::getAdministrate() const
+std::shared_ptr<SubscriptionAdministrate> SubscriptionPermission::getAdministrate() const
 {
     return m_administrate;
 }
 
-void SubscriptionPermission::setAdministrate(int32_t value)
+void SubscriptionPermission::setAdministrate(const std::shared_ptr<SubscriptionAdministrate>& value)
 {
     m_administrate = value;
     m_administrateIsSet = true;

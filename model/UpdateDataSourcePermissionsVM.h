@@ -22,6 +22,7 @@
 #include "../ModelBase.h"
 
 #include "DataSourcePermissions.h"
+#include "DataSourceAdministrate.h"
 
 namespace fastreport {
 namespace cloud {
@@ -64,17 +65,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    int32_t getAdministrate() const;
+    std::shared_ptr<DataSourceAdministrate> getAdministrate() const;
     bool administrateIsSet() const;
     void unsetadministrate();
 
-    void setAdministrate(int32_t value);
+    void setAdministrate(const std::shared_ptr<DataSourceAdministrate>& value);
 
 
 protected:
     std::shared_ptr<DataSourcePermissions> m_newPermissions;
     bool m_newPermissionsIsSet;
-    int32_t m_administrate;
+    std::shared_ptr<DataSourceAdministrate> m_administrate;
     bool m_administrateIsSet;
 };
 

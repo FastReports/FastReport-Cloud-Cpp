@@ -22,6 +22,7 @@
 #include "../ModelBase.h"
 
 #include "DataSourcePermission.h"
+#include "DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.h"
 #include <cpprest/details/basic_types.h>
 #include <map>
 #include <vector>

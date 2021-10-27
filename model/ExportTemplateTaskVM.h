@@ -21,7 +21,9 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "TaskType.h"
 #include <cpprest/details/basic_types.h>
+#include "ExportReportTaskVM.h"
 #include <map>
 #include <vector>
 
@@ -57,82 +59,49 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getFileName() const;
-    bool fileNameIsSet() const;
-    void unsetfileName();
-
-    void setFileName(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getFolderId() const;
-    bool folderIdIsSet() const;
-    void unsetfolderId();
-
-    void setFolderId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getLocale() const;
-    bool localeIsSet() const;
-    void unsetlocale();
-
-    void setLocale(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    int32_t getPagesCount() const;
-    bool pagesCountIsSet() const;
-    void unsetpagesCount();
-
-    void setPagesCount(int32_t value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getFormat() const;
-    bool formatIsSet() const;
-    void unsetformat();
-
-    void setFormat(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    std::map<utility::string_t, utility::string_t>& getExportParameters();
-    bool exportParametersIsSet() const;
-    void unsetexportParameters();
-
-    void setExportParameters(const std::map<utility::string_t, utility::string_t>& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     std::map<utility::string_t, utility::string_t>& getReportParameters();
     bool reportParametersIsSet() const;
     void unsetreportParameters();
 
     void setReportParameters(const std::map<utility::string_t, utility::string_t>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getName() const;
+    bool nameIsSet() const;
+    void unsetname();
+
+    void setName(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getSubscriptionId() const;
+    bool subscriptionIdIsSet() const;
+    void unsetsubscriptionId();
+
+    void setSubscriptionId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<TaskType> getType() const;
+    bool typeIsSet() const;
+    void unsettype();
+
+    void setType(const std::shared_ptr<TaskType>& value);
+
 
 protected:
-    utility::string_t m_fileName;
-    bool m_fileNameIsSet;
-    utility::string_t m_folderId;
-    bool m_folderIdIsSet;
-    utility::string_t m_locale;
-    bool m_localeIsSet;
-    int32_t m_pagesCount;
-    bool m_pagesCountIsSet;
-    utility::string_t m_format;
-    bool m_formatIsSet;
-    std::map<utility::string_t, utility::string_t> m_exportParameters;
-    bool m_exportParametersIsSet;
     std::map<utility::string_t, utility::string_t> m_reportParameters;
     bool m_reportParametersIsSet;
+    utility::string_t m_name;
+    bool m_nameIsSet;
+    utility::string_t m_subscriptionId;
+    bool m_subscriptionIdIsSet;
+    std::shared_ptr<TaskType> m_type;
+    bool m_typeIsSet;
 };
 
 

@@ -23,6 +23,7 @@
 
 #include "CreateDataSourceVM.h"
 #include "DataSourcePermissionsVM.h"
+#include "DataSourceSorting.h"
 #include "DataSourceVM.h"
 #include "DataSourcesVM.h"
 #include "ProblemDetails.h"
@@ -57,9 +58,9 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="viewModel">create viewmodel (optional)</param>
+    /// <param name="createDataSourceVM">create viewmodel (optional)</param>
     pplx::task<std::shared_ptr<DataSourceVM>> dataSourcesCreateDataSource(
-        boost::optional<std::shared_ptr<CreateDataSourceVM>> viewModel
+        boost::optional<std::shared_ptr<CreateDataSourceVM>> createDataSourceVM
     ) const;
     /// <summary>
     /// Delete data source by id
@@ -82,7 +83,7 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
-    /// Returns all of the data sources, that current user have permission for in a subscription  if subscription id is null, returns all data sources, that current user have permission for
+    /// Returns all of the data sources, that current user have permission for in a subscription &lt;br /&gt;  The method will return minimal infomration about the datasources: &lt;br /&gt;  id, name, editedTime, status.
     /// </summary>
     /// <remarks>
     /// 
@@ -90,10 +91,14 @@ public:
     /// <param name="subscriptionId">subscription id (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="skip">how many data sources will be skipped (optional, default to 0)</param>
     /// <param name="take">how many data sources will be taken (optional, default to 0)</param>
+    /// <param name="orderBy">field to order by (optional, default to new DataSourceSorting())</param>
+    /// <param name="desc">descending sort (optional, default to false)</param>
     pplx::task<std::shared_ptr<DataSourcesVM>> dataSourcesGetAvailableDataSources(
         boost::optional<utility::string_t> subscriptionId,
         boost::optional<int32_t> skip,
-        boost::optional<int32_t> take
+        boost::optional<int32_t> take,
+        boost::optional<std::shared_ptr<DataSourceSorting>> orderBy,
+        boost::optional<bool> desc
     ) const;
     /// <summary>
     /// Get data source by id
@@ -122,10 +127,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="id">data source id</param>
-    /// <param name="renameModel">rename viewmodel (optional)</param>
+    /// <param name="renameDataSourceVM">rename viewmodel (optional)</param>
     pplx::task<std::shared_ptr<DataSourceVM>> dataSourcesRenameDataSource(
         utility::string_t id,
-        boost::optional<std::shared_ptr<RenameDataSourceVM>> renameModel
+        boost::optional<std::shared_ptr<RenameDataSourceVM>> renameDataSourceVM
     ) const;
     /// <summary>
     /// Update data source&#39;s connection string by id
@@ -134,10 +139,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="id">data source id</param>
-    /// <param name="updateModel">update viewmodel (optional)</param>
+    /// <param name="updateDataSourceConnectionStringVM">update viewmodel (optional)</param>
     pplx::task<std::shared_ptr<DataSourceVM>> dataSourcesUpdateConnectionString(
         utility::string_t id,
-        boost::optional<std::shared_ptr<UpdateDataSourceConnectionStringVM>> updateModel
+        boost::optional<std::shared_ptr<UpdateDataSourceConnectionStringVM>> updateDataSourceConnectionStringVM
     ) const;
     /// <summary>
     /// Update permissions
@@ -146,10 +151,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="id"></param>
-    /// <param name="permissionsVM"> (optional)</param>
+    /// <param name="updateDataSourcePermissionsVM"> (optional)</param>
     pplx::task<void> dataSourcesUpdatePermissions(
         utility::string_t id,
-        boost::optional<std::shared_ptr<UpdateDataSourcePermissionsVM>> permissionsVM
+        boost::optional<std::shared_ptr<UpdateDataSourcePermissionsVM>> updateDataSourcePermissionsVM
     ) const;
     /// <summary>
     /// Update data source&#39;s subscription
@@ -158,10 +163,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="id">data source id</param>
-    /// <param name="updatesubscriptionModel">update subscription viewmodel (optional)</param>
+    /// <param name="updateDataSourceSubscriptionVM">update subscription viewmodel (optional)</param>
     pplx::task<void> dataSourcesUpdateSubscriptionDataSource(
         utility::string_t id,
-        boost::optional<std::shared_ptr<UpdateDataSourceSubscriptionVM>> updatesubscriptionModel
+        boost::optional<std::shared_ptr<UpdateDataSourceSubscriptionVM>> updateDataSourceSubscriptionVM
     ) const;
 
 protected:

@@ -21,6 +21,7 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "FileAdministrate.h"
 #include "FilePermissions.h"
 
 namespace fastreport {
@@ -64,17 +65,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    int32_t getAdministrate() const;
+    std::shared_ptr<FileAdministrate> getAdministrate() const;
     bool administrateIsSet() const;
     void unsetadministrate();
 
-    void setAdministrate(int32_t value);
+    void setAdministrate(const std::shared_ptr<FileAdministrate>& value);
 
 
 protected:
     std::shared_ptr<FilePermissions> m_newPermissions;
     bool m_newPermissionsIsSet;
-    int32_t m_administrate;
+    std::shared_ptr<FileAdministrate> m_administrate;
     bool m_administrateIsSet;
 };
 

@@ -50,8 +50,6 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -105,13 +103,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -152,7 +144,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
         return void();
     });
 }
-pplx::task<std::shared_ptr<SubscriptionInviteVM>> SubscriptionInvitesApi::subscriptionInvitesCreateInvite(utility::string_t subscriptionId, boost::optional<std::shared_ptr<CreateSubscriptionInviteVM>> createInviteVM) const
+pplx::task<std::shared_ptr<SubscriptionInviteVM>> SubscriptionInvitesApi::subscriptionInvitesCreateInvite(utility::string_t subscriptionId, boost::optional<std::shared_ptr<CreateSubscriptionInviteVM>> createSubscriptionInviteVM) const
 {
 
 
@@ -167,8 +159,6 @@ pplx::task<std::shared_ptr<SubscriptionInviteVM>> SubscriptionInvitesApi::subscr
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -195,7 +185,6 @@ pplx::task<std::shared_ptr<SubscriptionInviteVM>> SubscriptionInvitesApi::subscr
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -210,8 +199,8 @@ pplx::task<std::shared_ptr<SubscriptionInviteVM>> SubscriptionInvitesApi::subscr
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (createInviteVM)
-            localVarJson = ModelBase::toJson(*createInviteVM);
+        if (createSubscriptionInviteVM)
+            localVarJson = ModelBase::toJson(*createSubscriptionInviteVM);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -221,9 +210,9 @@ pplx::task<std::shared_ptr<SubscriptionInviteVM>> SubscriptionInvitesApi::subscr
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(createInviteVM && (*createInviteVM).get())
+        if(createSubscriptionInviteVM && (*createSubscriptionInviteVM).get())
         {
-            (*createInviteVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("createInviteVM"));
+            (*createSubscriptionInviteVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("createSubscriptionInviteVM"));
         }
         
 
@@ -242,13 +231,7 @@ pplx::task<std::shared_ptr<SubscriptionInviteVM>> SubscriptionInvitesApi::subscr
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("POST"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -323,8 +306,6 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -378,13 +359,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("DELETE"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -440,8 +415,6 @@ pplx::task<std::shared_ptr<SubscriptionInvitesVM>> SubscriptionInvitesApi::subsc
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -495,13 +468,7 @@ pplx::task<std::shared_ptr<SubscriptionInvitesVM>> SubscriptionInvitesApi::subsc
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)

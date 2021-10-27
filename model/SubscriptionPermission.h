@@ -21,6 +21,13 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
+#include "SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission.h"
+#include "SubscriptionUpdate.h"
+#include "SubscriptionDelete.h"
+#include "SubscriptionExecute.h"
+#include "SubscriptionAdministrate.h"
+#include "SubscriptionCreate.h"
+#include "SubscriptionGet.h"
 
 namespace fastreport {
 namespace cloud {
@@ -54,70 +61,70 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    int32_t getCreate() const;
+    std::shared_ptr<SubscriptionCreate> getCreate() const;
     bool createIsSet() const;
     void unsetcreate();
 
-    void setCreate(int32_t value);
+    void setCreate(const std::shared_ptr<SubscriptionCreate>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    int32_t getRDelete() const;
+    std::shared_ptr<SubscriptionDelete> getRDelete() const;
     bool rDeleteIsSet() const;
     void unsetr_delete();
 
-    void setRDelete(int32_t value);
+    void setRDelete(const std::shared_ptr<SubscriptionDelete>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    int32_t getExecute() const;
+    std::shared_ptr<SubscriptionExecute> getExecute() const;
     bool executeIsSet() const;
     void unsetexecute();
 
-    void setExecute(int32_t value);
+    void setExecute(const std::shared_ptr<SubscriptionExecute>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    int32_t getGet() const;
+    std::shared_ptr<SubscriptionGet> getGet() const;
     bool getIsSet() const;
     void unsetget();
 
-    void setGet(int32_t value);
+    void setGet(const std::shared_ptr<SubscriptionGet>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    int32_t getUpdate() const;
+    std::shared_ptr<SubscriptionUpdate> getUpdate() const;
     bool updateIsSet() const;
     void unsetupdate();
 
-    void setUpdate(int32_t value);
+    void setUpdate(const std::shared_ptr<SubscriptionUpdate>& value);
 
     /// <summary>
     /// 
     /// </summary>
-    int32_t getAdministrate() const;
+    std::shared_ptr<SubscriptionAdministrate> getAdministrate() const;
     bool administrateIsSet() const;
     void unsetadministrate();
 
-    void setAdministrate(int32_t value);
+    void setAdministrate(const std::shared_ptr<SubscriptionAdministrate>& value);
 
 
 protected:
-    int32_t m_create;
+    std::shared_ptr<SubscriptionCreate> m_create;
     bool m_createIsSet;
-    int32_t m_r_delete;
+    std::shared_ptr<SubscriptionDelete> m_r_delete;
     bool m_r_deleteIsSet;
-    int32_t m_execute;
+    std::shared_ptr<SubscriptionExecute> m_execute;
     bool m_executeIsSet;
-    int32_t m_get;
+    std::shared_ptr<SubscriptionGet> m_get;
     bool m_getIsSet;
-    int32_t m_update;
+    std::shared_ptr<SubscriptionUpdate> m_update;
     bool m_updateIsSet;
-    int32_t m_administrate;
+    std::shared_ptr<SubscriptionAdministrate> m_administrate;
     bool m_administrateIsSet;
 };
 

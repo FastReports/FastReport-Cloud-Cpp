@@ -48,8 +48,6 @@ pplx::task<std::shared_ptr<UserProfileVM>> UserProfileApi::userProfileGetMyProfi
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -103,13 +101,7 @@ pplx::task<std::shared_ptr<UserProfileVM>> UserProfileApi::userProfileGetMyProfi
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -183,8 +175,6 @@ pplx::task<std::shared_ptr<UserProfileVM>> UserProfileApi::userProfileGetUserPro
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -238,13 +228,7 @@ pplx::task<std::shared_ptr<UserProfileVM>> UserProfileApi::userProfileGetUserPro
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
@@ -303,7 +287,7 @@ pplx::task<std::shared_ptr<UserProfileVM>> UserProfileApi::userProfileGetUserPro
         return localVarResult;
     });
 }
-pplx::task<void> UserProfileApi::userProfileUpdateMyProfile(boost::optional<std::shared_ptr<UpdateUserProfileVM>> model) const
+pplx::task<void> UserProfileApi::userProfileUpdateMyProfile(boost::optional<std::shared_ptr<UpdateUserProfileVM>> updateUserProfileVM) const
 {
 
 
@@ -317,8 +301,6 @@ pplx::task<void> UserProfileApi::userProfileUpdateMyProfile(boost::optional<std:
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -345,7 +327,6 @@ pplx::task<void> UserProfileApi::userProfileUpdateMyProfile(boost::optional<std:
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-    localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json-patch+json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("text/json") );
     localVarConsumeHttpContentTypes.insert( utility::conversions::to_string_t("application/_*+json") );
@@ -360,8 +341,8 @@ pplx::task<void> UserProfileApi::userProfileUpdateMyProfile(boost::optional<std:
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        if (model)
-            localVarJson = ModelBase::toJson(*model);
+        if (updateUserProfileVM)
+            localVarJson = ModelBase::toJson(*updateUserProfileVM);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -371,9 +352,9 @@ pplx::task<void> UserProfileApi::userProfileUpdateMyProfile(boost::optional<std:
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(model && (*model).get())
+        if(updateUserProfileVM && (*updateUserProfileVM).get())
         {
-            (*model)->toMultipart(localVarMultipart, utility::conversions::to_string_t("model"));
+            (*updateUserProfileVM)->toMultipart(localVarMultipart, utility::conversions::to_string_t("updateUserProfileVM"));
         }
         
 
@@ -392,13 +373,7 @@ pplx::task<void> UserProfileApi::userProfileUpdateMyProfile(boost::optional<std:
     // authentication (ApiKey) required
     // Basic authentication is added automatically as part of the http_client_config
     // authentication (JWT) required
-    {
-        utility::string_t localVarApiKey = localVarApiConfiguration->getApiKey(utility::conversions::to_string_t("Authorization"));
-        if ( localVarApiKey.size() > 0 )
-        {
-            localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = localVarApiKey;
-        }
-    }
+    // Basic authentication is added automatically as part of the http_client_config
 
     return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("PUT"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
     .then([=](web::http::http_response localVarResponse)
