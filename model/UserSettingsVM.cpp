@@ -25,6 +25,8 @@ UserSettingsVM::UserSettingsVM()
     m_profileVisibilityIsSet = false;
     m_defaultSubscription = utility::conversions::to_string_t("");
     m_defaultSubscriptionIsSet = false;
+    m_showHiddenFilesAndFolders = false;
+    m_showHiddenFilesAndFoldersIsSet = false;
 }
 
 UserSettingsVM::~UserSettingsVM()
@@ -48,6 +50,10 @@ web::json::value UserSettingsVM::toJson() const
     if(m_defaultSubscriptionIsSet)
     {
         val[utility::conversions::to_string_t("defaultSubscription")] = ModelBase::toJson(m_defaultSubscription);
+    }
+    if(m_showHiddenFilesAndFoldersIsSet)
+    {
+        val[utility::conversions::to_string_t("showHiddenFilesAndFolders")] = ModelBase::toJson(m_showHiddenFilesAndFolders);
     }
 
     return val;
@@ -77,6 +83,16 @@ bool UserSettingsVM::fromJson(const web::json::value& val)
             setDefaultSubscription(refVal_defaultSubscription);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("showHiddenFilesAndFolders")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("showHiddenFilesAndFolders"));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_showHiddenFilesAndFolders;
+            ok &= ModelBase::fromJson(fieldValue, refVal_showHiddenFilesAndFolders);
+            setShowHiddenFilesAndFolders(refVal_showHiddenFilesAndFolders);
+        }
+    }
     return ok;
 }
 
@@ -94,6 +110,10 @@ void UserSettingsVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     if(m_defaultSubscriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("defaultSubscription"), m_defaultSubscription));
+    }
+    if(m_showHiddenFilesAndFoldersIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("showHiddenFilesAndFolders"), m_showHiddenFilesAndFolders));
     }
 }
 
@@ -117,6 +137,12 @@ bool UserSettingsVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         utility::string_t refVal_defaultSubscription;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("defaultSubscription")), refVal_defaultSubscription );
         setDefaultSubscription(refVal_defaultSubscription);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("showHiddenFilesAndFolders")))
+    {
+        bool refVal_showHiddenFilesAndFolders;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("showHiddenFilesAndFolders")), refVal_showHiddenFilesAndFolders );
+        setShowHiddenFilesAndFolders(refVal_showHiddenFilesAndFolders);
     }
     return ok;
 }
@@ -160,6 +186,26 @@ bool UserSettingsVM::defaultSubscriptionIsSet() const
 void UserSettingsVM::unsetdefaultSubscription()
 {
     m_defaultSubscriptionIsSet = false;
+}
+bool UserSettingsVM::isShowHiddenFilesAndFolders() const
+{
+    return m_showHiddenFilesAndFolders;
+}
+
+void UserSettingsVM::setShowHiddenFilesAndFolders(bool value)
+{
+    m_showHiddenFilesAndFolders = value;
+    m_showHiddenFilesAndFoldersIsSet = true;
+}
+
+bool UserSettingsVM::showHiddenFilesAndFoldersIsSet() const
+{
+    return m_showHiddenFilesAndFoldersIsSet;
+}
+
+void UserSettingsVM::unsetshowHiddenFilesAndFolders()
+{
+    m_showHiddenFilesAndFoldersIsSet = false;
 }
 }
 }

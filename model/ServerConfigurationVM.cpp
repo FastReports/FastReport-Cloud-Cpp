@@ -26,7 +26,10 @@ ServerConfigurationVM::ServerConfigurationVM()
     m_titleIsSet = false;
     m_corporateServerMode = false;
     m_corporateServerModeIsSet = false;
+    m_isDisabled = false;
+    m_isDisabledIsSet = false;
     m_appMixinsIsSet = false;
+    m_authIsSet = false;
 }
 
 ServerConfigurationVM::~ServerConfigurationVM()
@@ -51,9 +54,17 @@ web::json::value ServerConfigurationVM::toJson() const
     {
         val[utility::conversions::to_string_t("corporateServerMode")] = ModelBase::toJson(m_corporateServerMode);
     }
+    if(m_isDisabledIsSet)
+    {
+        val[utility::conversions::to_string_t("isDisabled")] = ModelBase::toJson(m_isDisabled);
+    }
     if(m_appMixinsIsSet)
     {
         val[utility::conversions::to_string_t("appMixins")] = ModelBase::toJson(m_appMixins);
+    }
+    if(m_authIsSet)
+    {
+        val[utility::conversions::to_string_t("auth")] = ModelBase::toJson(m_auth);
     }
 
     return val;
@@ -83,6 +94,16 @@ bool ServerConfigurationVM::fromJson(const web::json::value& val)
             setCorporateServerMode(refVal_corporateServerMode);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("isDisabled")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("isDisabled"));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_isDisabled;
+            ok &= ModelBase::fromJson(fieldValue, refVal_isDisabled);
+            setIsDisabled(refVal_isDisabled);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("appMixins")))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("appMixins"));
@@ -91,6 +112,16 @@ bool ServerConfigurationVM::fromJson(const web::json::value& val)
             std::shared_ptr<AppMixins> refVal_appMixins;
             ok &= ModelBase::fromJson(fieldValue, refVal_appMixins);
             setAppMixins(refVal_appMixins);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("auth")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("auth"));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<AuthConfigVM> refVal_auth;
+            ok &= ModelBase::fromJson(fieldValue, refVal_auth);
+            setAuth(refVal_auth);
         }
     }
     return ok;
@@ -111,9 +142,17 @@ void ServerConfigurationVM::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("corporateServerMode"), m_corporateServerMode));
     }
+    if(m_isDisabledIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("isDisabled"), m_isDisabled));
+    }
     if(m_appMixinsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("appMixins"), m_appMixins));
+    }
+    if(m_authIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("auth"), m_auth));
     }
 }
 
@@ -138,11 +177,23 @@ bool ServerConfigurationVM::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("corporateServerMode")), refVal_corporateServerMode );
         setCorporateServerMode(refVal_corporateServerMode);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t("isDisabled")))
+    {
+        bool refVal_isDisabled;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("isDisabled")), refVal_isDisabled );
+        setIsDisabled(refVal_isDisabled);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t("appMixins")))
     {
         std::shared_ptr<AppMixins> refVal_appMixins;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("appMixins")), refVal_appMixins );
         setAppMixins(refVal_appMixins);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("auth")))
+    {
+        std::shared_ptr<AuthConfigVM> refVal_auth;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("auth")), refVal_auth );
+        setAuth(refVal_auth);
     }
     return ok;
 }
@@ -187,6 +238,26 @@ void ServerConfigurationVM::unsetcorporateServerMode()
 {
     m_corporateServerModeIsSet = false;
 }
+bool ServerConfigurationVM::isIsDisabled() const
+{
+    return m_isDisabled;
+}
+
+void ServerConfigurationVM::setIsDisabled(bool value)
+{
+    m_isDisabled = value;
+    m_isDisabledIsSet = true;
+}
+
+bool ServerConfigurationVM::isDisabledIsSet() const
+{
+    return m_isDisabledIsSet;
+}
+
+void ServerConfigurationVM::unsetisDisabled()
+{
+    m_isDisabledIsSet = false;
+}
 std::shared_ptr<AppMixins> ServerConfigurationVM::getAppMixins() const
 {
     return m_appMixins;
@@ -206,6 +277,26 @@ bool ServerConfigurationVM::appMixinsIsSet() const
 void ServerConfigurationVM::unsetappMixins()
 {
     m_appMixinsIsSet = false;
+}
+std::shared_ptr<AuthConfigVM> ServerConfigurationVM::getAuth() const
+{
+    return m_auth;
+}
+
+void ServerConfigurationVM::setAuth(const std::shared_ptr<AuthConfigVM>& value)
+{
+    m_auth = value;
+    m_authIsSet = true;
+}
+
+bool ServerConfigurationVM::authIsSet() const
+{
+    return m_authIsSet;
+}
+
+void ServerConfigurationVM::unsetauth()
+{
+    m_authIsSet = false;
 }
 }
 }

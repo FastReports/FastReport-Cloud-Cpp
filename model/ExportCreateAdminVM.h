@@ -75,15 +75,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getTemplateId() const;
-    bool templateIdIsSet() const;
-    void unsettemplateId();
-
-    void setTemplateId(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetname();
@@ -123,8 +114,6 @@ protected:
     bool m_ownerIdIsSet;
     utility::string_t m_parentId;
     bool m_parentIdIsSet;
-    utility::string_t m_templateId;
-    bool m_templateIdIsSet;
     utility::string_t m_name;
     bool m_nameIsSet;
     std::vector<utility::string_t> m_tags;

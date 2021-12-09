@@ -10,20 +10,18 @@
  */
 
 /*
- * FetchTaskVM.h
+ * AuthConfigVM.h
  *
  * 
  */
 
-#ifndef FASTREPORT_CLOUD_MODELS_FetchTaskVM_H_
-#define FASTREPORT_CLOUD_MODELS_FetchTaskVM_H_
+#ifndef FASTREPORT_CLOUD_MODELS_AuthConfigVM_H_
+#define FASTREPORT_CLOUD_MODELS_AuthConfigVM_H_
 
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
-#include "TaskType.h"
 #include <cpprest/details/basic_types.h>
-#include "TransformTaskBaseVM.h"
 
 namespace fastreport {
 namespace cloud {
@@ -33,12 +31,12 @@ namespace models {
 /// <summary>
 /// 
 /// </summary>
-class  FetchTaskVM
+class  AuthConfigVM
     : public ModelBase
 {
 public:
-    FetchTaskVM();
-    virtual ~FetchTaskVM();
+    AuthConfigVM();
+    virtual ~AuthConfigVM();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -52,43 +50,43 @@ public:
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// FetchTaskVM members
+    /// AuthConfigVM members
 
     /// <summary>
     /// 
     /// </summary>
-    utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetname();
+    bool isUseLocal() const;
+    bool useLocalIsSet() const;
+    void unsetuseLocal();
 
-    void setName(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getSubscriptionId() const;
-    bool subscriptionIdIsSet() const;
-    void unsetsubscriptionId();
-
-    void setSubscriptionId(const utility::string_t& value);
+    void setUseLocal(bool value);
 
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<TaskType> getType() const;
-    bool typeIsSet() const;
-    void unsettype();
+    bool isUseOpenId() const;
+    bool useOpenIdIsSet() const;
+    void unsetuseOpenId();
 
-    void setType(const std::shared_ptr<TaskType>& value);
+    void setUseOpenId(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getAuthority() const;
+    bool authorityIsSet() const;
+    void unsetauthority();
+
+    void setAuthority(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_name;
-    bool m_nameIsSet;
-    utility::string_t m_subscriptionId;
-    bool m_subscriptionIdIsSet;
-    std::shared_ptr<TaskType> m_type;
-    bool m_typeIsSet;
+    bool m_useLocal;
+    bool m_useLocalIsSet;
+    bool m_useOpenId;
+    bool m_useOpenIdIsSet;
+    utility::string_t m_authority;
+    bool m_authorityIsSet;
 };
 
 
@@ -96,4 +94,4 @@ protected:
 }
 }
 
-#endif /* FASTREPORT_CLOUD_MODELS_FetchTaskVM_H_ */
+#endif /* FASTREPORT_CLOUD_MODELS_AuthConfigVM_H_ */

@@ -10,20 +10,20 @@
  */
 
 /*
- * FetchTaskVM.h
+ * RunThumbnailTemplateTaskVM.h
  *
  * 
  */
 
-#ifndef FASTREPORT_CLOUD_MODELS_FetchTaskVM_H_
-#define FASTREPORT_CLOUD_MODELS_FetchTaskVM_H_
+#ifndef FASTREPORT_CLOUD_MODELS_RunThumbnailTemplateTaskVM_H_
+#define FASTREPORT_CLOUD_MODELS_RunThumbnailTemplateTaskVM_H_
 
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
 #include "TaskType.h"
 #include <cpprest/details/basic_types.h>
-#include "TransformTaskBaseVM.h"
+#include "RunTransformTaskBaseVM.h"
 
 namespace fastreport {
 namespace cloud {
@@ -33,12 +33,12 @@ namespace models {
 /// <summary>
 /// 
 /// </summary>
-class  FetchTaskVM
+class  RunThumbnailTemplateTaskVM
     : public ModelBase
 {
 public:
-    FetchTaskVM();
-    virtual ~FetchTaskVM();
+    RunThumbnailTemplateTaskVM();
+    virtual ~RunThumbnailTemplateTaskVM();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -52,16 +52,7 @@ public:
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// FetchTaskVM members
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetname();
-
-    void setName(const utility::string_t& value);
+    /// RunThumbnailTemplateTaskVM members
 
     /// <summary>
     /// 
@@ -83,8 +74,6 @@ public:
 
 
 protected:
-    utility::string_t m_name;
-    bool m_nameIsSet;
     utility::string_t m_subscriptionId;
     bool m_subscriptionIdIsSet;
     std::shared_ptr<TaskType> m_type;
@@ -96,4 +85,4 @@ protected:
 }
 }
 
-#endif /* FASTREPORT_CLOUD_MODELS_FetchTaskVM_H_ */
+#endif /* FASTREPORT_CLOUD_MODELS_RunThumbnailTemplateTaskVM_H_ */

@@ -41,6 +41,7 @@ web::json::value FileExecute::toJson() const
     if (m_value == eFileExecute::FileExecute__1) val = web::json::value::string(U(1));
     if (m_value == eFileExecute::FileExecute__2) val = web::json::value::string(U(2));
     if (m_value == eFileExecute::FileExecute__4) val = web::json::value::string(U(4));
+    if (m_value == eFileExecute::FileExecute__8) val = web::json::value::string(U(8));
     if (m_value == eFileExecute::FileExecute__1) val = web::json::value::string(U(-1));
 
     return val;
@@ -55,6 +56,7 @@ bool FileExecute::fromJson(const web::json::value& val)
     if (s == utility::conversions::to_string_t(1)) m_value = eFileExecute::FileExecute__1;
     if (s == utility::conversions::to_string_t(2)) m_value = eFileExecute::FileExecute__2;
     if (s == utility::conversions::to_string_t(4)) m_value = eFileExecute::FileExecute__4;
+    if (s == utility::conversions::to_string_t(8)) m_value = eFileExecute::FileExecute__8;
     if (s == utility::conversions::to_string_t(-1)) m_value = eFileExecute::FileExecute__1;
     return true;
 }
@@ -74,6 +76,7 @@ void FileExecute::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     if (m_value == eFileExecute::FileExecute__1) s = utility::conversions::to_string_t(1);
     if (m_value == eFileExecute::FileExecute__2) s = utility::conversions::to_string_t(2);
     if (m_value == eFileExecute::FileExecute__4) s = utility::conversions::to_string_t(4);
+    if (m_value == eFileExecute::FileExecute__8) s = utility::conversions::to_string_t(8);
     if (m_value == eFileExecute::FileExecute__1) s = utility::conversions::to_string_t(-1);
 
     multipart->add(ModelBase::toHttpContent(namePrefix, s));
@@ -97,6 +100,7 @@ bool FileExecute::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         if (s == utility::conversions::to_string_t(1)) v = eFileExecute::FileExecute__1;
         if (s == utility::conversions::to_string_t(2)) v = eFileExecute::FileExecute__2;
         if (s == utility::conversions::to_string_t(4)) v = eFileExecute::FileExecute__4;
+        if (s == utility::conversions::to_string_t(8)) v = eFileExecute::FileExecute__8;
         if (s == utility::conversions::to_string_t(-1)) v = eFileExecute::FileExecute__1;
 
         setValue(v);

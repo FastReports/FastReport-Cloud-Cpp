@@ -26,8 +26,6 @@ ExportCreateAdminVM::ExportCreateAdminVM()
     m_ownerIdIsSet = false;
     m_parentId = utility::conversions::to_string_t("");
     m_parentIdIsSet = false;
-    m_templateId = utility::conversions::to_string_t("");
-    m_templateIdIsSet = false;
     m_name = utility::conversions::to_string_t("");
     m_nameIsSet = false;
     m_tagsIsSet = false;
@@ -56,10 +54,6 @@ web::json::value ExportCreateAdminVM::toJson() const
     if(m_parentIdIsSet)
     {
         val[utility::conversions::to_string_t("parentId")] = ModelBase::toJson(m_parentId);
-    }
-    if(m_templateIdIsSet)
-    {
-        val[utility::conversions::to_string_t("templateId")] = ModelBase::toJson(m_templateId);
     }
     if(m_nameIsSet)
     {
@@ -103,16 +97,6 @@ bool ExportCreateAdminVM::fromJson(const web::json::value& val)
             utility::string_t refVal_parentId;
             ok &= ModelBase::fromJson(fieldValue, refVal_parentId);
             setParentId(refVal_parentId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t("templateId")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("templateId"));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_templateId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_templateId);
-            setTemplateId(refVal_templateId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("name")))
@@ -173,10 +157,6 @@ void ExportCreateAdminVM::toMultipart(std::shared_ptr<MultipartFormData> multipa
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("parentId"), m_parentId));
     }
-    if(m_templateIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("templateId"), m_templateId));
-    }
     if(m_nameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_name));
@@ -215,12 +195,6 @@ bool ExportCreateAdminVM::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         utility::string_t refVal_parentId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("parentId")), refVal_parentId );
         setParentId(refVal_parentId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("templateId")))
-    {
-        utility::string_t refVal_templateId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("templateId")), refVal_templateId );
-        setTemplateId(refVal_templateId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("name")))
     {
@@ -288,26 +262,6 @@ bool ExportCreateAdminVM::parentIdIsSet() const
 void ExportCreateAdminVM::unsetparentId()
 {
     m_parentIdIsSet = false;
-}
-utility::string_t ExportCreateAdminVM::getTemplateId() const
-{
-    return m_templateId;
-}
-
-void ExportCreateAdminVM::setTemplateId(const utility::string_t& value)
-{
-    m_templateId = value;
-    m_templateIdIsSet = true;
-}
-
-bool ExportCreateAdminVM::templateIdIsSet() const
-{
-    return m_templateIdIsSet;
-}
-
-void ExportCreateAdminVM::unsettemplateId()
-{
-    m_templateIdIsSet = false;
 }
 utility::string_t ExportCreateAdminVM::getName() const
 {

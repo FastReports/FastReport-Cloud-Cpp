@@ -34,6 +34,10 @@ TaskSettingsVM::TaskSettingsVM()
     m_sendViaWebhookIsSet = false;
     m_fetchData = false;
     m_fetchDataIsSet = false;
+    m_thumbnailReport = false;
+    m_thumbnailReportIsSet = false;
+    m_thumbnailTemplate = false;
+    m_thumbnailTemplateIsSet = false;
 }
 
 TaskSettingsVM::~TaskSettingsVM()
@@ -73,6 +77,14 @@ web::json::value TaskSettingsVM::toJson() const
     if(m_fetchDataIsSet)
     {
         val[utility::conversions::to_string_t("fetchData")] = ModelBase::toJson(m_fetchData);
+    }
+    if(m_thumbnailReportIsSet)
+    {
+        val[utility::conversions::to_string_t("thumbnailReport")] = ModelBase::toJson(m_thumbnailReport);
+    }
+    if(m_thumbnailTemplateIsSet)
+    {
+        val[utility::conversions::to_string_t("thumbnailTemplate")] = ModelBase::toJson(m_thumbnailTemplate);
     }
 
     return val;
@@ -142,6 +154,26 @@ bool TaskSettingsVM::fromJson(const web::json::value& val)
             setFetchData(refVal_fetchData);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("thumbnailReport")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("thumbnailReport"));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_thumbnailReport;
+            ok &= ModelBase::fromJson(fieldValue, refVal_thumbnailReport);
+            setThumbnailReport(refVal_thumbnailReport);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("thumbnailTemplate")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("thumbnailTemplate"));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_thumbnailTemplate;
+            ok &= ModelBase::fromJson(fieldValue, refVal_thumbnailTemplate);
+            setThumbnailTemplate(refVal_thumbnailTemplate);
+        }
+    }
     return ok;
 }
 
@@ -175,6 +207,14 @@ void TaskSettingsVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     if(m_fetchDataIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("fetchData"), m_fetchData));
+    }
+    if(m_thumbnailReportIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("thumbnailReport"), m_thumbnailReport));
+    }
+    if(m_thumbnailTemplateIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("thumbnailTemplate"), m_thumbnailTemplate));
     }
 }
 
@@ -222,6 +262,18 @@ bool TaskSettingsVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         bool refVal_fetchData;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("fetchData")), refVal_fetchData );
         setFetchData(refVal_fetchData);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("thumbnailReport")))
+    {
+        bool refVal_thumbnailReport;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("thumbnailReport")), refVal_thumbnailReport );
+        setThumbnailReport(refVal_thumbnailReport);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("thumbnailTemplate")))
+    {
+        bool refVal_thumbnailTemplate;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("thumbnailTemplate")), refVal_thumbnailTemplate );
+        setThumbnailTemplate(refVal_thumbnailTemplate);
     }
     return ok;
 }
@@ -345,6 +397,46 @@ bool TaskSettingsVM::fetchDataIsSet() const
 void TaskSettingsVM::unsetfetchData()
 {
     m_fetchDataIsSet = false;
+}
+bool TaskSettingsVM::isThumbnailReport() const
+{
+    return m_thumbnailReport;
+}
+
+void TaskSettingsVM::setThumbnailReport(bool value)
+{
+    m_thumbnailReport = value;
+    m_thumbnailReportIsSet = true;
+}
+
+bool TaskSettingsVM::thumbnailReportIsSet() const
+{
+    return m_thumbnailReportIsSet;
+}
+
+void TaskSettingsVM::unsetthumbnailReport()
+{
+    m_thumbnailReportIsSet = false;
+}
+bool TaskSettingsVM::isThumbnailTemplate() const
+{
+    return m_thumbnailTemplate;
+}
+
+void TaskSettingsVM::setThumbnailTemplate(bool value)
+{
+    m_thumbnailTemplate = value;
+    m_thumbnailTemplateIsSet = true;
+}
+
+bool TaskSettingsVM::thumbnailTemplateIsSet() const
+{
+    return m_thumbnailTemplateIsSet;
+}
+
+void TaskSettingsVM::unsetthumbnailTemplate()
+{
+    m_thumbnailTemplateIsSet = false;
 }
 }
 }

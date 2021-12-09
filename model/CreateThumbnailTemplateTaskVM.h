@@ -10,20 +10,20 @@
  */
 
 /*
- * FetchTaskVM.h
+ * CreateThumbnailTemplateTaskVM.h
  *
  * 
  */
 
-#ifndef FASTREPORT_CLOUD_MODELS_FetchTaskVM_H_
-#define FASTREPORT_CLOUD_MODELS_FetchTaskVM_H_
+#ifndef FASTREPORT_CLOUD_MODELS_CreateThumbnailTemplateTaskVM_H_
+#define FASTREPORT_CLOUD_MODELS_CreateThumbnailTemplateTaskVM_H_
 
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
 #include "TaskType.h"
 #include <cpprest/details/basic_types.h>
-#include "TransformTaskBaseVM.h"
+#include "CreateTransformTaskBaseVM.h"
 
 namespace fastreport {
 namespace cloud {
@@ -33,12 +33,12 @@ namespace models {
 /// <summary>
 /// 
 /// </summary>
-class  FetchTaskVM
+class  CreateThumbnailTemplateTaskVM
     : public ModelBase
 {
 public:
-    FetchTaskVM();
-    virtual ~FetchTaskVM();
+    CreateThumbnailTemplateTaskVM();
+    virtual ~CreateThumbnailTemplateTaskVM();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -52,7 +52,7 @@ public:
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// FetchTaskVM members
+    /// CreateThumbnailTemplateTaskVM members
 
     /// <summary>
     /// 
@@ -96,4 +96,4 @@ protected:
 }
 }
 
-#endif /* FASTREPORT_CLOUD_MODELS_FetchTaskVM_H_ */
+#endif /* FASTREPORT_CLOUD_MODELS_CreateThumbnailTemplateTaskVM_H_ */

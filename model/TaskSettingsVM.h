@@ -105,6 +105,24 @@ public:
 
     void setFetchData(bool value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isThumbnailReport() const;
+    bool thumbnailReportIsSet() const;
+    void unsetthumbnailReport();
+
+    void setThumbnailReport(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isThumbnailTemplate() const;
+    bool thumbnailTemplateIsSet() const;
+    void unsetthumbnailTemplate();
+
+    void setThumbnailTemplate(bool value);
+
 
 protected:
     bool m_prepare;
@@ -119,6 +137,10 @@ protected:
     bool m_sendViaWebhookIsSet;
     bool m_fetchData;
     bool m_fetchDataIsSet;
+    bool m_thumbnailReport;
+    bool m_thumbnailReportIsSet;
+    bool m_thumbnailTemplate;
+    bool m_thumbnailTemplateIsSet;
 };
 
 

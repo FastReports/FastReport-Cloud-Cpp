@@ -80,7 +80,7 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
-    /// Gets list of user groups
+    /// Returns a list of current user&#39;s groups&lt;br /&gt;  This method will return following data about groups : &lt;br /&gt;  Id, Name, Created time (UTC), Edited time (UTC), creator id, &lt;br /&gt;  editor id, subscription id
     /// </summary>
     /// <remarks>
     /// 

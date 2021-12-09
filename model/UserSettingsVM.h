@@ -71,12 +71,23 @@ public:
 
     void setDefaultSubscription(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isShowHiddenFilesAndFolders() const;
+    bool showHiddenFilesAndFoldersIsSet() const;
+    void unsetshowHiddenFilesAndFolders();
+
+    void setShowHiddenFilesAndFolders(bool value);
+
 
 protected:
     std::shared_ptr<ProfileVisibility> m_profileVisibility;
     bool m_profileVisibilityIsSet;
     utility::string_t m_defaultSubscription;
     bool m_defaultSubscriptionIsSet;
+    bool m_showHiddenFilesAndFolders;
+    bool m_showHiddenFilesAndFoldersIsSet;
 };
 
 

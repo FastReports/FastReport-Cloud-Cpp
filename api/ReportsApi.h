@@ -69,8 +69,10 @@ public:
     /// User with a Get Count permission can access this method.
     /// </remarks>
     /// <param name="id">folder id</param>
+    /// <param name="searchPattern">string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<CountVM>> reportFolderAndFileGetCount(
-        utility::string_t id
+        utility::string_t id,
+        boost::optional<utility::string_t> searchPattern
     ) const;
     /// <summary>
     /// Get all folders and files from specified folder
@@ -315,10 +317,12 @@ public:
     /// <param name="id">folder id</param>
     /// <param name="skip">number of files, that have to be skipped (optional, default to 0)</param>
     /// <param name="take">number of files, that have to be returned (optional, default to 0)</param>
+    /// <param name="searchPattern"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<ReportsVM>> reportsGetFilesList(
         utility::string_t id,
         boost::optional<int32_t> skip,
-        boost::optional<int32_t> take
+        boost::optional<int32_t> take,
+        boost::optional<utility::string_t> searchPattern
     ) const;
     /// <summary>
     /// Get all file permissions

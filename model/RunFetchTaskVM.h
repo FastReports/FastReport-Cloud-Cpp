@@ -24,7 +24,6 @@
 #include "TaskType.h"
 #include <cpprest/details/basic_types.h>
 #include "RunTransformTaskBaseVM.h"
-#include "DataSourceConnectionType.h"
 
 namespace fastreport {
 namespace cloud {
@@ -58,24 +57,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<DataSourceConnectionType> getConnectionType() const;
-    bool connectionTypeIsSet() const;
-    void unsetconnectionType();
-
-    void setConnectionType(const std::shared_ptr<DataSourceConnectionType>& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getConnectionString() const;
-    bool connectionStringIsSet() const;
-    void unsetconnectionString();
-
-    void setConnectionString(const utility::string_t& value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     utility::string_t getSubscriptionId() const;
     bool subscriptionIdIsSet() const;
     void unsetsubscriptionId();
@@ -93,10 +74,6 @@ public:
 
 
 protected:
-    std::shared_ptr<DataSourceConnectionType> m_connectionType;
-    bool m_connectionTypeIsSet;
-    utility::string_t m_connectionString;
-    bool m_connectionStringIsSet;
     utility::string_t m_subscriptionId;
     bool m_subscriptionIdIsSet;
     std::shared_ptr<TaskType> m_type;

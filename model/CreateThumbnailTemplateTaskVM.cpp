@@ -11,7 +11,7 @@
 
 
 
-#include "RunFetchTaskVM.h"
+#include "CreateThumbnailTemplateTaskVM.h"
 
 namespace fastreport {
 namespace cloud {
@@ -20,27 +20,33 @@ namespace models {
 
 
 
-RunFetchTaskVM::RunFetchTaskVM()
+CreateThumbnailTemplateTaskVM::CreateThumbnailTemplateTaskVM()
 {
+    m_name = utility::conversions::to_string_t("");
+    m_nameIsSet = false;
     m_subscriptionId = utility::conversions::to_string_t("");
     m_subscriptionIdIsSet = false;
     m_typeIsSet = false;
 }
 
-RunFetchTaskVM::~RunFetchTaskVM()
+CreateThumbnailTemplateTaskVM::~CreateThumbnailTemplateTaskVM()
 {
 }
 
-void RunFetchTaskVM::validate()
+void CreateThumbnailTemplateTaskVM::validate()
 {
     // TODO: implement validation
 }
 
-web::json::value RunFetchTaskVM::toJson() const
+web::json::value CreateThumbnailTemplateTaskVM::toJson() const
 {
 
     web::json::value val = web::json::value::object();
     
+    if(m_nameIsSet)
+    {
+        val[utility::conversions::to_string_t("name")] = ModelBase::toJson(m_name);
+    }
     if(m_subscriptionIdIsSet)
     {
         val[utility::conversions::to_string_t("subscriptionId")] = ModelBase::toJson(m_subscriptionId);
@@ -53,10 +59,20 @@ web::json::value RunFetchTaskVM::toJson() const
     return val;
 }
 
-bool RunFetchTaskVM::fromJson(const web::json::value& val)
+bool CreateThumbnailTemplateTaskVM::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
+    if(val.has_field(utility::conversions::to_string_t("name")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("name"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_name;
+            ok &= ModelBase::fromJson(fieldValue, refVal_name);
+            setName(refVal_name);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("subscriptionId")))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("subscriptionId"));
@@ -80,12 +96,16 @@ bool RunFetchTaskVM::fromJson(const web::json::value& val)
     return ok;
 }
 
-void RunFetchTaskVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void CreateThumbnailTemplateTaskVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t("."))
     {
         namePrefix += utility::conversions::to_string_t(".");
+    }
+    if(m_nameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_name));
     }
     if(m_subscriptionIdIsSet)
     {
@@ -97,7 +117,7 @@ void RunFetchTaskVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     }
 }
 
-bool RunFetchTaskVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool CreateThumbnailTemplateTaskVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -106,6 +126,12 @@ bool RunFetchTaskVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         namePrefix += utility::conversions::to_string_t(".");
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t("name")))
+    {
+        utility::string_t refVal_name;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("name")), refVal_name );
+        setName(refVal_name);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t("subscriptionId")))
     {
         utility::string_t refVal_subscriptionId;
@@ -121,43 +147,63 @@ bool RunFetchTaskVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     return ok;
 }
 
-utility::string_t RunFetchTaskVM::getSubscriptionId() const
+utility::string_t CreateThumbnailTemplateTaskVM::getName() const
+{
+    return m_name;
+}
+
+void CreateThumbnailTemplateTaskVM::setName(const utility::string_t& value)
+{
+    m_name = value;
+    m_nameIsSet = true;
+}
+
+bool CreateThumbnailTemplateTaskVM::nameIsSet() const
+{
+    return m_nameIsSet;
+}
+
+void CreateThumbnailTemplateTaskVM::unsetname()
+{
+    m_nameIsSet = false;
+}
+utility::string_t CreateThumbnailTemplateTaskVM::getSubscriptionId() const
 {
     return m_subscriptionId;
 }
 
-void RunFetchTaskVM::setSubscriptionId(const utility::string_t& value)
+void CreateThumbnailTemplateTaskVM::setSubscriptionId(const utility::string_t& value)
 {
     m_subscriptionId = value;
     m_subscriptionIdIsSet = true;
 }
 
-bool RunFetchTaskVM::subscriptionIdIsSet() const
+bool CreateThumbnailTemplateTaskVM::subscriptionIdIsSet() const
 {
     return m_subscriptionIdIsSet;
 }
 
-void RunFetchTaskVM::unsetsubscriptionId()
+void CreateThumbnailTemplateTaskVM::unsetsubscriptionId()
 {
     m_subscriptionIdIsSet = false;
 }
-std::shared_ptr<TaskType> RunFetchTaskVM::getType() const
+std::shared_ptr<TaskType> CreateThumbnailTemplateTaskVM::getType() const
 {
     return m_type;
 }
 
-void RunFetchTaskVM::setType(const std::shared_ptr<TaskType>& value)
+void CreateThumbnailTemplateTaskVM::setType(const std::shared_ptr<TaskType>& value)
 {
     m_type = value;
     m_typeIsSet = true;
 }
 
-bool RunFetchTaskVM::typeIsSet() const
+bool CreateThumbnailTemplateTaskVM::typeIsSet() const
 {
     return m_typeIsSet;
 }
 
-void RunFetchTaskVM::unsettype()
+void CreateThumbnailTemplateTaskVM::unsettype()
 {
     m_typeIsSet = false;
 }

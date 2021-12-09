@@ -51,8 +51,10 @@ public:
     /// 
     /// </remarks>
     /// <param name="id"></param>
+    /// <param name="preview"> (optional, default to false)</param>
     pplx::task<std::shared_ptr<HttpContent>> downloadGetExport(
-        utility::string_t id
+        utility::string_t id,
+        boost::optional<bool> preview
     ) const;
     /// <summary>
     /// Returns export&#39;s thumbnail
@@ -109,13 +111,23 @@ public:
         boost::optional<utility::string_t> ids
     ) const;
     /// <summary>
-    /// Returns a report file with specified id
+    /// Returns a Template file with specified id
     /// </summary>
     /// <remarks>
     /// 
     /// </remarks>
     /// <param name="id">template id</param>
     pplx::task<std::shared_ptr<HttpContent>> downloadGetTemplate(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Returns template&#39;s thumbnail
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="id"></param>
+    pplx::task<std::shared_ptr<HttpContent>> downloadGetTemplateThumbnail(
         utility::string_t id
     ) const;
     /// <summary>

@@ -76,6 +76,8 @@ model/ApiKeysVM.cpp
 model/ApiKeysVM.h
 model/AppMixins.cpp
 model/AppMixins.h
+model/AuthConfigVM.cpp
+model/AuthConfigVM.h
 model/BreadcrumbsModel.cpp
 model/BreadcrumbsModel.h
 model/BreadcrumbsVM.cpp
@@ -108,6 +110,10 @@ model/CreateSubscriptionInviteVM.cpp
 model/CreateSubscriptionInviteVM.h
 model/CreateTaskBaseVM.cpp
 model/CreateTaskBaseVM.h
+model/CreateThumbnailReportTaskVM.cpp
+model/CreateThumbnailReportTaskVM.h
+model/CreateThumbnailTemplateTaskVM.cpp
+model/CreateThumbnailTemplateTaskVM.h
 model/CreateTransformTaskBaseVM.cpp
 model/CreateTransformTaskBaseVM.h
 model/CreateTransportTaskBaseVM.cpp
@@ -318,6 +324,10 @@ model/RunPrepareTemplateTaskVM.cpp
 model/RunPrepareTemplateTaskVM.h
 model/RunTaskBaseVM.cpp
 model/RunTaskBaseVM.h
+model/RunThumbnailReportTaskVM.cpp
+model/RunThumbnailReportTaskVM.h
+model/RunThumbnailTemplateTaskVM.cpp
+model/RunThumbnailTemplateTaskVM.h
 model/RunTransformTaskBaseVM.cpp
 model/RunTransformTaskBaseVM.h
 model/RunTransportTaskBaseVM.cpp
@@ -390,6 +400,10 @@ model/TemplateVMFilesVMBase.cpp
 model/TemplateVMFilesVMBase.h
 model/TemplatesVM.cpp
 model/TemplatesVM.h
+model/ThumbnailReportTaskVM.cpp
+model/ThumbnailReportTaskVM.h
+model/ThumbnailTemplateTaskVM.cpp
+model/ThumbnailTemplateTaskVM.h
 model/TimePeriodType.cpp
 model/TimePeriodType.h
 model/TransformTaskBaseVM.cpp

@@ -34,7 +34,7 @@ ReportsApi::~ReportsApi()
 {
 }
 
-pplx::task<std::shared_ptr<CountVM>> ReportsApi::reportFolderAndFileGetCount(utility::string_t id) const
+pplx::task<std::shared_ptr<CountVM>> ReportsApi::reportFolderAndFileGetCount(utility::string_t id, boost::optional<utility::string_t> searchPattern) const
 {
 
 
@@ -76,6 +76,10 @@ pplx::task<std::shared_ptr<CountVM>> ReportsApi::reportFolderAndFileGetCount(uti
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (searchPattern)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("searchPattern")] = ApiClient::parameterToString(*searchPattern);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;
@@ -2799,7 +2803,7 @@ pplx::task<std::shared_ptr<CountVM>> ReportsApi::reportsGetFilesCount(utility::s
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ReportsVM>> ReportsApi::reportsGetFilesList(utility::string_t id, boost::optional<int32_t> skip, boost::optional<int32_t> take) const
+pplx::task<std::shared_ptr<ReportsVM>> ReportsApi::reportsGetFilesList(utility::string_t id, boost::optional<int32_t> skip, boost::optional<int32_t> take, boost::optional<utility::string_t> searchPattern) const
 {
 
 
@@ -2848,6 +2852,10 @@ pplx::task<std::shared_ptr<ReportsVM>> ReportsApi::reportsGetFilesList(utility::
     if (take)
     {
         localVarQueryParams[utility::conversions::to_string_t("take")] = ApiClient::parameterToString(*take);
+    }
+    if (searchPattern)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("searchPattern")] = ApiClient::parameterToString(*searchPattern);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;

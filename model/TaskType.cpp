@@ -43,6 +43,8 @@ web::json::value TaskType::toJson() const
     if (m_value == eTaskType::TaskType_FETCH) val = web::json::value::string(U(Fetch));
     if (m_value == eTaskType::TaskType_EMAIL) val = web::json::value::string(U(Email));
     if (m_value == eTaskType::TaskType_WEBHOOK) val = web::json::value::string(U(Webhook));
+    if (m_value == eTaskType::TaskType_THUMBNAILTEMPLATE) val = web::json::value::string(U(ThumbnailTemplate));
+    if (m_value == eTaskType::TaskType_THUMBNAILREPORT) val = web::json::value::string(U(ThumbnailReport));
 
     return val;
 }
@@ -58,6 +60,8 @@ bool TaskType::fromJson(const web::json::value& val)
     if (s == utility::conversions::to_string_t(Fetch)) m_value = eTaskType::TaskType_FETCH;
     if (s == utility::conversions::to_string_t(Email)) m_value = eTaskType::TaskType_EMAIL;
     if (s == utility::conversions::to_string_t(Webhook)) m_value = eTaskType::TaskType_WEBHOOK;
+    if (s == utility::conversions::to_string_t(ThumbnailTemplate)) m_value = eTaskType::TaskType_THUMBNAILTEMPLATE;
+    if (s == utility::conversions::to_string_t(ThumbnailReport)) m_value = eTaskType::TaskType_THUMBNAILREPORT;
     return true;
 }
 
@@ -78,6 +82,8 @@ void TaskType::toMultipart(std::shared_ptr<MultipartFormData> multipart, const u
     if (m_value == eTaskType::TaskType_FETCH) s = utility::conversions::to_string_t(Fetch);
     if (m_value == eTaskType::TaskType_EMAIL) s = utility::conversions::to_string_t(Email);
     if (m_value == eTaskType::TaskType_WEBHOOK) s = utility::conversions::to_string_t(Webhook);
+    if (m_value == eTaskType::TaskType_THUMBNAILTEMPLATE) s = utility::conversions::to_string_t(ThumbnailTemplate);
+    if (m_value == eTaskType::TaskType_THUMBNAILREPORT) s = utility::conversions::to_string_t(ThumbnailReport);
 
     multipart->add(ModelBase::toHttpContent(namePrefix, s));
 }
@@ -102,6 +108,8 @@ bool TaskType::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         if (s == utility::conversions::to_string_t(Fetch)) v = eTaskType::TaskType_FETCH;
         if (s == utility::conversions::to_string_t(Email)) v = eTaskType::TaskType_EMAIL;
         if (s == utility::conversions::to_string_t(Webhook)) v = eTaskType::TaskType_WEBHOOK;
+        if (s == utility::conversions::to_string_t(ThumbnailTemplate)) v = eTaskType::TaskType_THUMBNAILTEMPLATE;
+        if (s == utility::conversions::to_string_t(ThumbnailReport)) v = eTaskType::TaskType_THUMBNAILREPORT;
 
         setValue(v);
     }

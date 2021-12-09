@@ -11,7 +11,7 @@
 
 
 
-#include "RunFetchTaskVM.h"
+#include "RunThumbnailReportTaskVM.h"
 
 namespace fastreport {
 namespace cloud {
@@ -20,23 +20,23 @@ namespace models {
 
 
 
-RunFetchTaskVM::RunFetchTaskVM()
+RunThumbnailReportTaskVM::RunThumbnailReportTaskVM()
 {
     m_subscriptionId = utility::conversions::to_string_t("");
     m_subscriptionIdIsSet = false;
     m_typeIsSet = false;
 }
 
-RunFetchTaskVM::~RunFetchTaskVM()
+RunThumbnailReportTaskVM::~RunThumbnailReportTaskVM()
 {
 }
 
-void RunFetchTaskVM::validate()
+void RunThumbnailReportTaskVM::validate()
 {
     // TODO: implement validation
 }
 
-web::json::value RunFetchTaskVM::toJson() const
+web::json::value RunThumbnailReportTaskVM::toJson() const
 {
 
     web::json::value val = web::json::value::object();
@@ -53,7 +53,7 @@ web::json::value RunFetchTaskVM::toJson() const
     return val;
 }
 
-bool RunFetchTaskVM::fromJson(const web::json::value& val)
+bool RunThumbnailReportTaskVM::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
@@ -80,7 +80,7 @@ bool RunFetchTaskVM::fromJson(const web::json::value& val)
     return ok;
 }
 
-void RunFetchTaskVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void RunThumbnailReportTaskVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t("."))
@@ -97,7 +97,7 @@ void RunFetchTaskVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     }
 }
 
-bool RunFetchTaskVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool RunThumbnailReportTaskVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -121,43 +121,43 @@ bool RunFetchTaskVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     return ok;
 }
 
-utility::string_t RunFetchTaskVM::getSubscriptionId() const
+utility::string_t RunThumbnailReportTaskVM::getSubscriptionId() const
 {
     return m_subscriptionId;
 }
 
-void RunFetchTaskVM::setSubscriptionId(const utility::string_t& value)
+void RunThumbnailReportTaskVM::setSubscriptionId(const utility::string_t& value)
 {
     m_subscriptionId = value;
     m_subscriptionIdIsSet = true;
 }
 
-bool RunFetchTaskVM::subscriptionIdIsSet() const
+bool RunThumbnailReportTaskVM::subscriptionIdIsSet() const
 {
     return m_subscriptionIdIsSet;
 }
 
-void RunFetchTaskVM::unsetsubscriptionId()
+void RunThumbnailReportTaskVM::unsetsubscriptionId()
 {
     m_subscriptionIdIsSet = false;
 }
-std::shared_ptr<TaskType> RunFetchTaskVM::getType() const
+std::shared_ptr<TaskType> RunThumbnailReportTaskVM::getType() const
 {
     return m_type;
 }
 
-void RunFetchTaskVM::setType(const std::shared_ptr<TaskType>& value)
+void RunThumbnailReportTaskVM::setType(const std::shared_ptr<TaskType>& value)
 {
     m_type = value;
     m_typeIsSet = true;
 }
 
-bool RunFetchTaskVM::typeIsSet() const
+bool RunThumbnailReportTaskVM::typeIsSet() const
 {
     return m_typeIsSet;
 }
 
-void RunFetchTaskVM::unsettype()
+void RunThumbnailReportTaskVM::unsettype()
 {
     m_typeIsSet = false;
 }

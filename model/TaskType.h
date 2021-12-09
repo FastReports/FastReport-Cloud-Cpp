@@ -52,6 +52,8 @@ public:
         TaskType_FETCH,
         TaskType_EMAIL,
         TaskType_WEBHOOK,
+        TaskType_THUMBNAILTEMPLATE,
+        TaskType_THUMBNAILREPORT,
     };
 
     eTaskType getValue() const;

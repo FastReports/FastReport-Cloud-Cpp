@@ -22,6 +22,7 @@
 #include "../ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
+#include "AuthConfigVM.h"
 #include "AppMixins.h"
 
 namespace fastreport {
@@ -74,11 +75,29 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    bool isIsDisabled() const;
+    bool isDisabledIsSet() const;
+    void unsetisDisabled();
+
+    void setIsDisabled(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     std::shared_ptr<AppMixins> getAppMixins() const;
     bool appMixinsIsSet() const;
     void unsetappMixins();
 
     void setAppMixins(const std::shared_ptr<AppMixins>& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<AuthConfigVM> getAuth() const;
+    bool authIsSet() const;
+    void unsetauth();
+
+    void setAuth(const std::shared_ptr<AuthConfigVM>& value);
 
 
 protected:
@@ -86,8 +105,12 @@ protected:
     bool m_titleIsSet;
     bool m_corporateServerMode;
     bool m_corporateServerModeIsSet;
+    bool m_isDisabled;
+    bool m_isDisabledIsSet;
     std::shared_ptr<AppMixins> m_appMixins;
     bool m_appMixinsIsSet;
+    std::shared_ptr<AuthConfigVM> m_auth;
+    bool m_authIsSet;
 };
 
 
