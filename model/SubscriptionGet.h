@@ -55,6 +55,7 @@ public:
         SubscriptionGet__32,
         SubscriptionGet__64,
         SubscriptionGet__128,
+        SubscriptionGet__256,
         SubscriptionGet__1,
     };
 

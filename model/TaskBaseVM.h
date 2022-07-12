@@ -66,6 +66,33 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::datetime getDelayedWasRunTime() const;
+    bool delayedWasRunTimeIsSet() const;
+    void unsetdelayedWasRunTime();
+
+    void setDelayedWasRunTime(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::datetime getRecurrentRunTime() const;
+    bool recurrentRunTimeIsSet() const;
+    void unsetrecurrentRunTime();
+
+    void setRecurrentRunTime(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::datetime getRecurrentWasRunTime() const;
+    bool recurrentWasRunTimeIsSet() const;
+    void unsetrecurrentWasRunTime();
+
+    void setRecurrentWasRunTime(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetname();
@@ -90,16 +117,44 @@ public:
 
     void setType(const std::shared_ptr<TaskType>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::datetime getDelayedRunTime() const;
+    bool delayedRunTimeIsSet() const;
+    void unsetdelayedRunTime();
+
+    void setDelayedRunTime(const utility::datetime& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getCronExpression() const;
+    bool cronExpressionIsSet() const;
+    void unsetcronExpression();
+
+    void setCronExpression(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_id;
     bool m_idIsSet;
+    utility::datetime m_delayedWasRunTime;
+    bool m_delayedWasRunTimeIsSet;
+    utility::datetime m_recurrentRunTime;
+    bool m_recurrentRunTimeIsSet;
+    utility::datetime m_recurrentWasRunTime;
+    bool m_recurrentWasRunTimeIsSet;
     utility::string_t m_name;
     bool m_nameIsSet;
     utility::string_t m_subscriptionId;
     bool m_subscriptionIdIsSet;
     std::shared_ptr<TaskType> m_type;
     bool m_typeIsSet;
+    utility::datetime m_delayedRunTime;
+    bool m_delayedRunTimeIsSet;
+    utility::string_t m_cronExpression;
+    bool m_cronExpressionIsSet;
 };
 
 

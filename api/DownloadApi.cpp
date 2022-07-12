@@ -48,9 +48,10 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExport(utility:
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/pdf") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -167,9 +168,10 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExportThumbnail
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("image/png") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("image/jpeg") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -282,8 +284,9 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExports(utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/zip") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/zip") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -400,8 +403,9 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReport(utility:
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -514,9 +518,10 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReportThumbnail
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("image/png") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("image/jpeg") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -629,8 +634,9 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReports(utility
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/zip") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/zip") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -747,8 +753,9 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplate(utilit
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/octet-stream") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -861,9 +868,10 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplateThumbna
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("image/png") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("image/jpeg") );
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
 
     utility::string_t localVarResponseHttpContentType;
 
@@ -976,8 +984,9 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplates(utili
     std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
 
     std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/zip") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("text/plain") );
     localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/zip") );
 
     utility::string_t localVarResponseHttpContentType;
 

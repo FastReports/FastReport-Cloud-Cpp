@@ -21,7 +21,6 @@
 #include "CloudKludge.h"
 #include "../ApiClient.h"
 
-#include "DefaultPermissions.h"
 #include "DefaultPermissionsVM.h"
 #include "MyPermissionsVM.h"
 #include "ProblemDetails.h"
@@ -60,7 +59,7 @@ public:
     /// 
     /// </remarks>
     /// <param name="subscriptionId">id</param>
-    pplx::task<std::shared_ptr<DefaultPermissions>> subscriptionsGetDefaultPermissions(
+    pplx::task<std::shared_ptr<DefaultPermissionsVM>> subscriptionsGetDefaultPermissions(
         utility::string_t subscriptionId
     ) const;
     /// <summary>

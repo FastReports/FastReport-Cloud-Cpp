@@ -24,6 +24,7 @@
 #include "UpdateFilePermissionsVM.h"
 #include "UpdateDataSourcePermissionsVM.h"
 #include "UpdateGroupPermissionsVM.h"
+#include "UpdateTaskPermissionsVM.h"
 
 namespace fastreport {
 namespace cloud {
@@ -81,6 +82,15 @@ public:
 
     void setDataSourcePermissions(const std::shared_ptr<UpdateDataSourcePermissionsVM>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<UpdateTaskPermissionsVM> getTaskPermissions() const;
+    bool taskPermissionsIsSet() const;
+    void unsettaskPermissions();
+
+    void setTaskPermissions(const std::shared_ptr<UpdateTaskPermissionsVM>& value);
+
 
 protected:
     std::shared_ptr<UpdateFilePermissionsVM> m_filePermissions;
@@ -89,6 +99,8 @@ protected:
     bool m_groupPermissionsIsSet;
     std::shared_ptr<UpdateDataSourcePermissionsVM> m_dataSourcePermissions;
     bool m_dataSourcePermissionsIsSet;
+    std::shared_ptr<UpdateTaskPermissionsVM> m_taskPermissions;
+    bool m_taskPermissionsIsSet;
 };
 
 

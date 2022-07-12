@@ -25,7 +25,10 @@
 #include "ProblemDetails.h"
 #include "RunTaskBaseVM.h"
 #include "TaskBaseVM.h"
+#include "TaskPermissionsVM.h"
 #include "TasksVM.h"
+#include "UpdateTaskBaseVM.h"
+#include "UpdateTaskPermissionsVM.h"
 #include <cpprest/details/basic_types.h>
 
 
@@ -92,6 +95,28 @@ public:
         boost::optional<utility::string_t> subscriptionId
     ) const;
     /// <summary>
+    /// Get all Task permissions
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="id">task id</param>
+    pplx::task<std::shared_ptr<TaskPermissionsVM>> tasksGetPermissions(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Rename a task
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="taskId">renaming task id</param>
+    /// <param name="newName">task&#39;s new Name (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<TaskBaseVM>> tasksRenameTask(
+        utility::string_t taskId,
+        boost::optional<utility::string_t> newName
+    ) const;
+    /// <summary>
     /// Run a task from request body
     /// </summary>
     /// <remarks>
@@ -110,6 +135,30 @@ public:
     /// <param name="taskId">task id</param>
     pplx::task<void> tasksRunTaskById(
         utility::string_t taskId
+    ) const;
+    /// <summary>
+    /// Update permissions
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="id">task id</param>
+    /// <param name="updateTaskPermissionsVM">new permissions (optional)</param>
+    pplx::task<void> tasksUpdatePermissions(
+        utility::string_t id,
+        boost::optional<std::shared_ptr<UpdateTaskPermissionsVM>> updateTaskPermissionsVM
+    ) const;
+    /// <summary>
+    /// Update a task
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="taskId">updating task id</param>
+    /// <param name="updateTaskBaseVM">task&#39;s view model. You have to specify task type (type: \&quot;ExportTemplate\&quot;) (optional)</param>
+    pplx::task<std::shared_ptr<TaskBaseVM>> tasksUpdateTask(
+        utility::string_t taskId,
+        boost::optional<std::shared_ptr<UpdateTaskBaseVM>> updateTaskBaseVM
     ) const;
 
 protected:

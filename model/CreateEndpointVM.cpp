@@ -24,6 +24,7 @@ CreateEndpointVM::CreateEndpointVM()
 {
     m_bearerToken = utility::conversions::to_string_t("");
     m_bearerTokenIsSet = false;
+    m_headersIsSet = false;
     m_url = utility::conversions::to_string_t("");
     m_urlIsSet = false;
 }
@@ -46,6 +47,10 @@ web::json::value CreateEndpointVM::toJson() const
     {
         val[utility::conversions::to_string_t("bearerToken")] = ModelBase::toJson(m_bearerToken);
     }
+    if(m_headersIsSet)
+    {
+        val[utility::conversions::to_string_t("headers")] = ModelBase::toJson(m_headers);
+    }
     if(m_urlIsSet)
     {
         val[utility::conversions::to_string_t("url")] = ModelBase::toJson(m_url);
@@ -66,6 +71,16 @@ bool CreateEndpointVM::fromJson(const web::json::value& val)
             utility::string_t refVal_bearerToken;
             ok &= ModelBase::fromJson(fieldValue, refVal_bearerToken);
             setBearerToken(refVal_bearerToken);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("headers")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("headers"));
+        if(!fieldValue.is_null())
+        {
+            std::map<utility::string_t, utility::string_t> refVal_headers;
+            ok &= ModelBase::fromJson(fieldValue, refVal_headers);
+            setHeaders(refVal_headers);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("url")))
@@ -92,6 +107,10 @@ void CreateEndpointVM::toMultipart(std::shared_ptr<MultipartFormData> multipart,
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("bearerToken"), m_bearerToken));
     }
+    if(m_headersIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("headers"), m_headers));
+    }
     if(m_urlIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("url"), m_url));
@@ -112,6 +131,12 @@ bool CreateEndpointVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipar
         utility::string_t refVal_bearerToken;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("bearerToken")), refVal_bearerToken );
         setBearerToken(refVal_bearerToken);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("headers")))
+    {
+        std::map<utility::string_t, utility::string_t> refVal_headers;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("headers")), refVal_headers );
+        setHeaders(refVal_headers);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("url")))
     {
@@ -141,6 +166,26 @@ bool CreateEndpointVM::bearerTokenIsSet() const
 void CreateEndpointVM::unsetbearerToken()
 {
     m_bearerTokenIsSet = false;
+}
+std::map<utility::string_t, utility::string_t>& CreateEndpointVM::getHeaders()
+{
+    return m_headers;
+}
+
+void CreateEndpointVM::setHeaders(const std::map<utility::string_t, utility::string_t>& value)
+{
+    m_headers = value;
+    m_headersIsSet = true;
+}
+
+bool CreateEndpointVM::headersIsSet() const
+{
+    return m_headersIsSet;
+}
+
+void CreateEndpointVM::unsetheaders()
+{
+    m_headersIsSet = false;
 }
 utility::string_t CreateEndpointVM::getUrl() const
 {

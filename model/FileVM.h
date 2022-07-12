@@ -141,6 +141,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getErrorMessage() const;
+    bool errorMessageIsSet() const;
+    void unseterrorMessage();
+
+    void setErrorMessage(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
     void unsetid();
@@ -203,6 +212,8 @@ protected:
     bool m_statusIsSet;
     std::shared_ptr<FileStatusReason> m_statusReason;
     bool m_statusReasonIsSet;
+    utility::string_t m_errorMessage;
+    bool m_errorMessageIsSet;
     utility::string_t m_id;
     bool m_idIsSet;
     utility::datetime m_createdTime;

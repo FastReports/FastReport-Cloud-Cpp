@@ -22,8 +22,8 @@
 #include "../ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
+#include "FrontendApp.h"
 #include "AuthConfigVM.h"
-#include "AppMixins.h"
 
 namespace fastreport {
 namespace cloud {
@@ -66,6 +66,24 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getLogoLink() const;
+    bool logoLinkIsSet() const;
+    void unsetlogoLink();
+
+    void setLogoLink(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getCopyright() const;
+    bool copyrightIsSet() const;
+    void unsetcopyright();
+
+    void setCopyright(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     bool isCorporateServerMode() const;
     bool corporateServerModeIsSet() const;
     void unsetcorporateServerMode();
@@ -84,11 +102,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<AppMixins> getAppMixins() const;
-    bool appMixinsIsSet() const;
-    void unsetappMixins();
+    std::shared_ptr<FrontendApp> getFrontend() const;
+    bool frontendIsSet() const;
+    void unsetfrontend();
 
-    void setAppMixins(const std::shared_ptr<AppMixins>& value);
+    void setFrontend(const std::shared_ptr<FrontendApp>& value);
 
     /// <summary>
     /// 
@@ -99,18 +117,33 @@ public:
 
     void setAuth(const std::shared_ptr<AuthConfigVM>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isDesignerForAnons() const;
+    bool designerForAnonsIsSet() const;
+    void unsetdesignerForAnons();
+
+    void setDesignerForAnons(bool value);
+
 
 protected:
     utility::string_t m_title;
     bool m_titleIsSet;
+    utility::string_t m_logoLink;
+    bool m_logoLinkIsSet;
+    utility::string_t m_copyright;
+    bool m_copyrightIsSet;
     bool m_corporateServerMode;
     bool m_corporateServerModeIsSet;
     bool m_isDisabled;
     bool m_isDisabledIsSet;
-    std::shared_ptr<AppMixins> m_appMixins;
-    bool m_appMixinsIsSet;
+    std::shared_ptr<FrontendApp> m_frontend;
+    bool m_frontendIsSet;
     std::shared_ptr<AuthConfigVM> m_auth;
     bool m_authIsSet;
+    bool m_designerForAnons;
+    bool m_designerForAnonsIsSet;
 };
 
 

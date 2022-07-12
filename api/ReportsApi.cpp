@@ -34,7 +34,7 @@ ReportsApi::~ReportsApi()
 {
 }
 
-pplx::task<std::shared_ptr<CountVM>> ReportsApi::reportFolderAndFileGetCount(utility::string_t id, boost::optional<utility::string_t> searchPattern) const
+pplx::task<std::shared_ptr<CountVM>> ReportsApi::reportFolderAndFileGetCount(utility::string_t id, boost::optional<utility::string_t> searchPattern, boost::optional<bool> useRegex) const
 {
 
 
@@ -79,6 +79,10 @@ pplx::task<std::shared_ptr<CountVM>> ReportsApi::reportFolderAndFileGetCount(uti
     if (searchPattern)
     {
         localVarQueryParams[utility::conversions::to_string_t("searchPattern")] = ApiClient::parameterToString(*searchPattern);
+    }
+    if (useRegex)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("useRegex")] = ApiClient::parameterToString(*useRegex);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -165,7 +169,7 @@ pplx::task<std::shared_ptr<CountVM>> ReportsApi::reportFolderAndFileGetCount(uti
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<FilesVM>> ReportsApi::reportFolderAndFileGetFoldersAndFiles(utility::string_t id, boost::optional<int32_t> skip, boost::optional<int32_t> take, boost::optional<std::shared_ptr<FileSorting>> orderBy, boost::optional<bool> desc, boost::optional<utility::string_t> searchPattern) const
+pplx::task<std::shared_ptr<FilesVM>> ReportsApi::reportFolderAndFileGetFoldersAndFiles(utility::string_t id, boost::optional<int32_t> skip, boost::optional<int32_t> take, boost::optional<std::shared_ptr<FileSorting>> orderBy, boost::optional<bool> desc, boost::optional<utility::string_t> searchPattern, boost::optional<bool> useRegex) const
 {
 
 
@@ -226,6 +230,10 @@ pplx::task<std::shared_ptr<FilesVM>> ReportsApi::reportFolderAndFileGetFoldersAn
     if (searchPattern)
     {
         localVarQueryParams[utility::conversions::to_string_t("searchPattern")] = ApiClient::parameterToString(*searchPattern);
+    }
+    if (useRegex)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("useRegex")] = ApiClient::parameterToString(*useRegex);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -2803,7 +2811,7 @@ pplx::task<std::shared_ptr<CountVM>> ReportsApi::reportsGetFilesCount(utility::s
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ReportsVM>> ReportsApi::reportsGetFilesList(utility::string_t id, boost::optional<int32_t> skip, boost::optional<int32_t> take, boost::optional<utility::string_t> searchPattern) const
+pplx::task<std::shared_ptr<ReportsVM>> ReportsApi::reportsGetFilesList(utility::string_t id, boost::optional<int32_t> skip, boost::optional<int32_t> take, boost::optional<utility::string_t> searchPattern, boost::optional<std::shared_ptr<FileSorting>> orderBy, boost::optional<bool> desc, boost::optional<bool> useRegex) const
 {
 
 
@@ -2856,6 +2864,18 @@ pplx::task<std::shared_ptr<ReportsVM>> ReportsApi::reportsGetFilesList(utility::
     if (searchPattern)
     {
         localVarQueryParams[utility::conversions::to_string_t("searchPattern")] = ApiClient::parameterToString(*searchPattern);
+    }
+    if (orderBy && *orderBy != nullptr)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("orderBy")] = ApiClient::parameterToString(*orderBy);
+    }
+    if (desc)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("desc")] = ApiClient::parameterToString(*desc);
+    }
+    if (useRegex)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("useRegex")] = ApiClient::parameterToString(*useRegex);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;

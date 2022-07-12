@@ -26,6 +26,8 @@ AdminFolderCreateVM::AdminFolderCreateVM()
     m_parentIdIsSet = false;
     m_ownerId = utility::conversions::to_string_t("");
     m_ownerIdIsSet = false;
+    m_force = false;
+    m_forceIsSet = false;
     m_name = utility::conversions::to_string_t("");
     m_nameIsSet = false;
     m_tagsIsSet = false;
@@ -53,6 +55,10 @@ web::json::value AdminFolderCreateVM::toJson() const
     if(m_ownerIdIsSet)
     {
         val[utility::conversions::to_string_t("ownerId")] = ModelBase::toJson(m_ownerId);
+    }
+    if(m_forceIsSet)
+    {
+        val[utility::conversions::to_string_t("force")] = ModelBase::toJson(m_force);
     }
     if(m_nameIsSet)
     {
@@ -92,6 +98,16 @@ bool AdminFolderCreateVM::fromJson(const web::json::value& val)
             utility::string_t refVal_ownerId;
             ok &= ModelBase::fromJson(fieldValue, refVal_ownerId);
             setOwnerId(refVal_ownerId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("force")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("force"));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_force;
+            ok &= ModelBase::fromJson(fieldValue, refVal_force);
+            setForce(refVal_force);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("name")))
@@ -142,6 +158,10 @@ void AdminFolderCreateVM::toMultipart(std::shared_ptr<MultipartFormData> multipa
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("ownerId"), m_ownerId));
     }
+    if(m_forceIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("force"), m_force));
+    }
     if(m_nameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_name));
@@ -176,6 +196,12 @@ bool AdminFolderCreateVM::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         utility::string_t refVal_ownerId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("ownerId")), refVal_ownerId );
         setOwnerId(refVal_ownerId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("force")))
+    {
+        bool refVal_force;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("force")), refVal_force );
+        setForce(refVal_force);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("name")))
     {
@@ -237,6 +263,26 @@ bool AdminFolderCreateVM::ownerIdIsSet() const
 void AdminFolderCreateVM::unsetownerId()
 {
     m_ownerIdIsSet = false;
+}
+bool AdminFolderCreateVM::isForce() const
+{
+    return m_force;
+}
+
+void AdminFolderCreateVM::setForce(bool value)
+{
+    m_force = value;
+    m_forceIsSet = true;
+}
+
+bool AdminFolderCreateVM::forceIsSet() const
+{
+    return m_forceIsSet;
+}
+
+void AdminFolderCreateVM::unsetforce()
+{
+    m_forceIsSet = false;
 }
 utility::string_t AdminFolderCreateVM::getName() const
 {

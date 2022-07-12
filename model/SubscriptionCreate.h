@@ -51,6 +51,7 @@ public:
         SubscriptionCreate__2,
         SubscriptionCreate__4,
         SubscriptionCreate__8,
+        SubscriptionCreate__16,
         SubscriptionCreate__1,
     };
 

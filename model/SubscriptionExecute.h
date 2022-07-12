@@ -47,6 +47,7 @@ public:
     enum class eSubscriptionExecute
     {
         SubscriptionExecute__0,
+        SubscriptionExecute__4,
         SubscriptionExecute__1,
     };
 

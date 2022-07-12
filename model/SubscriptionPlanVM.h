@@ -174,15 +174,6 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    bool isHasSpaceOverdraft() const;
-    bool hasSpaceOverdraftIsSet() const;
-    void unsethasSpaceOverdraft();
-
-    void setHasSpaceOverdraft(bool value);
-
-    /// <summary>
-    /// 
-    /// </summary>
     int32_t getGroupLimit() const;
     bool groupLimitIsSet() const;
     void unsetgroupLimit();
@@ -271,8 +262,6 @@ protected:
     bool m_dataSourceLimitIsSet;
     int32_t m_maxUsersCount;
     bool m_maxUsersCountIsSet;
-    bool m_hasSpaceOverdraft;
-    bool m_hasSpaceOverdraftIsSet;
     int32_t m_groupLimit;
     bool m_groupLimitIsSet;
     bool m_onlineDesigner;

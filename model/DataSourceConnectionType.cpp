@@ -44,6 +44,8 @@ web::json::value DataSourceConnectionType::toJson() const
     if (m_value == eDataSourceConnectionType::DataSourceConnectionType_MYSQL) val = web::json::value::string(U(MySQL));
     if (m_value == eDataSourceConnectionType::DataSourceConnectionType_POSTGRES) val = web::json::value::string(U(Postgres));
     if (m_value == eDataSourceConnectionType::DataSourceConnectionType_ORACLEDB) val = web::json::value::string(U(OracleDB));
+    if (m_value == eDataSourceConnectionType::DataSourceConnectionType_FIREBIRDDB) val = web::json::value::string(U(FirebirdDB));
+    if (m_value == eDataSourceConnectionType::DataSourceConnectionType_MONGODB) val = web::json::value::string(U(MongoDB));
 
     return val;
 }
@@ -60,6 +62,8 @@ bool DataSourceConnectionType::fromJson(const web::json::value& val)
     if (s == utility::conversions::to_string_t(MySQL)) m_value = eDataSourceConnectionType::DataSourceConnectionType_MYSQL;
     if (s == utility::conversions::to_string_t(Postgres)) m_value = eDataSourceConnectionType::DataSourceConnectionType_POSTGRES;
     if (s == utility::conversions::to_string_t(OracleDB)) m_value = eDataSourceConnectionType::DataSourceConnectionType_ORACLEDB;
+    if (s == utility::conversions::to_string_t(FirebirdDB)) m_value = eDataSourceConnectionType::DataSourceConnectionType_FIREBIRDDB;
+    if (s == utility::conversions::to_string_t(MongoDB)) m_value = eDataSourceConnectionType::DataSourceConnectionType_MONGODB;
     return true;
 }
 
@@ -81,6 +85,8 @@ void DataSourceConnectionType::toMultipart(std::shared_ptr<MultipartFormData> mu
     if (m_value == eDataSourceConnectionType::DataSourceConnectionType_MYSQL) s = utility::conversions::to_string_t(MySQL);
     if (m_value == eDataSourceConnectionType::DataSourceConnectionType_POSTGRES) s = utility::conversions::to_string_t(Postgres);
     if (m_value == eDataSourceConnectionType::DataSourceConnectionType_ORACLEDB) s = utility::conversions::to_string_t(OracleDB);
+    if (m_value == eDataSourceConnectionType::DataSourceConnectionType_FIREBIRDDB) s = utility::conversions::to_string_t(FirebirdDB);
+    if (m_value == eDataSourceConnectionType::DataSourceConnectionType_MONGODB) s = utility::conversions::to_string_t(MongoDB);
 
     multipart->add(ModelBase::toHttpContent(namePrefix, s));
 }
@@ -106,6 +112,8 @@ bool DataSourceConnectionType::fromMultiPart(std::shared_ptr<MultipartFormData> 
         if (s == utility::conversions::to_string_t(MySQL)) v = eDataSourceConnectionType::DataSourceConnectionType_MYSQL;
         if (s == utility::conversions::to_string_t(Postgres)) v = eDataSourceConnectionType::DataSourceConnectionType_POSTGRES;
         if (s == utility::conversions::to_string_t(OracleDB)) v = eDataSourceConnectionType::DataSourceConnectionType_ORACLEDB;
+        if (s == utility::conversions::to_string_t(FirebirdDB)) v = eDataSourceConnectionType::DataSourceConnectionType_FIREBIRDDB;
+        if (s == utility::conversions::to_string_t(MongoDB)) v = eDataSourceConnectionType::DataSourceConnectionType_MONGODB;
 
         setValue(v);
     }

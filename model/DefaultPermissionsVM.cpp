@@ -25,6 +25,7 @@ DefaultPermissionsVM::DefaultPermissionsVM()
     m_filePermissionsIsSet = false;
     m_dataSourcePermissionsIsSet = false;
     m_groupPermissionsIsSet = false;
+    m_taskPermissionsIsSet = false;
 }
 
 DefaultPermissionsVM::~DefaultPermissionsVM()
@@ -52,6 +53,10 @@ web::json::value DefaultPermissionsVM::toJson() const
     if(m_groupPermissionsIsSet)
     {
         val[utility::conversions::to_string_t("groupPermissions")] = ModelBase::toJson(m_groupPermissions);
+    }
+    if(m_taskPermissionsIsSet)
+    {
+        val[utility::conversions::to_string_t("taskPermissions")] = ModelBase::toJson(m_taskPermissions);
     }
 
     return val;
@@ -91,6 +96,16 @@ bool DefaultPermissionsVM::fromJson(const web::json::value& val)
             setGroupPermissions(refVal_groupPermissions);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("taskPermissions")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("taskPermissions"));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<TaskPermissions> refVal_taskPermissions;
+            ok &= ModelBase::fromJson(fieldValue, refVal_taskPermissions);
+            setTaskPermissions(refVal_taskPermissions);
+        }
+    }
     return ok;
 }
 
@@ -112,6 +127,10 @@ void DefaultPermissionsVM::toMultipart(std::shared_ptr<MultipartFormData> multip
     if(m_groupPermissionsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("groupPermissions"), m_groupPermissions));
+    }
+    if(m_taskPermissionsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("taskPermissions"), m_taskPermissions));
     }
 }
 
@@ -141,6 +160,12 @@ bool DefaultPermissionsVM::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         std::shared_ptr<GroupPermissions> refVal_groupPermissions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("groupPermissions")), refVal_groupPermissions );
         setGroupPermissions(refVal_groupPermissions);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("taskPermissions")))
+    {
+        std::shared_ptr<TaskPermissions> refVal_taskPermissions;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("taskPermissions")), refVal_taskPermissions );
+        setTaskPermissions(refVal_taskPermissions);
     }
     return ok;
 }
@@ -204,6 +229,26 @@ bool DefaultPermissionsVM::groupPermissionsIsSet() const
 void DefaultPermissionsVM::unsetgroupPermissions()
 {
     m_groupPermissionsIsSet = false;
+}
+std::shared_ptr<TaskPermissions> DefaultPermissionsVM::getTaskPermissions() const
+{
+    return m_taskPermissions;
+}
+
+void DefaultPermissionsVM::setTaskPermissions(const std::shared_ptr<TaskPermissions>& value)
+{
+    m_taskPermissions = value;
+    m_taskPermissionsIsSet = true;
+}
+
+bool DefaultPermissionsVM::taskPermissionsIsSet() const
+{
+    return m_taskPermissionsIsSet;
+}
+
+void DefaultPermissionsVM::unsettaskPermissions()
+{
+    m_taskPermissionsIsSet = false;
 }
 }
 }

@@ -38,6 +38,7 @@ web::json::value SubscriptionExecute::toJson() const
 
     
     if (m_value == eSubscriptionExecute::SubscriptionExecute__0) val = web::json::value::string(U(0));
+    if (m_value == eSubscriptionExecute::SubscriptionExecute__4) val = web::json::value::string(U(4));
     if (m_value == eSubscriptionExecute::SubscriptionExecute__1) val = web::json::value::string(U(-1));
 
     return val;
@@ -49,6 +50,7 @@ bool SubscriptionExecute::fromJson(const web::json::value& val)
 
     
     if (s == utility::conversions::to_string_t(0)) m_value = eSubscriptionExecute::SubscriptionExecute__0;
+    if (s == utility::conversions::to_string_t(4)) m_value = eSubscriptionExecute::SubscriptionExecute__4;
     if (s == utility::conversions::to_string_t(-1)) m_value = eSubscriptionExecute::SubscriptionExecute__1;
     return true;
 }
@@ -65,6 +67,7 @@ void SubscriptionExecute::toMultipart(std::shared_ptr<MultipartFormData> multipa
 
     
     if (m_value == eSubscriptionExecute::SubscriptionExecute__0) s = utility::conversions::to_string_t(0);
+    if (m_value == eSubscriptionExecute::SubscriptionExecute__4) s = utility::conversions::to_string_t(4);
     if (m_value == eSubscriptionExecute::SubscriptionExecute__1) s = utility::conversions::to_string_t(-1);
 
     multipart->add(ModelBase::toHttpContent(namePrefix, s));
@@ -85,6 +88,7 @@ bool SubscriptionExecute::fromMultiPart(std::shared_ptr<MultipartFormData> multi
 
         
         if (s == utility::conversions::to_string_t(0)) v = eSubscriptionExecute::SubscriptionExecute__0;
+        if (s == utility::conversions::to_string_t(4)) v = eSubscriptionExecute::SubscriptionExecute__4;
         if (s == utility::conversions::to_string_t(-1)) v = eSubscriptionExecute::SubscriptionExecute__1;
 
         setValue(v);

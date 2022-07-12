@@ -25,6 +25,7 @@ UpdateDefaultPermissionsVM::UpdateDefaultPermissionsVM()
     m_filePermissionsIsSet = false;
     m_groupPermissionsIsSet = false;
     m_dataSourcePermissionsIsSet = false;
+    m_taskPermissionsIsSet = false;
 }
 
 UpdateDefaultPermissionsVM::~UpdateDefaultPermissionsVM()
@@ -52,6 +53,10 @@ web::json::value UpdateDefaultPermissionsVM::toJson() const
     if(m_dataSourcePermissionsIsSet)
     {
         val[utility::conversions::to_string_t("dataSourcePermissions")] = ModelBase::toJson(m_dataSourcePermissions);
+    }
+    if(m_taskPermissionsIsSet)
+    {
+        val[utility::conversions::to_string_t("taskPermissions")] = ModelBase::toJson(m_taskPermissions);
     }
 
     return val;
@@ -91,6 +96,16 @@ bool UpdateDefaultPermissionsVM::fromJson(const web::json::value& val)
             setDataSourcePermissions(refVal_dataSourcePermissions);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("taskPermissions")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("taskPermissions"));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<UpdateTaskPermissionsVM> refVal_taskPermissions;
+            ok &= ModelBase::fromJson(fieldValue, refVal_taskPermissions);
+            setTaskPermissions(refVal_taskPermissions);
+        }
+    }
     return ok;
 }
 
@@ -112,6 +127,10 @@ void UpdateDefaultPermissionsVM::toMultipart(std::shared_ptr<MultipartFormData> 
     if(m_dataSourcePermissionsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("dataSourcePermissions"), m_dataSourcePermissions));
+    }
+    if(m_taskPermissionsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("taskPermissions"), m_taskPermissions));
     }
 }
 
@@ -141,6 +160,12 @@ bool UpdateDefaultPermissionsVM::fromMultiPart(std::shared_ptr<MultipartFormData
         std::shared_ptr<UpdateDataSourcePermissionsVM> refVal_dataSourcePermissions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("dataSourcePermissions")), refVal_dataSourcePermissions );
         setDataSourcePermissions(refVal_dataSourcePermissions);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("taskPermissions")))
+    {
+        std::shared_ptr<UpdateTaskPermissionsVM> refVal_taskPermissions;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("taskPermissions")), refVal_taskPermissions );
+        setTaskPermissions(refVal_taskPermissions);
     }
     return ok;
 }
@@ -204,6 +229,26 @@ bool UpdateDefaultPermissionsVM::dataSourcePermissionsIsSet() const
 void UpdateDefaultPermissionsVM::unsetdataSourcePermissions()
 {
     m_dataSourcePermissionsIsSet = false;
+}
+std::shared_ptr<UpdateTaskPermissionsVM> UpdateDefaultPermissionsVM::getTaskPermissions() const
+{
+    return m_taskPermissions;
+}
+
+void UpdateDefaultPermissionsVM::setTaskPermissions(const std::shared_ptr<UpdateTaskPermissionsVM>& value)
+{
+    m_taskPermissions = value;
+    m_taskPermissionsIsSet = true;
+}
+
+bool UpdateDefaultPermissionsVM::taskPermissionsIsSet() const
+{
+    return m_taskPermissionsIsSet;
+}
+
+void UpdateDefaultPermissionsVM::unsettaskPermissions()
+{
+    m_taskPermissionsIsSet = false;
 }
 }
 }

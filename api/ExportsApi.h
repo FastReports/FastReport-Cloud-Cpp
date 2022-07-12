@@ -67,9 +67,11 @@ public:
     /// </remarks>
     /// <param name="id">folder id</param>
     /// <param name="searchPattern">string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="useRegex">set this to true if you want to use regular expression to search (optional, default to false)</param>
     pplx::task<std::shared_ptr<CountVM>> exportFolderAndFileGetCount(
         utility::string_t id,
-        boost::optional<utility::string_t> searchPattern
+        boost::optional<utility::string_t> searchPattern,
+        boost::optional<bool> useRegex
     ) const;
     /// <summary>
     /// Get all folders and files from specified folder
@@ -83,13 +85,15 @@ public:
     /// <param name="orderBy">indicates a field to sort by (optional, default to new FileSorting())</param>
     /// <param name="desc">indicates if sorting is descending (optional, default to false)</param>
     /// <param name="searchPattern"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="useRegex"> (optional, default to false)</param>
     pplx::task<std::shared_ptr<FilesVM>> exportFolderAndFileGetFoldersAndFiles(
         utility::string_t id,
         boost::optional<int32_t> skip,
         boost::optional<int32_t> take,
         boost::optional<std::shared_ptr<FileSorting>> orderBy,
         boost::optional<bool> desc,
-        boost::optional<utility::string_t> searchPattern
+        boost::optional<utility::string_t> searchPattern,
+        boost::optional<bool> useRegex
     ) const;
     /// <summary>
     /// Move folder to a specified folder
@@ -303,11 +307,17 @@ public:
     /// <param name="skip">number of files, that have to be skipped (optional, default to 0)</param>
     /// <param name="take">number of files, that have to be returned (optional, default to 0)</param>
     /// <param name="searchPattern"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="orderBy"> (optional, default to new FileSorting())</param>
+    /// <param name="desc"> (optional, default to false)</param>
+    /// <param name="useRegex"> (optional, default to false)</param>
     pplx::task<std::shared_ptr<ExportsVM>> exportsGetFilesList(
         utility::string_t id,
         boost::optional<int32_t> skip,
         boost::optional<int32_t> take,
-        boost::optional<utility::string_t> searchPattern
+        boost::optional<utility::string_t> searchPattern,
+        boost::optional<std::shared_ptr<FileSorting>> orderBy,
+        boost::optional<bool> desc,
+        boost::optional<bool> useRegex
     ) const;
     /// <summary>
     /// Get all file permissions

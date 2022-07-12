@@ -34,7 +34,7 @@ SubscriptionsApi::~SubscriptionsApi()
 {
 }
 
-pplx::task<std::shared_ptr<DefaultPermissions>> SubscriptionsApi::subscriptionsGetDefaultPermissions(utility::string_t subscriptionId) const
+pplx::task<std::shared_ptr<DefaultPermissionsVM>> SubscriptionsApi::subscriptionsGetDefaultPermissions(utility::string_t subscriptionId) const
 {
 
 
@@ -140,7 +140,7 @@ pplx::task<std::shared_ptr<DefaultPermissions>> SubscriptionsApi::subscriptionsG
     })
     .then([=](utility::string_t localVarResponse)
     {
-        std::shared_ptr<DefaultPermissions> localVarResult(new DefaultPermissions());
+        std::shared_ptr<DefaultPermissionsVM> localVarResult(new DefaultPermissionsVM());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {

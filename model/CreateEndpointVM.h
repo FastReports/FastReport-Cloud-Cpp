@@ -22,6 +22,8 @@
 #include "../ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
+#include <map>
+#include <vector>
 #include "EndpointVM.h"
 
 namespace fastreport {
@@ -65,6 +67,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    std::map<utility::string_t, utility::string_t>& getHeaders();
+    bool headersIsSet() const;
+    void unsetheaders();
+
+    void setHeaders(const std::map<utility::string_t, utility::string_t>& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getUrl() const;
     bool urlIsSet() const;
     void unseturl();
@@ -75,6 +86,8 @@ public:
 protected:
     utility::string_t m_bearerToken;
     bool m_bearerTokenIsSet;
+    std::map<utility::string_t, utility::string_t> m_headers;
+    bool m_headersIsSet;
     utility::string_t m_url;
     bool m_urlIsSet;
 };

@@ -25,6 +25,7 @@
 #include "FilePermission.h"
 #include "GroupPermission.h"
 #include "SubscriptionPermission.h"
+#include "TaskPermission.h"
 
 namespace fastreport {
 namespace cloud {
@@ -91,6 +92,15 @@ public:
 
     void setGroups(const std::shared_ptr<GroupPermission>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<TaskPermission> getTasks() const;
+    bool tasksIsSet() const;
+    void unsettasks();
+
+    void setTasks(const std::shared_ptr<TaskPermission>& value);
+
 
 protected:
     std::shared_ptr<SubscriptionPermission> m_subscription;
@@ -101,6 +111,8 @@ protected:
     bool m_datasourcesIsSet;
     std::shared_ptr<GroupPermission> m_groups;
     bool m_groupsIsSet;
+    std::shared_ptr<TaskPermission> m_tasks;
+    bool m_tasksIsSet;
 };
 
 

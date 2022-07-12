@@ -53,6 +53,8 @@ public:
         DataSourceConnectionType_MYSQL,
         DataSourceConnectionType_POSTGRES,
         DataSourceConnectionType_ORACLEDB,
+        DataSourceConnectionType_FIREBIRDDB,
+        DataSourceConnectionType_MONGODB,
     };
 
     eDataSourceConnectionType getValue() const;

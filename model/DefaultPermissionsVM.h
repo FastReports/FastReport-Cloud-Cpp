@@ -23,6 +23,7 @@
 
 #include "FilePermissions.h"
 #include "DataSourcePermissions.h"
+#include "TaskPermissions.h"
 #include "GroupPermissions.h"
 
 namespace fastreport {
@@ -81,6 +82,15 @@ public:
 
     void setGroupPermissions(const std::shared_ptr<GroupPermissions>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    std::shared_ptr<TaskPermissions> getTaskPermissions() const;
+    bool taskPermissionsIsSet() const;
+    void unsettaskPermissions();
+
+    void setTaskPermissions(const std::shared_ptr<TaskPermissions>& value);
+
 
 protected:
     std::shared_ptr<FilePermissions> m_filePermissions;
@@ -89,6 +99,8 @@ protected:
     bool m_dataSourcePermissionsIsSet;
     std::shared_ptr<GroupPermissions> m_groupPermissions;
     bool m_groupPermissionsIsSet;
+    std::shared_ptr<TaskPermissions> m_taskPermissions;
+    bool m_taskPermissionsIsSet;
 };
 
 

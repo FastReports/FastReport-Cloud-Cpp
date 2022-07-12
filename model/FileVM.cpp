@@ -35,6 +35,8 @@ FileVM::FileVM()
     m_subscriptionIdIsSet = false;
     m_statusIsSet = false;
     m_statusReasonIsSet = false;
+    m_errorMessage = utility::conversions::to_string_t("");
+    m_errorMessageIsSet = false;
     m_id = utility::conversions::to_string_t("");
     m_idIsSet = false;
     m_createdTime = utility::datetime();
@@ -96,6 +98,10 @@ web::json::value FileVM::toJson() const
     if(m_statusReasonIsSet)
     {
         val[utility::conversions::to_string_t("statusReason")] = ModelBase::toJson(m_statusReason);
+    }
+    if(m_errorMessageIsSet)
+    {
+        val[utility::conversions::to_string_t("errorMessage")] = ModelBase::toJson(m_errorMessage);
     }
     if(m_idIsSet)
     {
@@ -215,6 +221,16 @@ bool FileVM::fromJson(const web::json::value& val)
             setStatusReason(refVal_statusReason);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("errorMessage")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("errorMessage"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_errorMessage;
+            ok &= ModelBase::fromJson(fieldValue, refVal_errorMessage);
+            setErrorMessage(refVal_errorMessage);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t("id")))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("id"));
@@ -311,6 +327,10 @@ void FileVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const uti
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("statusReason"), m_statusReason));
     }
+    if(m_errorMessageIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("errorMessage"), m_errorMessage));
+    }
     if(m_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("id"), m_id));
@@ -395,6 +415,12 @@ bool FileVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
         std::shared_ptr<FileStatusReason> refVal_statusReason;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("statusReason")), refVal_statusReason );
         setStatusReason(refVal_statusReason);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("errorMessage")))
+    {
+        utility::string_t refVal_errorMessage;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("errorMessage")), refVal_errorMessage );
+        setErrorMessage(refVal_errorMessage);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("id")))
     {
@@ -608,6 +634,26 @@ bool FileVM::statusReasonIsSet() const
 void FileVM::unsetstatusReason()
 {
     m_statusReasonIsSet = false;
+}
+utility::string_t FileVM::getErrorMessage() const
+{
+    return m_errorMessage;
+}
+
+void FileVM::setErrorMessage(const utility::string_t& value)
+{
+    m_errorMessage = value;
+    m_errorMessageIsSet = true;
+}
+
+bool FileVM::errorMessageIsSet() const
+{
+    return m_errorMessageIsSet;
+}
+
+void FileVM::unseterrorMessage()
+{
+    m_errorMessageIsSet = false;
 }
 utility::string_t FileVM::getId() const
 {

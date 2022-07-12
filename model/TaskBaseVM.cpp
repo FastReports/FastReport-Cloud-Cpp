@@ -24,11 +24,21 @@ TaskBaseVM::TaskBaseVM()
 {
     m_id = utility::conversions::to_string_t("");
     m_idIsSet = false;
+    m_delayedWasRunTime = utility::datetime();
+    m_delayedWasRunTimeIsSet = false;
+    m_recurrentRunTime = utility::datetime();
+    m_recurrentRunTimeIsSet = false;
+    m_recurrentWasRunTime = utility::datetime();
+    m_recurrentWasRunTimeIsSet = false;
     m_name = utility::conversions::to_string_t("");
     m_nameIsSet = false;
     m_subscriptionId = utility::conversions::to_string_t("");
     m_subscriptionIdIsSet = false;
     m_typeIsSet = false;
+    m_delayedRunTime = utility::datetime();
+    m_delayedRunTimeIsSet = false;
+    m_cronExpression = utility::conversions::to_string_t("");
+    m_cronExpressionIsSet = false;
 }
 
 TaskBaseVM::~TaskBaseVM()
@@ -49,6 +59,18 @@ web::json::value TaskBaseVM::toJson() const
     {
         val[utility::conversions::to_string_t("id")] = ModelBase::toJson(m_id);
     }
+    if(m_delayedWasRunTimeIsSet)
+    {
+        val[utility::conversions::to_string_t("delayedWasRunTime")] = ModelBase::toJson(m_delayedWasRunTime);
+    }
+    if(m_recurrentRunTimeIsSet)
+    {
+        val[utility::conversions::to_string_t("recurrentRunTime")] = ModelBase::toJson(m_recurrentRunTime);
+    }
+    if(m_recurrentWasRunTimeIsSet)
+    {
+        val[utility::conversions::to_string_t("recurrentWasRunTime")] = ModelBase::toJson(m_recurrentWasRunTime);
+    }
     if(m_nameIsSet)
     {
         val[utility::conversions::to_string_t("name")] = ModelBase::toJson(m_name);
@@ -60,6 +82,14 @@ web::json::value TaskBaseVM::toJson() const
     if(m_typeIsSet)
     {
         val[utility::conversions::to_string_t("type")] = ModelBase::toJson(m_type);
+    }
+    if(m_delayedRunTimeIsSet)
+    {
+        val[utility::conversions::to_string_t("delayedRunTime")] = ModelBase::toJson(m_delayedRunTime);
+    }
+    if(m_cronExpressionIsSet)
+    {
+        val[utility::conversions::to_string_t("cronExpression")] = ModelBase::toJson(m_cronExpression);
     }
 
     return val;
@@ -77,6 +107,36 @@ bool TaskBaseVM::fromJson(const web::json::value& val)
             utility::string_t refVal_id;
             ok &= ModelBase::fromJson(fieldValue, refVal_id);
             setId(refVal_id);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("delayedWasRunTime")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("delayedWasRunTime"));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_delayedWasRunTime;
+            ok &= ModelBase::fromJson(fieldValue, refVal_delayedWasRunTime);
+            setDelayedWasRunTime(refVal_delayedWasRunTime);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("recurrentRunTime")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("recurrentRunTime"));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_recurrentRunTime;
+            ok &= ModelBase::fromJson(fieldValue, refVal_recurrentRunTime);
+            setRecurrentRunTime(refVal_recurrentRunTime);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("recurrentWasRunTime")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("recurrentWasRunTime"));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_recurrentWasRunTime;
+            ok &= ModelBase::fromJson(fieldValue, refVal_recurrentWasRunTime);
+            setRecurrentWasRunTime(refVal_recurrentWasRunTime);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("name")))
@@ -109,6 +169,26 @@ bool TaskBaseVM::fromJson(const web::json::value& val)
             setType(refVal_type);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("delayedRunTime")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("delayedRunTime"));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_delayedRunTime;
+            ok &= ModelBase::fromJson(fieldValue, refVal_delayedRunTime);
+            setDelayedRunTime(refVal_delayedRunTime);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("cronExpression")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("cronExpression"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_cronExpression;
+            ok &= ModelBase::fromJson(fieldValue, refVal_cronExpression);
+            setCronExpression(refVal_cronExpression);
+        }
+    }
     return ok;
 }
 
@@ -123,6 +203,18 @@ void TaskBaseVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("id"), m_id));
     }
+    if(m_delayedWasRunTimeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("delayedWasRunTime"), m_delayedWasRunTime));
+    }
+    if(m_recurrentRunTimeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("recurrentRunTime"), m_recurrentRunTime));
+    }
+    if(m_recurrentWasRunTimeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("recurrentWasRunTime"), m_recurrentWasRunTime));
+    }
     if(m_nameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("name"), m_name));
@@ -134,6 +226,14 @@ void TaskBaseVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     if(m_typeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("type"), m_type));
+    }
+    if(m_delayedRunTimeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("delayedRunTime"), m_delayedRunTime));
+    }
+    if(m_cronExpressionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("cronExpression"), m_cronExpression));
     }
 }
 
@@ -152,6 +252,24 @@ bool TaskBaseVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("id")), refVal_id );
         setId(refVal_id);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t("delayedWasRunTime")))
+    {
+        utility::datetime refVal_delayedWasRunTime;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("delayedWasRunTime")), refVal_delayedWasRunTime );
+        setDelayedWasRunTime(refVal_delayedWasRunTime);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("recurrentRunTime")))
+    {
+        utility::datetime refVal_recurrentRunTime;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("recurrentRunTime")), refVal_recurrentRunTime );
+        setRecurrentRunTime(refVal_recurrentRunTime);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("recurrentWasRunTime")))
+    {
+        utility::datetime refVal_recurrentWasRunTime;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("recurrentWasRunTime")), refVal_recurrentWasRunTime );
+        setRecurrentWasRunTime(refVal_recurrentWasRunTime);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t("name")))
     {
         utility::string_t refVal_name;
@@ -169,6 +287,18 @@ bool TaskBaseVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         std::shared_ptr<TaskType> refVal_type;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("type")), refVal_type );
         setType(refVal_type);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("delayedRunTime")))
+    {
+        utility::datetime refVal_delayedRunTime;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("delayedRunTime")), refVal_delayedRunTime );
+        setDelayedRunTime(refVal_delayedRunTime);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("cronExpression")))
+    {
+        utility::string_t refVal_cronExpression;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("cronExpression")), refVal_cronExpression );
+        setCronExpression(refVal_cronExpression);
     }
     return ok;
 }
@@ -192,6 +322,66 @@ bool TaskBaseVM::idIsSet() const
 void TaskBaseVM::unsetid()
 {
     m_idIsSet = false;
+}
+utility::datetime TaskBaseVM::getDelayedWasRunTime() const
+{
+    return m_delayedWasRunTime;
+}
+
+void TaskBaseVM::setDelayedWasRunTime(const utility::datetime& value)
+{
+    m_delayedWasRunTime = value;
+    m_delayedWasRunTimeIsSet = true;
+}
+
+bool TaskBaseVM::delayedWasRunTimeIsSet() const
+{
+    return m_delayedWasRunTimeIsSet;
+}
+
+void TaskBaseVM::unsetdelayedWasRunTime()
+{
+    m_delayedWasRunTimeIsSet = false;
+}
+utility::datetime TaskBaseVM::getRecurrentRunTime() const
+{
+    return m_recurrentRunTime;
+}
+
+void TaskBaseVM::setRecurrentRunTime(const utility::datetime& value)
+{
+    m_recurrentRunTime = value;
+    m_recurrentRunTimeIsSet = true;
+}
+
+bool TaskBaseVM::recurrentRunTimeIsSet() const
+{
+    return m_recurrentRunTimeIsSet;
+}
+
+void TaskBaseVM::unsetrecurrentRunTime()
+{
+    m_recurrentRunTimeIsSet = false;
+}
+utility::datetime TaskBaseVM::getRecurrentWasRunTime() const
+{
+    return m_recurrentWasRunTime;
+}
+
+void TaskBaseVM::setRecurrentWasRunTime(const utility::datetime& value)
+{
+    m_recurrentWasRunTime = value;
+    m_recurrentWasRunTimeIsSet = true;
+}
+
+bool TaskBaseVM::recurrentWasRunTimeIsSet() const
+{
+    return m_recurrentWasRunTimeIsSet;
+}
+
+void TaskBaseVM::unsetrecurrentWasRunTime()
+{
+    m_recurrentWasRunTimeIsSet = false;
 }
 utility::string_t TaskBaseVM::getName() const
 {
@@ -252,6 +442,46 @@ bool TaskBaseVM::typeIsSet() const
 void TaskBaseVM::unsettype()
 {
     m_typeIsSet = false;
+}
+utility::datetime TaskBaseVM::getDelayedRunTime() const
+{
+    return m_delayedRunTime;
+}
+
+void TaskBaseVM::setDelayedRunTime(const utility::datetime& value)
+{
+    m_delayedRunTime = value;
+    m_delayedRunTimeIsSet = true;
+}
+
+bool TaskBaseVM::delayedRunTimeIsSet() const
+{
+    return m_delayedRunTimeIsSet;
+}
+
+void TaskBaseVM::unsetdelayedRunTime()
+{
+    m_delayedRunTimeIsSet = false;
+}
+utility::string_t TaskBaseVM::getCronExpression() const
+{
+    return m_cronExpression;
+}
+
+void TaskBaseVM::setCronExpression(const utility::string_t& value)
+{
+    m_cronExpression = value;
+    m_cronExpressionIsSet = true;
+}
+
+bool TaskBaseVM::cronExpressionIsSet() const
+{
+    return m_cronExpressionIsSet;
+}
+
+void TaskBaseVM::unsetcronExpression()
+{
+    m_cronExpressionIsSet = false;
 }
 }
 }

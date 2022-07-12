@@ -42,6 +42,7 @@ web::json::value SubscriptionCreate::toJson() const
     if (m_value == eSubscriptionCreate::SubscriptionCreate__2) val = web::json::value::string(U(2));
     if (m_value == eSubscriptionCreate::SubscriptionCreate__4) val = web::json::value::string(U(4));
     if (m_value == eSubscriptionCreate::SubscriptionCreate__8) val = web::json::value::string(U(8));
+    if (m_value == eSubscriptionCreate::SubscriptionCreate__16) val = web::json::value::string(U(16));
     if (m_value == eSubscriptionCreate::SubscriptionCreate__1) val = web::json::value::string(U(-1));
 
     return val;
@@ -57,6 +58,7 @@ bool SubscriptionCreate::fromJson(const web::json::value& val)
     if (s == utility::conversions::to_string_t(2)) m_value = eSubscriptionCreate::SubscriptionCreate__2;
     if (s == utility::conversions::to_string_t(4)) m_value = eSubscriptionCreate::SubscriptionCreate__4;
     if (s == utility::conversions::to_string_t(8)) m_value = eSubscriptionCreate::SubscriptionCreate__8;
+    if (s == utility::conversions::to_string_t(16)) m_value = eSubscriptionCreate::SubscriptionCreate__16;
     if (s == utility::conversions::to_string_t(-1)) m_value = eSubscriptionCreate::SubscriptionCreate__1;
     return true;
 }
@@ -77,6 +79,7 @@ void SubscriptionCreate::toMultipart(std::shared_ptr<MultipartFormData> multipar
     if (m_value == eSubscriptionCreate::SubscriptionCreate__2) s = utility::conversions::to_string_t(2);
     if (m_value == eSubscriptionCreate::SubscriptionCreate__4) s = utility::conversions::to_string_t(4);
     if (m_value == eSubscriptionCreate::SubscriptionCreate__8) s = utility::conversions::to_string_t(8);
+    if (m_value == eSubscriptionCreate::SubscriptionCreate__16) s = utility::conversions::to_string_t(16);
     if (m_value == eSubscriptionCreate::SubscriptionCreate__1) s = utility::conversions::to_string_t(-1);
 
     multipart->add(ModelBase::toHttpContent(namePrefix, s));
@@ -101,6 +104,7 @@ bool SubscriptionCreate::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         if (s == utility::conversions::to_string_t(2)) v = eSubscriptionCreate::SubscriptionCreate__2;
         if (s == utility::conversions::to_string_t(4)) v = eSubscriptionCreate::SubscriptionCreate__4;
         if (s == utility::conversions::to_string_t(8)) v = eSubscriptionCreate::SubscriptionCreate__8;
+        if (s == utility::conversions::to_string_t(16)) v = eSubscriptionCreate::SubscriptionCreate__16;
         if (s == utility::conversions::to_string_t(-1)) v = eSubscriptionCreate::SubscriptionCreate__1;
 
         setValue(v);

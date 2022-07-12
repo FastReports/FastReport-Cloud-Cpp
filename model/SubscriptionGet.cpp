@@ -46,6 +46,7 @@ web::json::value SubscriptionGet::toJson() const
     if (m_value == eSubscriptionGet::SubscriptionGet__32) val = web::json::value::string(U(32));
     if (m_value == eSubscriptionGet::SubscriptionGet__64) val = web::json::value::string(U(64));
     if (m_value == eSubscriptionGet::SubscriptionGet__128) val = web::json::value::string(U(128));
+    if (m_value == eSubscriptionGet::SubscriptionGet__256) val = web::json::value::string(U(256));
     if (m_value == eSubscriptionGet::SubscriptionGet__1) val = web::json::value::string(U(-1));
 
     return val;
@@ -65,6 +66,7 @@ bool SubscriptionGet::fromJson(const web::json::value& val)
     if (s == utility::conversions::to_string_t(32)) m_value = eSubscriptionGet::SubscriptionGet__32;
     if (s == utility::conversions::to_string_t(64)) m_value = eSubscriptionGet::SubscriptionGet__64;
     if (s == utility::conversions::to_string_t(128)) m_value = eSubscriptionGet::SubscriptionGet__128;
+    if (s == utility::conversions::to_string_t(256)) m_value = eSubscriptionGet::SubscriptionGet__256;
     if (s == utility::conversions::to_string_t(-1)) m_value = eSubscriptionGet::SubscriptionGet__1;
     return true;
 }
@@ -89,6 +91,7 @@ void SubscriptionGet::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     if (m_value == eSubscriptionGet::SubscriptionGet__32) s = utility::conversions::to_string_t(32);
     if (m_value == eSubscriptionGet::SubscriptionGet__64) s = utility::conversions::to_string_t(64);
     if (m_value == eSubscriptionGet::SubscriptionGet__128) s = utility::conversions::to_string_t(128);
+    if (m_value == eSubscriptionGet::SubscriptionGet__256) s = utility::conversions::to_string_t(256);
     if (m_value == eSubscriptionGet::SubscriptionGet__1) s = utility::conversions::to_string_t(-1);
 
     multipart->add(ModelBase::toHttpContent(namePrefix, s));
@@ -117,6 +120,7 @@ bool SubscriptionGet::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         if (s == utility::conversions::to_string_t(32)) v = eSubscriptionGet::SubscriptionGet__32;
         if (s == utility::conversions::to_string_t(64)) v = eSubscriptionGet::SubscriptionGet__64;
         if (s == utility::conversions::to_string_t(128)) v = eSubscriptionGet::SubscriptionGet__128;
+        if (s == utility::conversions::to_string_t(256)) v = eSubscriptionGet::SubscriptionGet__256;
         if (s == utility::conversions::to_string_t(-1)) v = eSubscriptionGet::SubscriptionGet__1;
 
         setValue(v);

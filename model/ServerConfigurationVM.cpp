@@ -24,12 +24,18 @@ ServerConfigurationVM::ServerConfigurationVM()
 {
     m_title = utility::conversions::to_string_t("");
     m_titleIsSet = false;
+    m_logoLink = utility::conversions::to_string_t("");
+    m_logoLinkIsSet = false;
+    m_copyright = utility::conversions::to_string_t("");
+    m_copyrightIsSet = false;
     m_corporateServerMode = false;
     m_corporateServerModeIsSet = false;
     m_isDisabled = false;
     m_isDisabledIsSet = false;
-    m_appMixinsIsSet = false;
+    m_frontendIsSet = false;
     m_authIsSet = false;
+    m_designerForAnons = false;
+    m_designerForAnonsIsSet = false;
 }
 
 ServerConfigurationVM::~ServerConfigurationVM()
@@ -50,6 +56,14 @@ web::json::value ServerConfigurationVM::toJson() const
     {
         val[utility::conversions::to_string_t("title")] = ModelBase::toJson(m_title);
     }
+    if(m_logoLinkIsSet)
+    {
+        val[utility::conversions::to_string_t("logoLink")] = ModelBase::toJson(m_logoLink);
+    }
+    if(m_copyrightIsSet)
+    {
+        val[utility::conversions::to_string_t("copyright")] = ModelBase::toJson(m_copyright);
+    }
     if(m_corporateServerModeIsSet)
     {
         val[utility::conversions::to_string_t("corporateServerMode")] = ModelBase::toJson(m_corporateServerMode);
@@ -58,13 +72,17 @@ web::json::value ServerConfigurationVM::toJson() const
     {
         val[utility::conversions::to_string_t("isDisabled")] = ModelBase::toJson(m_isDisabled);
     }
-    if(m_appMixinsIsSet)
+    if(m_frontendIsSet)
     {
-        val[utility::conversions::to_string_t("appMixins")] = ModelBase::toJson(m_appMixins);
+        val[utility::conversions::to_string_t("frontend")] = ModelBase::toJson(m_frontend);
     }
     if(m_authIsSet)
     {
         val[utility::conversions::to_string_t("auth")] = ModelBase::toJson(m_auth);
+    }
+    if(m_designerForAnonsIsSet)
+    {
+        val[utility::conversions::to_string_t("designerForAnons")] = ModelBase::toJson(m_designerForAnons);
     }
 
     return val;
@@ -82,6 +100,26 @@ bool ServerConfigurationVM::fromJson(const web::json::value& val)
             utility::string_t refVal_title;
             ok &= ModelBase::fromJson(fieldValue, refVal_title);
             setTitle(refVal_title);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("logoLink")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("logoLink"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_logoLink;
+            ok &= ModelBase::fromJson(fieldValue, refVal_logoLink);
+            setLogoLink(refVal_logoLink);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("copyright")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("copyright"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_copyright;
+            ok &= ModelBase::fromJson(fieldValue, refVal_copyright);
+            setCopyright(refVal_copyright);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("corporateServerMode")))
@@ -104,14 +142,14 @@ bool ServerConfigurationVM::fromJson(const web::json::value& val)
             setIsDisabled(refVal_isDisabled);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("appMixins")))
+    if(val.has_field(utility::conversions::to_string_t("frontend")))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("appMixins"));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("frontend"));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<AppMixins> refVal_appMixins;
-            ok &= ModelBase::fromJson(fieldValue, refVal_appMixins);
-            setAppMixins(refVal_appMixins);
+            std::shared_ptr<FrontendApp> refVal_frontend;
+            ok &= ModelBase::fromJson(fieldValue, refVal_frontend);
+            setFrontend(refVal_frontend);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("auth")))
@@ -122,6 +160,16 @@ bool ServerConfigurationVM::fromJson(const web::json::value& val)
             std::shared_ptr<AuthConfigVM> refVal_auth;
             ok &= ModelBase::fromJson(fieldValue, refVal_auth);
             setAuth(refVal_auth);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("designerForAnons")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("designerForAnons"));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_designerForAnons;
+            ok &= ModelBase::fromJson(fieldValue, refVal_designerForAnons);
+            setDesignerForAnons(refVal_designerForAnons);
         }
     }
     return ok;
@@ -138,6 +186,14 @@ void ServerConfigurationVM::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("title"), m_title));
     }
+    if(m_logoLinkIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("logoLink"), m_logoLink));
+    }
+    if(m_copyrightIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("copyright"), m_copyright));
+    }
     if(m_corporateServerModeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("corporateServerMode"), m_corporateServerMode));
@@ -146,13 +202,17 @@ void ServerConfigurationVM::toMultipart(std::shared_ptr<MultipartFormData> multi
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("isDisabled"), m_isDisabled));
     }
-    if(m_appMixinsIsSet)
+    if(m_frontendIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("appMixins"), m_appMixins));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("frontend"), m_frontend));
     }
     if(m_authIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("auth"), m_auth));
+    }
+    if(m_designerForAnonsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("designerForAnons"), m_designerForAnons));
     }
 }
 
@@ -171,6 +231,18 @@ bool ServerConfigurationVM::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("title")), refVal_title );
         setTitle(refVal_title);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t("logoLink")))
+    {
+        utility::string_t refVal_logoLink;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("logoLink")), refVal_logoLink );
+        setLogoLink(refVal_logoLink);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("copyright")))
+    {
+        utility::string_t refVal_copyright;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("copyright")), refVal_copyright );
+        setCopyright(refVal_copyright);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t("corporateServerMode")))
     {
         bool refVal_corporateServerMode;
@@ -183,17 +255,23 @@ bool ServerConfigurationVM::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("isDisabled")), refVal_isDisabled );
         setIsDisabled(refVal_isDisabled);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("appMixins")))
+    if(multipart->hasContent(utility::conversions::to_string_t("frontend")))
     {
-        std::shared_ptr<AppMixins> refVal_appMixins;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("appMixins")), refVal_appMixins );
-        setAppMixins(refVal_appMixins);
+        std::shared_ptr<FrontendApp> refVal_frontend;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("frontend")), refVal_frontend );
+        setFrontend(refVal_frontend);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("auth")))
     {
         std::shared_ptr<AuthConfigVM> refVal_auth;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("auth")), refVal_auth );
         setAuth(refVal_auth);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("designerForAnons")))
+    {
+        bool refVal_designerForAnons;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("designerForAnons")), refVal_designerForAnons );
+        setDesignerForAnons(refVal_designerForAnons);
     }
     return ok;
 }
@@ -217,6 +295,46 @@ bool ServerConfigurationVM::titleIsSet() const
 void ServerConfigurationVM::unsettitle()
 {
     m_titleIsSet = false;
+}
+utility::string_t ServerConfigurationVM::getLogoLink() const
+{
+    return m_logoLink;
+}
+
+void ServerConfigurationVM::setLogoLink(const utility::string_t& value)
+{
+    m_logoLink = value;
+    m_logoLinkIsSet = true;
+}
+
+bool ServerConfigurationVM::logoLinkIsSet() const
+{
+    return m_logoLinkIsSet;
+}
+
+void ServerConfigurationVM::unsetlogoLink()
+{
+    m_logoLinkIsSet = false;
+}
+utility::string_t ServerConfigurationVM::getCopyright() const
+{
+    return m_copyright;
+}
+
+void ServerConfigurationVM::setCopyright(const utility::string_t& value)
+{
+    m_copyright = value;
+    m_copyrightIsSet = true;
+}
+
+bool ServerConfigurationVM::copyrightIsSet() const
+{
+    return m_copyrightIsSet;
+}
+
+void ServerConfigurationVM::unsetcopyright()
+{
+    m_copyrightIsSet = false;
 }
 bool ServerConfigurationVM::isCorporateServerMode() const
 {
@@ -258,25 +376,25 @@ void ServerConfigurationVM::unsetisDisabled()
 {
     m_isDisabledIsSet = false;
 }
-std::shared_ptr<AppMixins> ServerConfigurationVM::getAppMixins() const
+std::shared_ptr<FrontendApp> ServerConfigurationVM::getFrontend() const
 {
-    return m_appMixins;
+    return m_frontend;
 }
 
-void ServerConfigurationVM::setAppMixins(const std::shared_ptr<AppMixins>& value)
+void ServerConfigurationVM::setFrontend(const std::shared_ptr<FrontendApp>& value)
 {
-    m_appMixins = value;
-    m_appMixinsIsSet = true;
+    m_frontend = value;
+    m_frontendIsSet = true;
 }
 
-bool ServerConfigurationVM::appMixinsIsSet() const
+bool ServerConfigurationVM::frontendIsSet() const
 {
-    return m_appMixinsIsSet;
+    return m_frontendIsSet;
 }
 
-void ServerConfigurationVM::unsetappMixins()
+void ServerConfigurationVM::unsetfrontend()
 {
-    m_appMixinsIsSet = false;
+    m_frontendIsSet = false;
 }
 std::shared_ptr<AuthConfigVM> ServerConfigurationVM::getAuth() const
 {
@@ -297,6 +415,26 @@ bool ServerConfigurationVM::authIsSet() const
 void ServerConfigurationVM::unsetauth()
 {
     m_authIsSet = false;
+}
+bool ServerConfigurationVM::isDesignerForAnons() const
+{
+    return m_designerForAnons;
+}
+
+void ServerConfigurationVM::setDesignerForAnons(bool value)
+{
+    m_designerForAnons = value;
+    m_designerForAnonsIsSet = true;
+}
+
+bool ServerConfigurationVM::designerForAnonsIsSet() const
+{
+    return m_designerForAnonsIsSet;
+}
+
+void ServerConfigurationVM::unsetdesignerForAnons()
+{
+    m_designerForAnonsIsSet = false;
 }
 }
 }

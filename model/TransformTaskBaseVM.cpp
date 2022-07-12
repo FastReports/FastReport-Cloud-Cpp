@@ -32,6 +32,10 @@ TransformTaskBaseVM::TransformTaskBaseVM()
     m_subscriptionId = utility::conversions::to_string_t("");
     m_subscriptionIdIsSet = false;
     m_typeIsSet = false;
+    m_delayedRunTime = utility::datetime();
+    m_delayedRunTimeIsSet = false;
+    m_cronExpression = utility::conversions::to_string_t("");
+    m_cronExpressionIsSet = false;
 }
 
 TransformTaskBaseVM::~TransformTaskBaseVM()
@@ -75,6 +79,14 @@ web::json::value TransformTaskBaseVM::toJson() const
     if(m_typeIsSet)
     {
         val[utility::conversions::to_string_t("type")] = ModelBase::toJson(m_type);
+    }
+    if(m_delayedRunTimeIsSet)
+    {
+        val[utility::conversions::to_string_t("delayedRunTime")] = ModelBase::toJson(m_delayedRunTime);
+    }
+    if(m_cronExpressionIsSet)
+    {
+        val[utility::conversions::to_string_t("cronExpression")] = ModelBase::toJson(m_cronExpression);
     }
 
     return val;
@@ -154,6 +166,26 @@ bool TransformTaskBaseVM::fromJson(const web::json::value& val)
             setType(refVal_type);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("delayedRunTime")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("delayedRunTime"));
+        if(!fieldValue.is_null())
+        {
+            utility::datetime refVal_delayedRunTime;
+            ok &= ModelBase::fromJson(fieldValue, refVal_delayedRunTime);
+            setDelayedRunTime(refVal_delayedRunTime);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("cronExpression")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("cronExpression"));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_cronExpression;
+            ok &= ModelBase::fromJson(fieldValue, refVal_cronExpression);
+            setCronExpression(refVal_cronExpression);
+        }
+    }
     return ok;
 }
 
@@ -191,6 +223,14 @@ void TransformTaskBaseVM::toMultipart(std::shared_ptr<MultipartFormData> multipa
     if(m_typeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("type"), m_type));
+    }
+    if(m_delayedRunTimeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("delayedRunTime"), m_delayedRunTime));
+    }
+    if(m_cronExpressionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("cronExpression"), m_cronExpression));
     }
 }
 
@@ -244,6 +284,18 @@ bool TransformTaskBaseVM::fromMultiPart(std::shared_ptr<MultipartFormData> multi
         std::shared_ptr<TaskType> refVal_type;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("type")), refVal_type );
         setType(refVal_type);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("delayedRunTime")))
+    {
+        utility::datetime refVal_delayedRunTime;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("delayedRunTime")), refVal_delayedRunTime );
+        setDelayedRunTime(refVal_delayedRunTime);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("cronExpression")))
+    {
+        utility::string_t refVal_cronExpression;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("cronExpression")), refVal_cronExpression );
+        setCronExpression(refVal_cronExpression);
     }
     return ok;
 }
@@ -387,6 +439,46 @@ bool TransformTaskBaseVM::typeIsSet() const
 void TransformTaskBaseVM::unsettype()
 {
     m_typeIsSet = false;
+}
+utility::datetime TransformTaskBaseVM::getDelayedRunTime() const
+{
+    return m_delayedRunTime;
+}
+
+void TransformTaskBaseVM::setDelayedRunTime(const utility::datetime& value)
+{
+    m_delayedRunTime = value;
+    m_delayedRunTimeIsSet = true;
+}
+
+bool TransformTaskBaseVM::delayedRunTimeIsSet() const
+{
+    return m_delayedRunTimeIsSet;
+}
+
+void TransformTaskBaseVM::unsetdelayedRunTime()
+{
+    m_delayedRunTimeIsSet = false;
+}
+utility::string_t TransformTaskBaseVM::getCronExpression() const
+{
+    return m_cronExpression;
+}
+
+void TransformTaskBaseVM::setCronExpression(const utility::string_t& value)
+{
+    m_cronExpression = value;
+    m_cronExpressionIsSet = true;
+}
+
+bool TransformTaskBaseVM::cronExpressionIsSet() const
+{
+    return m_cronExpressionIsSet;
+}
+
+void TransformTaskBaseVM::unsetcronExpression()
+{
+    m_cronExpressionIsSet = false;
 }
 }
 }

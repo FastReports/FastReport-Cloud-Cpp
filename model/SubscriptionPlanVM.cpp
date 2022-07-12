@@ -46,8 +46,6 @@ SubscriptionPlanVM::SubscriptionPlanVM()
     m_dataSourceLimitIsSet = false;
     m_maxUsersCount = 0;
     m_maxUsersCountIsSet = false;
-    m_hasSpaceOverdraft = false;
-    m_hasSpaceOverdraftIsSet = false;
     m_groupLimit = 0;
     m_groupLimitIsSet = false;
     m_onlineDesigner = false;
@@ -128,10 +126,6 @@ web::json::value SubscriptionPlanVM::toJson() const
     if(m_maxUsersCountIsSet)
     {
         val[utility::conversions::to_string_t("maxUsersCount")] = ModelBase::toJson(m_maxUsersCount);
-    }
-    if(m_hasSpaceOverdraftIsSet)
-    {
-        val[utility::conversions::to_string_t("hasSpaceOverdraft")] = ModelBase::toJson(m_hasSpaceOverdraft);
     }
     if(m_groupLimitIsSet)
     {
@@ -299,16 +293,6 @@ bool SubscriptionPlanVM::fromJson(const web::json::value& val)
             setMaxUsersCount(refVal_maxUsersCount);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("hasSpaceOverdraft")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("hasSpaceOverdraft"));
-        if(!fieldValue.is_null())
-        {
-            bool refVal_hasSpaceOverdraft;
-            ok &= ModelBase::fromJson(fieldValue, refVal_hasSpaceOverdraft);
-            setHasSpaceOverdraft(refVal_hasSpaceOverdraft);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t("groupLimit")))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("groupLimit"));
@@ -441,10 +425,6 @@ void SubscriptionPlanVM::toMultipart(std::shared_ptr<MultipartFormData> multipar
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("maxUsersCount"), m_maxUsersCount));
     }
-    if(m_hasSpaceOverdraftIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("hasSpaceOverdraft"), m_hasSpaceOverdraft));
-    }
     if(m_groupLimitIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("groupLimit"), m_groupLimit));
@@ -561,12 +541,6 @@ bool SubscriptionPlanVM::fromMultiPart(std::shared_ptr<MultipartFormData> multip
         int32_t refVal_maxUsersCount;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("maxUsersCount")), refVal_maxUsersCount );
         setMaxUsersCount(refVal_maxUsersCount);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t("hasSpaceOverdraft")))
-    {
-        bool refVal_hasSpaceOverdraft;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("hasSpaceOverdraft")), refVal_hasSpaceOverdraft );
-        setHasSpaceOverdraft(refVal_hasSpaceOverdraft);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("groupLimit")))
     {
@@ -872,26 +846,6 @@ bool SubscriptionPlanVM::maxUsersCountIsSet() const
 void SubscriptionPlanVM::unsetmaxUsersCount()
 {
     m_maxUsersCountIsSet = false;
-}
-bool SubscriptionPlanVM::isHasSpaceOverdraft() const
-{
-    return m_hasSpaceOverdraft;
-}
-
-void SubscriptionPlanVM::setHasSpaceOverdraft(bool value)
-{
-    m_hasSpaceOverdraft = value;
-    m_hasSpaceOverdraftIsSet = true;
-}
-
-bool SubscriptionPlanVM::hasSpaceOverdraftIsSet() const
-{
-    return m_hasSpaceOverdraftIsSet;
-}
-
-void SubscriptionPlanVM::unsethasSpaceOverdraft()
-{
-    m_hasSpaceOverdraftIsSet = false;
 }
 int32_t SubscriptionPlanVM::getGroupLimit() const
 {

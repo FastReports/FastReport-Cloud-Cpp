@@ -99,7 +99,7 @@ bool AdminSubscriptionVM::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("defaultPermissions"));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<DefaultPermissions> refVal_defaultPermissions;
+            std::shared_ptr<DefaultPermissionsVM> refVal_defaultPermissions;
             ok &= ModelBase::fromJson(fieldValue, refVal_defaultPermissions);
             setDefaultPermissions(refVal_defaultPermissions);
         }
@@ -243,7 +243,7 @@ bool AdminSubscriptionVM::fromMultiPart(std::shared_ptr<MultipartFormData> multi
 
     if(multipart->hasContent(utility::conversions::to_string_t("defaultPermissions")))
     {
-        std::shared_ptr<DefaultPermissions> refVal_defaultPermissions;
+        std::shared_ptr<DefaultPermissionsVM> refVal_defaultPermissions;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("defaultPermissions")), refVal_defaultPermissions );
         setDefaultPermissions(refVal_defaultPermissions);
     }
@@ -298,12 +298,12 @@ bool AdminSubscriptionVM::fromMultiPart(std::shared_ptr<MultipartFormData> multi
     return ok;
 }
 
-std::shared_ptr<DefaultPermissions> AdminSubscriptionVM::getDefaultPermissions() const
+std::shared_ptr<DefaultPermissionsVM> AdminSubscriptionVM::getDefaultPermissions() const
 {
     return m_defaultPermissions;
 }
 
-void AdminSubscriptionVM::setDefaultPermissions(const std::shared_ptr<DefaultPermissions>& value)
+void AdminSubscriptionVM::setDefaultPermissions(const std::shared_ptr<DefaultPermissionsVM>& value)
 {
     m_defaultPermissions = value;
     m_defaultPermissionsIsSet = true;

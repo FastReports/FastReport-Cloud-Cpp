@@ -21,12 +21,12 @@
 #include "CloudKludge.h"
 #include "../ModelBase.h"
 
-#include "DefaultPermissions.h"
 #include "SubscriptionVM.h"
 #include "SubscriptionPeriodVM.h"
 #include <cpprest/details/basic_types.h>
 #include "SubscriptionFolder.h"
 #include <vector>
+#include "DefaultPermissionsVM.h"
 
 namespace fastreport {
 namespace cloud {
@@ -60,11 +60,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    std::shared_ptr<DefaultPermissions> getDefaultPermissions() const;
+    std::shared_ptr<DefaultPermissionsVM> getDefaultPermissions() const;
     bool defaultPermissionsIsSet() const;
     void unsetdefaultPermissions();
 
-    void setDefaultPermissions(const std::shared_ptr<DefaultPermissions>& value);
+    void setDefaultPermissions(const std::shared_ptr<DefaultPermissionsVM>& value);
 
     /// <summary>
     /// 
@@ -140,7 +140,7 @@ public:
 
 
 protected:
-    std::shared_ptr<DefaultPermissions> m_defaultPermissions;
+    std::shared_ptr<DefaultPermissionsVM> m_defaultPermissions;
     bool m_defaultPermissionsIsSet;
     utility::string_t m_id;
     bool m_idIsSet;

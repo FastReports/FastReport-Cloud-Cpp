@@ -75,6 +75,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    bool isForce() const;
+    bool forceIsSet() const;
+    void unsetforce();
+
+    void setForce(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetname();
@@ -105,6 +114,8 @@ protected:
     bool m_parentIdIsSet;
     utility::string_t m_ownerId;
     bool m_ownerIdIsSet;
+    bool m_force;
+    bool m_forceIsSet;
     utility::string_t m_name;
     bool m_nameIsSet;
     std::vector<utility::string_t> m_tags;
