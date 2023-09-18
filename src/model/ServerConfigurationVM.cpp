@@ -49,6 +49,8 @@ ServerConfigurationVM::ServerConfigurationVM()
     m_homePageLinkIsSet = false;
     m_authServerName = utility::conversions::to_string_t("");
     m_authServerNameIsSet = false;
+    m_updateWorkspaceLink = utility::conversions::to_string_t("");
+    m_updateWorkspaceLinkIsSet = false;
 }
 
 ServerConfigurationVM::~ServerConfigurationVM()
@@ -124,6 +126,10 @@ web::json::value ServerConfigurationVM::toJson() const
     if(m_authServerNameIsSet)
     {
         val[utility::conversions::to_string_t(U("authServerName"))] = ModelBase::toJson(m_authServerName);
+    }
+    if(m_updateWorkspaceLinkIsSet)
+    {
+        val[utility::conversions::to_string_t(U("updateWorkspaceLink"))] = ModelBase::toJson(m_updateWorkspaceLink);
     }
 
     return val;
@@ -283,6 +289,16 @@ bool ServerConfigurationVM::fromJson(const web::json::value& val)
             setAuthServerName(refVal_setAuthServerName);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("updateWorkspaceLink"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("updateWorkspaceLink")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setUpdateWorkspaceLink;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setUpdateWorkspaceLink);
+            setUpdateWorkspaceLink(refVal_setUpdateWorkspaceLink);
+        }
+    }
     return ok;
 }
 
@@ -352,6 +368,10 @@ void ServerConfigurationVM::toMultipart(std::shared_ptr<MultipartFormData> multi
     if(m_authServerNameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("authServerName")), m_authServerName));
+    }
+    if(m_updateWorkspaceLinkIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("updateWorkspaceLink")), m_updateWorkspaceLink));
     }
 }
 
@@ -453,6 +473,12 @@ bool ServerConfigurationVM::fromMultiPart(std::shared_ptr<MultipartFormData> mul
         utility::string_t refVal_setAuthServerName;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("authServerName"))), refVal_setAuthServerName );
         setAuthServerName(refVal_setAuthServerName);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("updateWorkspaceLink"))))
+    {
+        utility::string_t refVal_setUpdateWorkspaceLink;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("updateWorkspaceLink"))), refVal_setUpdateWorkspaceLink );
+        setUpdateWorkspaceLink(refVal_setUpdateWorkspaceLink);
     }
     return ok;
 }
@@ -756,6 +782,26 @@ bool ServerConfigurationVM::authServerNameIsSet() const
 void ServerConfigurationVM::unsetauthServerName()
 {
     m_authServerNameIsSet = false;
+}
+utility::string_t ServerConfigurationVM::getUpdateWorkspaceLink() const
+{
+    return m_updateWorkspaceLink;
+}
+
+void ServerConfigurationVM::setUpdateWorkspaceLink(const utility::string_t& value)
+{
+    m_updateWorkspaceLink = value;
+    m_updateWorkspaceLinkIsSet = true;
+}
+
+bool ServerConfigurationVM::updateWorkspaceLinkIsSet() const
+{
+    return m_updateWorkspaceLinkIsSet;
+}
+
+void ServerConfigurationVM::unsetupdateWorkspaceLink()
+{
+    m_updateWorkspaceLinkIsSet = false;
 }
 }
 }

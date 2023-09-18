@@ -22,6 +22,8 @@
 #include "CppRestOpenAPIClient/ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
+#include "CppRestOpenAPIClient/model/AuditType.h"
+#include <vector>
 #include "CppRestOpenAPIClient/model/ProfileVisibility.h"
 
 namespace fastreport {
@@ -80,6 +82,15 @@ public:
 
     void setShowHiddenFilesAndFolders(bool value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    std::vector<std::shared_ptr<AuditType>>& getSubscribedNotifications();
+    bool subscribedNotificationsIsSet() const;
+    void unsetsubscribedNotifications();
+
+    void setSubscribedNotifications(const std::vector<std::shared_ptr<AuditType>>& value);
+
 
 protected:
     std::shared_ptr<ProfileVisibility> m_profileVisibility;
@@ -88,6 +99,8 @@ protected:
     bool m_defaultSubscriptionIsSet;
     bool m_showHiddenFilesAndFolders;
     bool m_showHiddenFilesAndFoldersIsSet;
+    std::vector<std::shared_ptr<AuditType>> m_subscribedNotifications;
+    bool m_subscribedNotificationsIsSet;
 };
 
 

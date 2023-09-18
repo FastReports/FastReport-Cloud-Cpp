@@ -28,6 +28,7 @@ UserSettingsVM::UserSettingsVM()
     m_showHiddenFilesAndFoldersIsSet = false;
     m_slaAcceptedDateTime = utility::datetime();
     m_slaAcceptedDateTimeIsSet = false;
+    m_subscribedNotificationsIsSet = false;
 }
 
 UserSettingsVM::~UserSettingsVM()
@@ -59,6 +60,10 @@ web::json::value UserSettingsVM::toJson() const
     if(m_slaAcceptedDateTimeIsSet)
     {
         val[utility::conversions::to_string_t(U("slaAcceptedDateTime"))] = ModelBase::toJson(m_slaAcceptedDateTime);
+    }
+    if(m_subscribedNotificationsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("subscribedNotifications"))] = ModelBase::toJson(m_subscribedNotifications);
     }
 
     return val;
@@ -108,6 +113,16 @@ bool UserSettingsVM::fromJson(const web::json::value& val)
             setSlaAcceptedDateTime(refVal_setSlaAcceptedDateTime);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("subscribedNotifications"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("subscribedNotifications")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<AuditType>> refVal_setSubscribedNotifications;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSubscribedNotifications);
+            setSubscribedNotifications(refVal_setSubscribedNotifications);
+        }
+    }
     return ok;
 }
 
@@ -133,6 +148,10 @@ void UserSettingsVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     if(m_slaAcceptedDateTimeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("slaAcceptedDateTime")), m_slaAcceptedDateTime));
+    }
+    if(m_subscribedNotificationsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("subscribedNotifications")), m_subscribedNotifications));
     }
 }
 
@@ -168,6 +187,12 @@ bool UserSettingsVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         utility::datetime refVal_setSlaAcceptedDateTime;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("slaAcceptedDateTime"))), refVal_setSlaAcceptedDateTime );
         setSlaAcceptedDateTime(refVal_setSlaAcceptedDateTime);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("subscribedNotifications"))))
+    {
+        std::vector<std::shared_ptr<AuditType>> refVal_setSubscribedNotifications;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("subscribedNotifications"))), refVal_setSubscribedNotifications );
+        setSubscribedNotifications(refVal_setSubscribedNotifications);
     }
     return ok;
 }
@@ -251,6 +276,26 @@ bool UserSettingsVM::slaAcceptedDateTimeIsSet() const
 void UserSettingsVM::unsetslaAcceptedDateTime()
 {
     m_slaAcceptedDateTimeIsSet = false;
+}
+std::vector<std::shared_ptr<AuditType>>& UserSettingsVM::getSubscribedNotifications()
+{
+    return m_subscribedNotifications;
+}
+
+void UserSettingsVM::setSubscribedNotifications(const std::vector<std::shared_ptr<AuditType>>& value)
+{
+    m_subscribedNotifications = value;
+    m_subscribedNotificationsIsSet = true;
+}
+
+bool UserSettingsVM::subscribedNotificationsIsSet() const
+{
+    return m_subscribedNotificationsIsSet;
+}
+
+void UserSettingsVM::unsetsubscribedNotifications()
+{
+    m_subscribedNotificationsIsSet = false;
 }
 }
 }

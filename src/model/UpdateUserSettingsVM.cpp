@@ -26,6 +26,7 @@ UpdateUserSettingsVM::UpdateUserSettingsVM()
     m_defaultSubscriptionIsSet = false;
     m_showHiddenFilesAndFolders = false;
     m_showHiddenFilesAndFoldersIsSet = false;
+    m_subscribedNotificationsIsSet = false;
 }
 
 UpdateUserSettingsVM::~UpdateUserSettingsVM()
@@ -53,6 +54,10 @@ web::json::value UpdateUserSettingsVM::toJson() const
     if(m_showHiddenFilesAndFoldersIsSet)
     {
         val[utility::conversions::to_string_t(U("showHiddenFilesAndFolders"))] = ModelBase::toJson(m_showHiddenFilesAndFolders);
+    }
+    if(m_subscribedNotificationsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("subscribedNotifications"))] = ModelBase::toJson(m_subscribedNotifications);
     }
 
     return val;
@@ -92,6 +97,16 @@ bool UpdateUserSettingsVM::fromJson(const web::json::value& val)
             setShowHiddenFilesAndFolders(refVal_setShowHiddenFilesAndFolders);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("subscribedNotifications"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("subscribedNotifications")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<AuditType>> refVal_setSubscribedNotifications;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSubscribedNotifications);
+            setSubscribedNotifications(refVal_setSubscribedNotifications);
+        }
+    }
     return ok;
 }
 
@@ -113,6 +128,10 @@ void UpdateUserSettingsVM::toMultipart(std::shared_ptr<MultipartFormData> multip
     if(m_showHiddenFilesAndFoldersIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("showHiddenFilesAndFolders")), m_showHiddenFilesAndFolders));
+    }
+    if(m_subscribedNotificationsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("subscribedNotifications")), m_subscribedNotifications));
     }
 }
 
@@ -142,6 +161,12 @@ bool UpdateUserSettingsVM::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         bool refVal_setShowHiddenFilesAndFolders;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("showHiddenFilesAndFolders"))), refVal_setShowHiddenFilesAndFolders );
         setShowHiddenFilesAndFolders(refVal_setShowHiddenFilesAndFolders);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("subscribedNotifications"))))
+    {
+        std::vector<std::shared_ptr<AuditType>> refVal_setSubscribedNotifications;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("subscribedNotifications"))), refVal_setSubscribedNotifications );
+        setSubscribedNotifications(refVal_setSubscribedNotifications);
     }
     return ok;
 }
@@ -205,6 +230,26 @@ bool UpdateUserSettingsVM::showHiddenFilesAndFoldersIsSet() const
 void UpdateUserSettingsVM::unsetshowHiddenFilesAndFolders()
 {
     m_showHiddenFilesAndFoldersIsSet = false;
+}
+std::vector<std::shared_ptr<AuditType>>& UpdateUserSettingsVM::getSubscribedNotifications()
+{
+    return m_subscribedNotifications;
+}
+
+void UpdateUserSettingsVM::setSubscribedNotifications(const std::vector<std::shared_ptr<AuditType>>& value)
+{
+    m_subscribedNotifications = value;
+    m_subscribedNotificationsIsSet = true;
+}
+
+bool UpdateUserSettingsVM::subscribedNotificationsIsSet() const
+{
+    return m_subscribedNotificationsIsSet;
+}
+
+void UpdateUserSettingsVM::unsetsubscribedNotifications()
+{
+    m_subscribedNotificationsIsSet = false;
 }
 }
 }

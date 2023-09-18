@@ -415,7 +415,7 @@ pplx::task<std::shared_ptr<TaskBaseVM>> TasksApi::tasksGet(utility::string_t tas
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<TasksVM>> TasksApi::tasksGetList(boost::optional<int32_t> skip, boost::optional<int32_t> take, boost::optional<utility::string_t> subscriptionId) const
+pplx::task<std::shared_ptr<TasksVM>> TasksApi::tasksGetList(boost::optional<int32_t> skip, boost::optional<int32_t> take, boost::optional<utility::string_t> subscriptionId, boost::optional<utility::string_t> searchPattern) const
 {
 
 
@@ -467,6 +467,10 @@ pplx::task<std::shared_ptr<TasksVM>> TasksApi::tasksGetList(boost::optional<int3
     if (subscriptionId)
     {
         localVarQueryParams[utility::conversions::to_string_t("subscriptionId")] = ApiClient::parameterToString(*subscriptionId);
+    }
+    if (searchPattern)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("searchPattern")] = ApiClient::parameterToString(*searchPattern);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;

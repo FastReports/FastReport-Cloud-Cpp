@@ -88,10 +88,12 @@ public:
     /// <param name="skip">number of tasks, that have to be skipped (optional, default to 0)</param>
     /// <param name="take">number of tasks, that have to be returned (optional, default to 0)</param>
     /// <param name="subscriptionId">subscription id (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="searchPattern"> (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<TasksVM>> tasksGetList(
         boost::optional<int32_t> skip,
         boost::optional<int32_t> take,
-        boost::optional<utility::string_t> subscriptionId
+        boost::optional<utility::string_t> subscriptionId,
+        boost::optional<utility::string_t> searchPattern
     ) const;
     /// <summary>
     /// Get all Task permissions

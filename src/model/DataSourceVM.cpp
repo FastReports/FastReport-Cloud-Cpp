@@ -41,6 +41,8 @@ DataSourceVM::DataSourceVM()
     m_creatorUserId = utility::conversions::to_string_t("");
     m_creatorUserIdIsSet = false;
     m_statusIsSet = false;
+    m_errorMessage = utility::conversions::to_string_t("");
+    m_errorMessageIsSet = false;
 }
 
 DataSourceVM::~DataSourceVM()
@@ -100,6 +102,10 @@ web::json::value DataSourceVM::toJson() const
     if(m_statusIsSet)
     {
         val[utility::conversions::to_string_t(U("status"))] = ModelBase::toJson(m_status);
+    }
+    if(m_errorMessageIsSet)
+    {
+        val[utility::conversions::to_string_t(U("errorMessage"))] = ModelBase::toJson(m_errorMessage);
     }
 
     return val;
@@ -219,6 +225,16 @@ bool DataSourceVM::fromJson(const web::json::value& val)
             setStatus(refVal_setStatus);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("errorMessage"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("errorMessage")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setErrorMessage;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setErrorMessage);
+            setErrorMessage(refVal_setErrorMessage);
+        }
+    }
     return ok;
 }
 
@@ -272,6 +288,10 @@ void DataSourceVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     if(m_statusIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("status")), m_status));
+    }
+    if(m_errorMessageIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("errorMessage")), m_errorMessage));
     }
 }
 
@@ -349,6 +369,12 @@ bool DataSourceVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         std::shared_ptr<DataSourceStatus> refVal_setStatus;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("status"))), refVal_setStatus );
         setStatus(refVal_setStatus);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("errorMessage"))))
+    {
+        utility::string_t refVal_setErrorMessage;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("errorMessage"))), refVal_setErrorMessage );
+        setErrorMessage(refVal_setErrorMessage);
     }
     return ok;
 }
@@ -572,6 +598,26 @@ bool DataSourceVM::statusIsSet() const
 void DataSourceVM::unsetstatus()
 {
     m_statusIsSet = false;
+}
+utility::string_t DataSourceVM::getErrorMessage() const
+{
+    return m_errorMessage;
+}
+
+void DataSourceVM::setErrorMessage(const utility::string_t& value)
+{
+    m_errorMessage = value;
+    m_errorMessageIsSet = true;
+}
+
+bool DataSourceVM::errorMessageIsSet() const
+{
+    return m_errorMessageIsSet;
+}
+
+void DataSourceVM::unseterrorMessage()
+{
+    m_errorMessageIsSet = false;
 }
 }
 }

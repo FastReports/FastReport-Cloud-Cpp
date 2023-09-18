@@ -35,6 +35,7 @@ include/CppRestOpenAPIClient/api/SubscriptionUsersApi.h
 include/CppRestOpenAPIClient/api/SubscriptionsApi.h
 include/CppRestOpenAPIClient/api/TasksApi.h
 include/CppRestOpenAPIClient/api/TemplatesApi.h
+include/CppRestOpenAPIClient/api/UserNotificationsApi.h
 include/CppRestOpenAPIClient/api/UserProfileApi.h
 include/CppRestOpenAPIClient/api/UserSettingsApi.h
 include/CppRestOpenAPIClient/model/AcceptAgreementsVM.h
@@ -55,6 +56,7 @@ include/CppRestOpenAPIClient/model/AuditType.h
 include/CppRestOpenAPIClient/model/AuthConfigVM.h
 include/CppRestOpenAPIClient/model/BreadcrumbsModel.h
 include/CppRestOpenAPIClient/model/BreadcrumbsVM.h
+include/CppRestOpenAPIClient/model/ClearNotificationsVM.h
 include/CppRestOpenAPIClient/model/ContactGroupVM.h
 include/CppRestOpenAPIClient/model/ContactGroupsVM.h
 include/CppRestOpenAPIClient/model/ContactVM.h
@@ -140,6 +142,7 @@ include/CppRestOpenAPIClient/model/FilesVM.h
 include/CppRestOpenAPIClient/model/FolderCreateVM.h
 include/CppRestOpenAPIClient/model/FolderIconVM.h
 include/CppRestOpenAPIClient/model/FolderRenameVM.h
+include/CppRestOpenAPIClient/model/FolderSizeVM.h
 include/CppRestOpenAPIClient/model/FolderTagsUpdateVM.h
 include/CppRestOpenAPIClient/model/FrontendApp.h
 include/CppRestOpenAPIClient/model/GroupAdministrate.h
@@ -192,6 +195,8 @@ include/CppRestOpenAPIClient/model/RunTransformTaskBaseVM.h
 include/CppRestOpenAPIClient/model/RunTransportTaskBaseVM.h
 include/CppRestOpenAPIClient/model/RunWebhookTaskVM.h
 include/CppRestOpenAPIClient/model/SaveMode.h
+include/CppRestOpenAPIClient/model/SelectedFilesForDeletingVM.h
+include/CppRestOpenAPIClient/model/SelectedFilesVM.h
 include/CppRestOpenAPIClient/model/ServerConfigurationVM.h
 include/CppRestOpenAPIClient/model/SubscriptionAdministrate.h
 include/CppRestOpenAPIClient/model/SubscriptionCreate.h
@@ -294,6 +299,7 @@ src/api/SubscriptionUsersApi.cpp
 src/api/SubscriptionsApi.cpp
 src/api/TasksApi.cpp
 src/api/TemplatesApi.cpp
+src/api/UserNotificationsApi.cpp
 src/api/UserProfileApi.cpp
 src/api/UserSettingsApi.cpp
 src/model/AcceptAgreementsVM.cpp
@@ -314,6 +320,7 @@ src/model/AuditType.cpp
 src/model/AuthConfigVM.cpp
 src/model/BreadcrumbsModel.cpp
 src/model/BreadcrumbsVM.cpp
+src/model/ClearNotificationsVM.cpp
 src/model/ContactGroupVM.cpp
 src/model/ContactGroupsVM.cpp
 src/model/ContactVM.cpp
@@ -399,6 +406,7 @@ src/model/FilesVM.cpp
 src/model/FolderCreateVM.cpp
 src/model/FolderIconVM.cpp
 src/model/FolderRenameVM.cpp
+src/model/FolderSizeVM.cpp
 src/model/FolderTagsUpdateVM.cpp
 src/model/FrontendApp.cpp
 src/model/GroupAdministrate.cpp
@@ -451,6 +459,8 @@ src/model/RunTransformTaskBaseVM.cpp
 src/model/RunTransportTaskBaseVM.cpp
 src/model/RunWebhookTaskVM.cpp
 src/model/SaveMode.cpp
+src/model/SelectedFilesForDeletingVM.cpp
+src/model/SelectedFilesVM.cpp
 src/model/ServerConfigurationVM.cpp
 src/model/SubscriptionAdministrate.cpp
 src/model/SubscriptionCreate.cpp

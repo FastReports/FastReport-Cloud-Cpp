@@ -191,6 +191,15 @@ public:
 
     void setAuthServerName(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getUpdateWorkspaceLink() const;
+    bool updateWorkspaceLinkIsSet() const;
+    void unsetupdateWorkspaceLink();
+
+    void setUpdateWorkspaceLink(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_title;
@@ -223,6 +232,8 @@ protected:
     bool m_homePageLinkIsSet;
     utility::string_t m_authServerName;
     bool m_authServerNameIsSet;
+    utility::string_t m_updateWorkspaceLink;
+    bool m_updateWorkspaceLinkIsSet;
 };
 
 

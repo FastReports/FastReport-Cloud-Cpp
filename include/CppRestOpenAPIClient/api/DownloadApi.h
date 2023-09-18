@@ -72,10 +72,12 @@ public:
     /// 
     /// </remarks>
     /// <param name="archiveName">name of the created archive</param>
-    /// <param name="ids">ids separated with a &#39;,&#39; sign (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fileIds">ids separated with a &#39;,&#39; sign (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="folderIds">ids separated with a &#39;,&#39; sign (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<HttpContent>> downloadGetExports(
         utility::string_t archiveName,
-        boost::optional<utility::string_t> ids
+        boost::optional<utility::string_t> fileIds,
+        boost::optional<utility::string_t> folderIds
     ) const;
     /// <summary>
     /// returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
@@ -114,10 +116,12 @@ public:
     /// 
     /// </remarks>
     /// <param name="archiveName">name of the created archive</param>
-    /// <param name="ids">ids separated with a &#39;,&#39; sign (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fileIds">ids separated with a &#39;,&#39; sign (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="folderIds">ids separated with a &#39;,&#39; sign (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<HttpContent>> downloadGetReports(
         utility::string_t archiveName,
-        boost::optional<utility::string_t> ids
+        boost::optional<utility::string_t> fileIds,
+        boost::optional<utility::string_t> folderIds
     ) const;
     /// <summary>
     /// Returns a Template file with specified id
@@ -146,10 +150,12 @@ public:
     /// 
     /// </remarks>
     /// <param name="archiveName">name of the created archive</param>
-    /// <param name="ids">ids separated with a &#39;,&#39; sign (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="fileIds">ids separated with a &#39;,&#39; sign (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="folderIds">ids separated with a &#39;,&#39; sign (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::shared_ptr<HttpContent>> downloadGetTemplates(
         utility::string_t archiveName,
-        boost::optional<utility::string_t> ids
+        boost::optional<utility::string_t> fileIds,
+        boost::optional<utility::string_t> folderIds
     ) const;
 
 protected:

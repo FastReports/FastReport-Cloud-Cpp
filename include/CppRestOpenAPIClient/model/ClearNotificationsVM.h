@@ -10,13 +10,13 @@
  */
 
 /*
- * DataSourceConnectionType.h
+ * ClearNotificationsVM.h
  *
  * 
  */
 
-#ifndef FASTREPORT_CLOUD_MODELS_DataSourceConnectionType_H_
-#define FASTREPORT_CLOUD_MODELS_DataSourceConnectionType_H_
+#ifndef FASTREPORT_CLOUD_MODELS_ClearNotificationsVM_H_
+#define FASTREPORT_CLOUD_MODELS_ClearNotificationsVM_H_
 
 #include "CloudKludge.h"
 #include "CppRestOpenAPIClient/ModelBase.h"
@@ -26,12 +26,16 @@ namespace fastreport {
 namespace cloud {
 namespace models {
 
-class  DataSourceConnectionType
+
+/// <summary>
+/// 
+/// </summary>
+class  ClearNotificationsVM
     : public ModelBase
 {
 public:
-    DataSourceConnectionType();
-    virtual ~DataSourceConnectionType();
+    ClearNotificationsVM();
+    virtual ~ClearNotificationsVM();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -44,29 +48,27 @@ public:
     void toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) const override;
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
-    enum class eDataSourceConnectionType
-    {
-        DataSourceConnectionType_JSON,
-        DataSourceConnectionType_MSSQL,
-        DataSourceConnectionType_CSV,
-        DataSourceConnectionType_XML,
-        DataSourceConnectionType_MYSQL,
-        DataSourceConnectionType_POSTGRES,
-        DataSourceConnectionType_ORACLEDB,
-        DataSourceConnectionType_FIREBIRDDB,
-        DataSourceConnectionType_MONGODB,
-        DataSourceConnectionType_CLICKHOUSE,
-    };
+    /////////////////////////////////////////////
+    /// ClearNotificationsVM members
 
-    eDataSourceConnectionType getValue() const;
-    void setValue(eDataSourceConnectionType const value);
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isUpdate() const;
+    bool updateIsSet() const;
+    void unsetupdate();
 
-    protected:
-        eDataSourceConnectionType m_value;
+    void setUpdate(bool value);
+
+
+protected:
+    bool m_update;
+    bool m_updateIsSet;
 };
 
+
 }
 }
 }
 
-#endif /* FASTREPORT_CLOUD_MODELS_DataSourceConnectionType_H_ */
+#endif /* FASTREPORT_CLOUD_MODELS_ClearNotificationsVM_H_ */

@@ -36,6 +36,7 @@
 #include "CppRestOpenAPIClient/model/FilesVM.h"
 #include "CppRestOpenAPIClient/model/FolderIconVM.h"
 #include "CppRestOpenAPIClient/model/FolderRenameVM.h"
+#include "CppRestOpenAPIClient/model/FolderSizeVM.h"
 #include "CppRestOpenAPIClient/model/FolderTagsUpdateVM.h"
 #include "CppRestOpenAPIClient/model/PreviewReportVM.h"
 #include "CppRestOpenAPIClient/model/ProblemDetails.h"
@@ -43,6 +44,7 @@
 #include "CppRestOpenAPIClient/model/ReportFolderCreateVM.h"
 #include "CppRestOpenAPIClient/model/ReportVM.h"
 #include "CppRestOpenAPIClient/model/ReportsVM.h"
+#include "CppRestOpenAPIClient/model/SelectedFilesForDeletingVM.h"
 #include "CppRestOpenAPIClient/model/UpdateFilePermissionsVM.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -72,6 +74,18 @@ public:
     /// <param name="subscriptionId">subscription id</param>
     pplx::task<void> reportFolderAndFileClearRecycleBin(
         utility::string_t subscriptionId
+    ) const;
+    /// <summary>
+    /// Delete folders and files
+    /// </summary>
+    /// <remarks>
+    /// User with a Delete permission can access this method.
+    /// </remarks>
+    /// <param name="subscriptionId">id of current subscription</param>
+    /// <param name="selectedFilesForDeletingVM">VM with files&#39; ids and params of their destination (optional)</param>
+    pplx::task<void> reportFolderAndFileDeleteFiles(
+        utility::string_t subscriptionId,
+        boost::optional<std::shared_ptr<SelectedFilesForDeletingVM>> selectedFilesForDeletingVM
     ) const;
     /// <summary>
     /// Get count of files and folders what contains in a specified folder
@@ -140,6 +154,16 @@ public:
     /// <param name="subscriptionId">subscription id</param>
     pplx::task<void> reportFolderAndFileRecoverAllFromRecycleBin(
         utility::string_t subscriptionId
+    ) const;
+    /// <summary>
+    /// Get specified folder, calculate it&#39;s size
+    /// </summary>
+    /// <remarks>
+    /// User with a Get Entity permission can access this method.
+    /// </remarks>
+    /// <param name="id">folder id</param>
+    pplx::task<std::shared_ptr<FolderSizeVM>> reportFoldersCalculateFolderSize(
+        utility::string_t id
     ) const;
     /// <summary>
     /// Move folder to a specified folder

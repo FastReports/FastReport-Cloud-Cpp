@@ -42,6 +42,8 @@ DataSourceConnectionType::eDataSourceConnectionType toEnum(const EnumUnderlyingT
         return DataSourceConnectionType::eDataSourceConnectionType::DataSourceConnectionType_FIREBIRDDB;
     if (val == utility::conversions::to_string_t(U("MongoDB")))
         return DataSourceConnectionType::eDataSourceConnectionType::DataSourceConnectionType_MONGODB;
+    if (val == utility::conversions::to_string_t(U("ClickHouse")))
+        return DataSourceConnectionType::eDataSourceConnectionType::DataSourceConnectionType_CLICKHOUSE;
     return {};
 }
 
@@ -67,6 +69,8 @@ EnumUnderlyingType fromEnum(DataSourceConnectionType::eDataSourceConnectionType 
         return U("FirebirdDB");
     case DataSourceConnectionType::eDataSourceConnectionType::DataSourceConnectionType_MONGODB:
         return U("MongoDB");
+    case DataSourceConnectionType::eDataSourceConnectionType::DataSourceConnectionType_CLICKHOUSE:
+        return U("ClickHouse");
     default:
         break;
     }

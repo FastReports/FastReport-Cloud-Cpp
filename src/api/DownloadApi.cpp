@@ -270,7 +270,7 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExportThumbnail
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExports(utility::string_t archiveName, boost::optional<utility::string_t> ids) const
+pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExports(utility::string_t archiveName, boost::optional<utility::string_t> fileIds, boost::optional<utility::string_t> folderIds) const
 {
 
 
@@ -315,9 +315,13 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetExports(utility
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (ids)
+    if (fileIds)
     {
-        localVarQueryParams[utility::conversions::to_string_t("ids")] = ApiClient::parameterToString(*ids);
+        localVarQueryParams[utility::conversions::to_string_t("fileIds")] = ApiClient::parameterToString(*fileIds);
+    }
+    if (folderIds)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("folderIds")] = ApiClient::parameterToString(*folderIds);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -735,7 +739,7 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReportThumbnail
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReports(utility::string_t archiveName, boost::optional<utility::string_t> ids) const
+pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReports(utility::string_t archiveName, boost::optional<utility::string_t> fileIds, boost::optional<utility::string_t> folderIds) const
 {
 
 
@@ -780,9 +784,13 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetReports(utility
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (ids)
+    if (fileIds)
     {
-        localVarQueryParams[utility::conversions::to_string_t("ids")] = ApiClient::parameterToString(*ids);
+        localVarQueryParams[utility::conversions::to_string_t("fileIds")] = ApiClient::parameterToString(*fileIds);
+    }
+    if (folderIds)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("folderIds")] = ApiClient::parameterToString(*folderIds);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -1085,7 +1093,7 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplateThumbna
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplates(utility::string_t archiveName, boost::optional<utility::string_t> ids) const
+pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplates(utility::string_t archiveName, boost::optional<utility::string_t> fileIds, boost::optional<utility::string_t> folderIds) const
 {
 
 
@@ -1130,9 +1138,13 @@ pplx::task<std::shared_ptr<HttpContent>> DownloadApi::downloadGetTemplates(utili
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (ids)
+    if (fileIds)
     {
-        localVarQueryParams[utility::conversions::to_string_t("ids")] = ApiClient::parameterToString(*ids);
+        localVarQueryParams[utility::conversions::to_string_t("fileIds")] = ApiClient::parameterToString(*fileIds);
+    }
+    if (folderIds)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("folderIds")] = ApiClient::parameterToString(*folderIds);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;

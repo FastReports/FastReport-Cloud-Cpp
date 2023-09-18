@@ -153,6 +153,15 @@ public:
 
     void setStatus(const std::shared_ptr<DataSourceStatus>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getErrorMessage() const;
+    bool errorMessageIsSet() const;
+    void unseterrorMessage();
+
+    void setErrorMessage(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_id;
@@ -177,6 +186,8 @@ protected:
     bool m_creatorUserIdIsSet;
     std::shared_ptr<DataSourceStatus> m_status;
     bool m_statusIsSet;
+    utility::string_t m_errorMessage;
+    bool m_errorMessageIsSet;
 };
 
 
