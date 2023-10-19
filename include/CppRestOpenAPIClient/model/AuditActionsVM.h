@@ -66,11 +66,11 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    int64_t getCount() const;
-    bool countIsSet() const;
-    void unsetcount();
+    bool isHasMore() const;
+    bool hasMoreIsSet() const;
+    void unsethasMore();
 
-    void setCount(int64_t value);
+    void setHasMore(bool value);
 
     /// <summary>
     /// 
@@ -94,8 +94,8 @@ public:
 protected:
     std::vector<std::shared_ptr<AuditActionVM>> m_items;
     bool m_itemsIsSet;
-    int64_t m_count;
-    bool m_countIsSet;
+    bool m_hasMore;
+    bool m_hasMoreIsSet;
     int32_t m_skip;
     bool m_skipIsSet;
     int32_t m_take;

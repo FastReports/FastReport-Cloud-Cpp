@@ -97,7 +97,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="subscriptionId">subscription id (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="subscriptionId">id of subscription where the datasources are located (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="skip">how many data sources will be skipped (optional, default to 0)</param>
     /// <param name="take">how many data sources will be taken (optional, default to 0)</param>
     /// <param name="orderBy">field to order by (optional, default to new DataSourceSorting())</param>

@@ -22,8 +22,8 @@ namespace models {
 AuditActionsVM::AuditActionsVM()
 {
     m_itemsIsSet = false;
-    m_count = 0L;
-    m_countIsSet = false;
+    m_hasMore = false;
+    m_hasMoreIsSet = false;
     m_skip = 0;
     m_skipIsSet = false;
     m_take = 0;
@@ -48,9 +48,9 @@ web::json::value AuditActionsVM::toJson() const
     {
         val[utility::conversions::to_string_t(U("items"))] = ModelBase::toJson(m_items);
     }
-    if(m_countIsSet)
+    if(m_hasMoreIsSet)
     {
-        val[utility::conversions::to_string_t(U("count"))] = ModelBase::toJson(m_count);
+        val[utility::conversions::to_string_t(U("hasMore"))] = ModelBase::toJson(m_hasMore);
     }
     if(m_skipIsSet)
     {
@@ -78,14 +78,14 @@ bool AuditActionsVM::fromJson(const web::json::value& val)
             setItems(refVal_setItems);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("count"))))
+    if(val.has_field(utility::conversions::to_string_t(U("hasMore"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("count")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("hasMore")));
         if(!fieldValue.is_null())
         {
-            int64_t refVal_setCount;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCount);
-            setCount(refVal_setCount);
+            bool refVal_setHasMore;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setHasMore);
+            setHasMore(refVal_setHasMore);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("skip"))))
@@ -122,9 +122,9 @@ void AuditActionsVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("items")), m_items));
     }
-    if(m_countIsSet)
+    if(m_hasMoreIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("count")), m_count));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("hasMore")), m_hasMore));
     }
     if(m_skipIsSet)
     {
@@ -151,11 +151,11 @@ bool AuditActionsVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("items"))), refVal_setItems );
         setItems(refVal_setItems);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("count"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("hasMore"))))
     {
-        int64_t refVal_setCount;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("count"))), refVal_setCount );
-        setCount(refVal_setCount);
+        bool refVal_setHasMore;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("hasMore"))), refVal_setHasMore );
+        setHasMore(refVal_setHasMore);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("skip"))))
     {
@@ -192,25 +192,25 @@ void AuditActionsVM::unsetitems()
 {
     m_itemsIsSet = false;
 }
-int64_t AuditActionsVM::getCount() const
+bool AuditActionsVM::isHasMore() const
 {
-    return m_count;
+    return m_hasMore;
 }
 
-void AuditActionsVM::setCount(int64_t value)
+void AuditActionsVM::setHasMore(bool value)
 {
-    m_count = value;
-    m_countIsSet = true;
+    m_hasMore = value;
+    m_hasMoreIsSet = true;
 }
 
-bool AuditActionsVM::countIsSet() const
+bool AuditActionsVM::hasMoreIsSet() const
 {
-    return m_countIsSet;
+    return m_hasMoreIsSet;
 }
 
-void AuditActionsVM::unsetcount()
+void AuditActionsVM::unsethasMore()
 {
-    m_countIsSet = false;
+    m_hasMoreIsSet = false;
 }
 int32_t AuditActionsVM::getSkip() const
 {
