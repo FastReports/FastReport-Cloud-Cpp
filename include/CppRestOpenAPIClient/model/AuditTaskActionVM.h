@@ -63,10 +63,21 @@ public:
 
     void setMessageId(const utility::string_t& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getFileName() const;
+    bool fileNameIsSet() const;
+    void unsetfileName();
+
+    void setFileName(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_messageId;
     bool m_messageIdIsSet;
+    utility::string_t m_fileName;
+    bool m_fileNameIsSet;
 };
 
 

@@ -23,6 +23,8 @@ AuditTaskActionVM::AuditTaskActionVM()
 {
     m_messageId = utility::conversions::to_string_t("");
     m_messageIdIsSet = false;
+    m_fileName = utility::conversions::to_string_t("");
+    m_fileNameIsSet = false;
 }
 
 AuditTaskActionVM::~AuditTaskActionVM()
@@ -43,6 +45,10 @@ web::json::value AuditTaskActionVM::toJson() const
     {
         val[utility::conversions::to_string_t(U("messageId"))] = ModelBase::toJson(m_messageId);
     }
+    if(m_fileNameIsSet)
+    {
+        val[utility::conversions::to_string_t(U("fileName"))] = ModelBase::toJson(m_fileName);
+    }
 
     return val;
 }
@@ -61,6 +67,16 @@ bool AuditTaskActionVM::fromJson(const web::json::value& val)
             setMessageId(refVal_setMessageId);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("fileName"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("fileName")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setFileName;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFileName);
+            setFileName(refVal_setFileName);
+        }
+    }
     return ok;
 }
 
@@ -74,6 +90,10 @@ void AuditTaskActionVM::toMultipart(std::shared_ptr<MultipartFormData> multipart
     if(m_messageIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("messageId")), m_messageId));
+    }
+    if(m_fileNameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("fileName")), m_fileName));
     }
     if(m_userIdIsSet)
     {
@@ -131,6 +151,12 @@ bool AuditTaskActionVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipa
         utility::string_t refVal_setMessageId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("messageId"))), refVal_setMessageId );
         setMessageId(refVal_setMessageId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("fileName"))))
+    {
+        utility::string_t refVal_setFileName;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("fileName"))), refVal_setFileName );
+        setFileName(refVal_setFileName);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("userId"))))
     {
@@ -214,6 +240,26 @@ bool AuditTaskActionVM::messageIdIsSet() const
 void AuditTaskActionVM::unsetmessageId()
 {
     m_messageIdIsSet = false;
+}
+utility::string_t AuditTaskActionVM::getFileName() const
+{
+    return m_fileName;
+}
+
+void AuditTaskActionVM::setFileName(const utility::string_t& value)
+{
+    m_fileName = value;
+    m_fileNameIsSet = true;
+}
+
+bool AuditTaskActionVM::fileNameIsSet() const
+{
+    return m_fileNameIsSet;
+}
+
+void AuditTaskActionVM::unsetfileName()
+{
+    m_fileNameIsSet = false;
 }
 }
 }

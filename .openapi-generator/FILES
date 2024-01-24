@@ -195,7 +195,6 @@ include/CppRestOpenAPIClient/model/RunTransformTaskBaseVM.h
 include/CppRestOpenAPIClient/model/RunTransportTaskBaseVM.h
 include/CppRestOpenAPIClient/model/RunWebhookTaskVM.h
 include/CppRestOpenAPIClient/model/SaveMode.h
-include/CppRestOpenAPIClient/model/SelectedFilesForDeletingVM.h
 include/CppRestOpenAPIClient/model/SelectedFilesVM.h
 include/CppRestOpenAPIClient/model/ServerConfigurationVM.h
 include/CppRestOpenAPIClient/model/SubscriptionAdministrate.h
@@ -459,7 +458,6 @@ src/model/RunTransformTaskBaseVM.cpp
 src/model/RunTransportTaskBaseVM.cpp
 src/model/RunWebhookTaskVM.cpp
 src/model/SaveMode.cpp
-src/model/SelectedFilesForDeletingVM.cpp
 src/model/SelectedFilesVM.cpp
 src/model/ServerConfigurationVM.cpp
 src/model/SubscriptionAdministrate.cpp

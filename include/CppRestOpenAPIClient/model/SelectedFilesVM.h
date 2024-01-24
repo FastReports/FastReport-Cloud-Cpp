@@ -65,6 +65,33 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getFolderId() const;
+    bool folderIdIsSet() const;
+    void unsetfolderId();
+
+    void setFolderId(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getSearchPattern() const;
+    bool searchPatternIsSet() const;
+    void unsetsearchPattern();
+
+    void setSearchPattern(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isUseRegex() const;
+    bool useRegexIsSet() const;
+    void unsetuseRegex();
+
+    void setUseRegex(bool value);
+
+    /// <summary>
+    /// 
+    /// </summary>
     std::vector<utility::string_t>& getFiles();
     bool filesIsSet() const;
     void unsetfiles();
@@ -80,14 +107,42 @@ public:
 
     void setFolders(const std::vector<utility::string_t>& value);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getPath() const;
+    bool pathIsSet() const;
+    void unsetpath();
+
+    void setPath(const utility::string_t& value);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isIsBin() const;
+    bool isBinIsSet() const;
+    void unsetisBin();
+
+    void setIsBin(bool value);
+
 
 protected:
     bool m_isAllSelected;
     bool m_isAllSelectedIsSet;
+    utility::string_t m_folderId;
+    bool m_folderIdIsSet;
+    utility::string_t m_searchPattern;
+    bool m_searchPatternIsSet;
+    bool m_useRegex;
+    bool m_useRegexIsSet;
     std::vector<utility::string_t> m_files;
     bool m_filesIsSet;
     std::vector<utility::string_t> m_folders;
     bool m_foldersIsSet;
+    utility::string_t m_path;
+    bool m_pathIsSet;
+    bool m_isBin;
+    bool m_isBinIsSet;
 };
 
 

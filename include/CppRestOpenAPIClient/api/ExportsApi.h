@@ -40,7 +40,7 @@
 #include "CppRestOpenAPIClient/model/FolderSizeVM.h"
 #include "CppRestOpenAPIClient/model/FolderTagsUpdateVM.h"
 #include "CppRestOpenAPIClient/model/ProblemDetails.h"
-#include "CppRestOpenAPIClient/model/SelectedFilesForDeletingVM.h"
+#include "CppRestOpenAPIClient/model/SelectedFilesVM.h"
 #include "CppRestOpenAPIClient/model/UpdateFilePermissionsVM.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -78,10 +78,10 @@ public:
     /// User with a Delete permission can access this method.
     /// </remarks>
     /// <param name="subscriptionId">id of current subscription</param>
-    /// <param name="selectedFilesForDeletingVM">VM with files&#39; ids and params of their destination (optional)</param>
+    /// <param name="selectedFilesVM">VM with files&#39; ids and params of their destination (optional)</param>
     pplx::task<void> exportFolderAndFileDeleteFiles(
         utility::string_t subscriptionId,
-        boost::optional<std::shared_ptr<SelectedFilesForDeletingVM>> selectedFilesForDeletingVM
+        boost::optional<std::shared_ptr<SelectedFilesVM>> selectedFilesVM
     ) const;
     /// <summary>
     /// Get count of files and folders what contains in a specified folder
@@ -142,6 +142,18 @@ public:
         boost::optional<bool> useRegex
     ) const;
     /// <summary>
+    /// Move folders and files to bin
+    /// </summary>
+    /// <remarks>
+    /// User with a Delete permission can access this method.
+    /// </remarks>
+    /// <param name="subscriptionId">id of current subscription</param>
+    /// <param name="selectedFilesVM">VM with files&#39; ids and params of their destination (optional)</param>
+    pplx::task<void> exportFolderAndFileMoveFilesToBin(
+        utility::string_t subscriptionId,
+        boost::optional<std::shared_ptr<SelectedFilesVM>> selectedFilesVM
+    ) const;
+    /// <summary>
     /// Recover all folders and files from recycle bin
     /// </summary>
     /// <remarks>
@@ -150,6 +162,18 @@ public:
     /// <param name="subscriptionId">subscription id</param>
     pplx::task<void> exportFolderAndFileRecoverAllFromRecycleBin(
         utility::string_t subscriptionId
+    ) const;
+    /// <summary>
+    /// Recover folders and files from bin
+    /// </summary>
+    /// <remarks>
+    /// User with a SubscriptionCreate permission can access this method.
+    /// </remarks>
+    /// <param name="subscriptionId">id of current subscription</param>
+    /// <param name="selectedFilesVM">VM with files&#39; ids and params of their destination (optional)</param>
+    pplx::task<void> exportFolderAndFileRecoverFiles(
+        utility::string_t subscriptionId,
+        boost::optional<std::shared_ptr<SelectedFilesVM>> selectedFilesVM
     ) const;
     /// <summary>
     /// Get specified folder, calculate it&#39;s size
@@ -386,12 +410,12 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
-    /// Get specified file
+    /// 
     /// </summary>
     /// <remarks>
-    /// User with Get Entity permission can access this method.
+    /// 
     /// </remarks>
-    /// <param name="id">file id</param>
+    /// <param name="id"></param>
     pplx::task<std::shared_ptr<ExportVM>> exportsGetFile(
         utility::string_t id
     ) const;

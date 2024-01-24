@@ -23,8 +23,18 @@ SelectedFilesVM::SelectedFilesVM()
 {
     m_isAllSelected = false;
     m_isAllSelectedIsSet = false;
+    m_folderId = utility::conversions::to_string_t("");
+    m_folderIdIsSet = false;
+    m_searchPattern = utility::conversions::to_string_t("");
+    m_searchPatternIsSet = false;
+    m_useRegex = false;
+    m_useRegexIsSet = false;
     m_filesIsSet = false;
     m_foldersIsSet = false;
+    m_path = utility::conversions::to_string_t("");
+    m_pathIsSet = false;
+    m_isBin = false;
+    m_isBinIsSet = false;
 }
 
 SelectedFilesVM::~SelectedFilesVM()
@@ -45,6 +55,18 @@ web::json::value SelectedFilesVM::toJson() const
     {
         val[utility::conversions::to_string_t(U("isAllSelected"))] = ModelBase::toJson(m_isAllSelected);
     }
+    if(m_folderIdIsSet)
+    {
+        val[utility::conversions::to_string_t(U("folderId"))] = ModelBase::toJson(m_folderId);
+    }
+    if(m_searchPatternIsSet)
+    {
+        val[utility::conversions::to_string_t(U("searchPattern"))] = ModelBase::toJson(m_searchPattern);
+    }
+    if(m_useRegexIsSet)
+    {
+        val[utility::conversions::to_string_t(U("useRegex"))] = ModelBase::toJson(m_useRegex);
+    }
     if(m_filesIsSet)
     {
         val[utility::conversions::to_string_t(U("files"))] = ModelBase::toJson(m_files);
@@ -52,6 +74,14 @@ web::json::value SelectedFilesVM::toJson() const
     if(m_foldersIsSet)
     {
         val[utility::conversions::to_string_t(U("folders"))] = ModelBase::toJson(m_folders);
+    }
+    if(m_pathIsSet)
+    {
+        val[utility::conversions::to_string_t(U("path"))] = ModelBase::toJson(m_path);
+    }
+    if(m_isBinIsSet)
+    {
+        val[utility::conversions::to_string_t(U("isBin"))] = ModelBase::toJson(m_isBin);
     }
 
     return val;
@@ -69,6 +99,36 @@ bool SelectedFilesVM::fromJson(const web::json::value& val)
             bool refVal_setIsAllSelected;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIsAllSelected);
             setIsAllSelected(refVal_setIsAllSelected);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("folderId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("folderId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setFolderId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFolderId);
+            setFolderId(refVal_setFolderId);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("searchPattern"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("searchPattern")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSearchPattern;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSearchPattern);
+            setSearchPattern(refVal_setSearchPattern);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("useRegex"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("useRegex")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setUseRegex;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setUseRegex);
+            setUseRegex(refVal_setUseRegex);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("files"))))
@@ -91,6 +151,26 @@ bool SelectedFilesVM::fromJson(const web::json::value& val)
             setFolders(refVal_setFolders);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("path"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("path")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setPath;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPath);
+            setPath(refVal_setPath);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("isBin"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("isBin")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setIsBin;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setIsBin);
+            setIsBin(refVal_setIsBin);
+        }
+    }
     return ok;
 }
 
@@ -105,6 +185,18 @@ void SelectedFilesVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("isAllSelected")), m_isAllSelected));
     }
+    if(m_folderIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("folderId")), m_folderId));
+    }
+    if(m_searchPatternIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("searchPattern")), m_searchPattern));
+    }
+    if(m_useRegexIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("useRegex")), m_useRegex));
+    }
     if(m_filesIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("files")), m_files));
@@ -112,6 +204,14 @@ void SelectedFilesVM::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     if(m_foldersIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("folders")), m_folders));
+    }
+    if(m_pathIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("path")), m_path));
+    }
+    if(m_isBinIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("isBin")), m_isBin));
     }
 }
 
@@ -130,6 +230,24 @@ bool SelectedFilesVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("isAllSelected"))), refVal_setIsAllSelected );
         setIsAllSelected(refVal_setIsAllSelected);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("folderId"))))
+    {
+        utility::string_t refVal_setFolderId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("folderId"))), refVal_setFolderId );
+        setFolderId(refVal_setFolderId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("searchPattern"))))
+    {
+        utility::string_t refVal_setSearchPattern;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("searchPattern"))), refVal_setSearchPattern );
+        setSearchPattern(refVal_setSearchPattern);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("useRegex"))))
+    {
+        bool refVal_setUseRegex;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("useRegex"))), refVal_setUseRegex );
+        setUseRegex(refVal_setUseRegex);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("files"))))
     {
         std::vector<utility::string_t> refVal_setFiles;
@@ -141,6 +259,18 @@ bool SelectedFilesVM::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         std::vector<utility::string_t> refVal_setFolders;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("folders"))), refVal_setFolders );
         setFolders(refVal_setFolders);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("path"))))
+    {
+        utility::string_t refVal_setPath;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("path"))), refVal_setPath );
+        setPath(refVal_setPath);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("isBin"))))
+    {
+        bool refVal_setIsBin;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("isBin"))), refVal_setIsBin );
+        setIsBin(refVal_setIsBin);
     }
     return ok;
 }
@@ -164,6 +294,66 @@ bool SelectedFilesVM::isAllSelectedIsSet() const
 void SelectedFilesVM::unsetisAllSelected()
 {
     m_isAllSelectedIsSet = false;
+}
+utility::string_t SelectedFilesVM::getFolderId() const
+{
+    return m_folderId;
+}
+
+void SelectedFilesVM::setFolderId(const utility::string_t& value)
+{
+    m_folderId = value;
+    m_folderIdIsSet = true;
+}
+
+bool SelectedFilesVM::folderIdIsSet() const
+{
+    return m_folderIdIsSet;
+}
+
+void SelectedFilesVM::unsetfolderId()
+{
+    m_folderIdIsSet = false;
+}
+utility::string_t SelectedFilesVM::getSearchPattern() const
+{
+    return m_searchPattern;
+}
+
+void SelectedFilesVM::setSearchPattern(const utility::string_t& value)
+{
+    m_searchPattern = value;
+    m_searchPatternIsSet = true;
+}
+
+bool SelectedFilesVM::searchPatternIsSet() const
+{
+    return m_searchPatternIsSet;
+}
+
+void SelectedFilesVM::unsetsearchPattern()
+{
+    m_searchPatternIsSet = false;
+}
+bool SelectedFilesVM::isUseRegex() const
+{
+    return m_useRegex;
+}
+
+void SelectedFilesVM::setUseRegex(bool value)
+{
+    m_useRegex = value;
+    m_useRegexIsSet = true;
+}
+
+bool SelectedFilesVM::useRegexIsSet() const
+{
+    return m_useRegexIsSet;
+}
+
+void SelectedFilesVM::unsetuseRegex()
+{
+    m_useRegexIsSet = false;
 }
 std::vector<utility::string_t>& SelectedFilesVM::getFiles()
 {
@@ -204,6 +394,46 @@ bool SelectedFilesVM::foldersIsSet() const
 void SelectedFilesVM::unsetfolders()
 {
     m_foldersIsSet = false;
+}
+utility::string_t SelectedFilesVM::getPath() const
+{
+    return m_path;
+}
+
+void SelectedFilesVM::setPath(const utility::string_t& value)
+{
+    m_path = value;
+    m_pathIsSet = true;
+}
+
+bool SelectedFilesVM::pathIsSet() const
+{
+    return m_pathIsSet;
+}
+
+void SelectedFilesVM::unsetpath()
+{
+    m_pathIsSet = false;
+}
+bool SelectedFilesVM::isIsBin() const
+{
+    return m_isBin;
+}
+
+void SelectedFilesVM::setIsBin(bool value)
+{
+    m_isBin = value;
+    m_isBinIsSet = true;
+}
+
+bool SelectedFilesVM::isBinIsSet() const
+{
+    return m_isBinIsSet;
+}
+
+void SelectedFilesVM::unsetisBin()
+{
+    m_isBinIsSet = false;
 }
 }
 }
