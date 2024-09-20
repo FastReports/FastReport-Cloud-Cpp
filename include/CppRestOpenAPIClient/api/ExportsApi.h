@@ -30,6 +30,7 @@
 #include "CppRestOpenAPIClient/model/ExportVM.h"
 #include "CppRestOpenAPIClient/model/ExportsVM.h"
 #include "CppRestOpenAPIClient/model/FileIconVM.h"
+#include "CppRestOpenAPIClient/model/FilePermissionCRUDVM.h"
 #include "CppRestOpenAPIClient/model/FilePermissionsVM.h"
 #include "CppRestOpenAPIClient/model/FileRenameVM.h"
 #include "CppRestOpenAPIClient/model/FileSharingKeysVM.h"
@@ -300,6 +301,16 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
+    /// Get user&#39;s permissions for a folder by id
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="folderId">folder id</param>
+    pplx::task<std::shared_ptr<FilePermissionCRUDVM>> exportFoldersGetMyPermissions(
+        utility::string_t folderId
+    ) const;
+    /// <summary>
     /// Get specified folder
     /// </summary>
     /// <remarks>
@@ -528,6 +539,16 @@ public:
         boost::optional<std::shared_ptr<FileSorting>> orderBy,
         boost::optional<bool> desc,
         boost::optional<bool> useRegex
+    ) const;
+    /// <summary>
+    /// Get current user&#39;s permissions to file
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="id">file id</param>
+    pplx::task<std::shared_ptr<FilePermissionCRUDVM>> exportsGetMyPermissions(
+        utility::string_t id
     ) const;
     /// <summary>
     /// 
